@@ -88,25 +88,44 @@
     pointer-events: auto;
   }
 
-  /* Ensure variant picker elements always have proper pointer events, especially with third-party apps */
-  .group-block__link ~ * variant-picker,
-  .group-block__link ~ * .variant-picker,
-  .group-block__link ~ * .variant-option,
-  .group-block__link ~ * .variant-option__button-label {
+  /* Fix Cowlendar over-aggressive click capture - prevent it from interfering with variant selection */
+  
+  /* Ensure variant picker elements are never captured by Cowlendar */
+  variant-picker,
+  .variant-picker,
+  .variant-option,
+  .variant-option__button-label,
+  .variant-picker__form,
+  .variant-picker fieldset,
+  .variant-picker label,
+  .variant-picker input[type="radio"] {
     pointer-events: auto !important;
+    position: relative !important;
+    z-index: 999 !important;
   }
 
-  /* Handle anchor tags with 'contents' class that wrap around content */
+  /* Prevent Cowlendar from making product titles clickable */
+  .view-product-title,
+  .view-product-title a,
+  [ref="productTitleLink"],
   a.contents {
     pointer-events: none !important;
   }
 
-  a.contents * {
+  /* Re-enable pointer events for actual interactive content within disabled areas */
+  a.contents *:not(.view-product-title):not(.view-product-title *) {
     pointer-events: auto !important;
   }
 
-  /* Ensure all interactive elements within content areas work properly */
-  .group-block-content *:is(a, button, input, textarea, select, label, fieldset, variant-picker, form, .variant-picker, .variant-option, .variant-option__button-label) {
+  /* Cowlendar-specific fixes - ensure booking buttons work but don't interfere with variants */
+  .cowlendar-btn {
     pointer-events: auto !important;
+    z-index: 1 !important;
+  }
+
+  /* Ensure Cowlendar doesn't capture clicks outside of its designated areas */
+  [data-cowlendar-form] .variant-picker * {
+    pointer-events: auto !important;
+    z-index: 1000 !important;
   }
 {% endstylesheet %}
