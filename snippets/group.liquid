@@ -78,7 +78,7 @@
   .group-block__link ~ :is(.group-block-content, .group-block__media-wrapper) {
     pointer-events: none;
 
-    :is(a, button, input, textarea, select, label) {
+    :is(a, button, input, textarea, select, label, fieldset, variant-picker, form) {
       pointer-events: auto;
     }
   }
@@ -86,5 +86,13 @@
   /* Needs the .group-block__link ~ to be specific enough to take effect. */
   .group-block__link ~ .group-block-content--design-mode {
     pointer-events: auto;
+  }
+
+  /* Ensure variant picker elements always have proper pointer events, especially with third-party apps */
+  .group-block__link ~ * variant-picker,
+  .group-block__link ~ * .variant-picker,
+  .group-block__link ~ * .variant-option,
+  .group-block__link ~ * .variant-option__button-label {
+    pointer-events: auto !important;
   }
 {% endstylesheet %}
