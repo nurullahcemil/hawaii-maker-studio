@@ -78,7 +78,7 @@
   .group-block__link ~ :is(.group-block-content, .group-block__media-wrapper) {
     pointer-events: none;
 
-    :is(a, button, input, textarea, select, label, fieldset, variant-picker, form) {
+    :is(a, button, input, textarea, select) {
       pointer-events: auto;
     }
   }
@@ -86,46 +86,5 @@
   /* Needs the .group-block__link ~ to be specific enough to take effect. */
   .group-block__link ~ .group-block-content--design-mode {
     pointer-events: auto;
-  }
-
-  /* Fix Cowlendar over-aggressive click capture - prevent it from interfering with variant selection */
-  
-  /* Ensure variant picker elements are never captured by Cowlendar */
-  variant-picker,
-  .variant-picker,
-  .variant-option,
-  .variant-option__button-label,
-  .variant-picker__form,
-  .variant-picker fieldset,
-  .variant-picker label,
-  .variant-picker input[type="radio"] {
-    pointer-events: auto !important;
-    position: relative !important;
-    z-index: 999 !important;
-  }
-
-  /* Prevent Cowlendar from making product titles clickable */
-  .view-product-title,
-  .view-product-title a,
-  [ref="productTitleLink"],
-  a.contents {
-    pointer-events: none !important;
-  }
-
-  /* Re-enable pointer events for actual interactive content within disabled areas */
-  a.contents *:not(.view-product-title):not(.view-product-title *) {
-    pointer-events: auto !important;
-  }
-
-  /* Cowlendar-specific fixes - ensure booking buttons work but don't interfere with variants */
-  .cowlendar-btn {
-    pointer-events: auto !important;
-    z-index: 1 !important;
-  }
-
-  /* Ensure Cowlendar doesn't capture clicks outside of its designated areas */
-  [data-cowlendar-form] .variant-picker * {
-    pointer-events: auto !important;
-    z-index: 1000 !important;
   }
 {% endstylesheet %}
