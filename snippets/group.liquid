@@ -95,4 +95,18 @@
   .group-block__link ~ * .variant-option__button-label {
     pointer-events: auto !important;
   }
+
+  /* Handle anchor tags with 'contents' class that wrap around content */
+  a.contents {
+    pointer-events: none !important;
+  }
+
+  a.contents * {
+    pointer-events: auto !important;
+  }
+
+  /* Ensure all interactive elements within content areas work properly */
+  .group-block-content *:is(a, button, input, textarea, select, label, fieldset, variant-picker, form, .variant-picker, .variant-option, .variant-option__button-label) {
+    pointer-events: auto !important;
+  }
 {% endstylesheet %}
