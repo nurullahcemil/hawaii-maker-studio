@@ -252,7 +252,7 @@
     --variant-picker-stroke-color: var(--color-variant-border);
 
     display: flex;
-    flex: 0 0 calc(3ch + 1.3em);
+    flex: 0 0 auto;
     align-items: center;
     position: relative;
     padding-block: var(--padding-sm);
@@ -260,11 +260,11 @@
     border: var(--style-border-width) solid var(--color-variant-border);
     border-radius: var(--options-border-radius);
     border-width: var(--options-border-width);
-    overflow: clip;
+    overflow: visible;
     justify-content: center;
     min-height: calc(3ch + 1.3em);
     min-width: fit-content;
-    white-space: nowrap;
+    white-space: normal;
     background-color: var(--color-variant-background);
     color: var(--color-variant-text);
     transition: background-color var(--animation-speed) var(--animation-easing),
@@ -282,8 +282,11 @@
   }
 
   .variant-option__button-label__text {
-    text-align: left;
-    text-wrap: auto;
+    text-align: center;
+    text-wrap: balance;
+    word-break: break-word;
+    hyphens: auto;
+    max-width: 100%;
   }
 
   .variant-option--equal-width-buttons {
