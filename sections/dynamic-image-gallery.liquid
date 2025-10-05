@@ -13,24 +13,73 @@
 {%- enddoc -%}
 
 {% liquid
+  # Try multiple ways to access the product
   assign product_resource = product
+  if product_resource == blank
+    assign product_resource = closest.product
+  endif
+  if product_resource == blank and template.name == 'product'
+    assign product_resource = collections.all.products.first
+  endif
   
-  # Get gallery images from metafield
+  # Get gallery images from metafield with multiple fallback attempts
   assign gallery_images = product_resource.metafields.custom.gallery_images.value
+  if gallery_images == blank
+    assign gallery_images = product_resource.metafields.custom.gallery_images
+  endif
+  if gallery_images == blank
+    assign gallery_images = product_resource.metafields['custom.gallery_images'].value
+  endif
+  if gallery_images == blank
+    assign gallery_images = product_resource.metafields['custom.gallery_images']
+  endif
   
   # Fallback to product images if no metafield images
   if gallery_images == blank
     assign gallery_images = product_resource.images
   endif
+  
+  # Debug: force show something if we have a product
+  if gallery_images == blank and product_resource != blank
+    assign gallery_images = product_resource.images
+  endif
 %}
 
-{% if gallery_images.size > 0 %}
-  <div class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}">
-    <div class="dynamic-gallery spacing-style" style="{% render 'spacing-style', settings: section.settings %}">
-      
-      {% if section.settings.show_title and section.settings.gallery_title != blank %}
-        <h2 class="dynamic-gallery__title h3 text-center">{{ section.settings.gallery_title }}</h2>
-      {% endif %}
+<!-- Debug Info (remove in production) -->
+{% comment %}
+Product: {{ product_resource.title }}
+Gallery images count: {{ gallery_images.size }}
+Metafield value: {{ product_resource.metafields.custom.gallery_images.value }}
+Regular images count: {{ product_resource.images.size }}
+{% endcomment %}
+
+<div class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}">
+  <div class="dynamic-gallery spacing-style" style="{% render 'spacing-style', settings: section.settings %}">
+    
+    {% if section.settings.show_title and section.settings.gallery_title != blank %}
+      <h2 class="dynamic-gallery__title h3 text-center">{{ section.settings.gallery_title }}</h2>
+    {% endif %}
+    
+    <!-- Show debug info temporarily -->
+    {% if product_resource %}
+      <div style="background: #f0f0f0; padding: 10px; margin: 10px 0; font-size: 12px;">
+        <strong>Debug Info:</strong><br>
+        Product: {{ product_resource.title }}<br>
+        Metafield images: {{ gallery_images.size }}<br>
+        {% if gallery_images.size > 0 %}
+          Images found: 
+          {% for img in gallery_images limit: 3 %}
+            {{ img.alt | default: 'Image' | append: ', ' }}
+          {% endfor %}
+        {% else %}
+          No metafield images found. Using product images: {{ product_resource.images.size }}
+        {% endif %}
+      </div>
+    {% else %}
+      <div style="background: #ffcccc; padding: 10px; margin: 10px 0;">
+        <strong>Error:</strong> No product found in section context
+      </div>
+    {% endif %}
 
       <div class="dynamic-gallery__container" data-gallery-layout="{{ section.settings.gallery_layout }}">
         
@@ -142,7 +191,6 @@
       {% endif %}
     </div>
   </div>
-{% endif %}
 
 {% stylesheet %}
   .dynamic-gallery {
