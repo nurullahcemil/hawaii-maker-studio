@@ -822,7 +822,7 @@
         "heading_style": "h3",
         "title_spacing": 32,
         "gallery_layout": "grid-4",
-        "max_images": 12,
+        "max_images": 20,
         "columns_mobile": 1,
         "columns_tablet": 3,
         "columns_desktop": 3,
