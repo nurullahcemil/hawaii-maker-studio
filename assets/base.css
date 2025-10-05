@@ -2090,15 +2090,16 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  /* Ensure full width without radio input interference */
+  width: auto !important;
+  min-width: fit-content !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-.variant-picker .variant-option--buttons input[type="radio"] {
-  position: relative;
-  z-index: calc(var(--layer-flat) + 3);
-  cursor: pointer;
-}
-
-.variant-picker .variant-option--buttons input[type="radio"]:focus {
+/* Radio input focus handling - since radio is hidden, apply focus to label */
+.variant-picker .variant-option--buttons input[type="radio"]:focus + .variant-option__button-label {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
@@ -2131,6 +2132,23 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
 .variant-picker .variant-option--buttons .variant-option__button-label {
   flex-shrink: 0;
   min-width: max-content;
+}
+
+/* Properly hide radio inputs without affecting layout */
+.variant-picker .variant-option--buttons input[type="radio"] {
+  position: absolute !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  pointer-events: none !important;
+  /* Remove from layout flow completely */
+  clip: rect(0, 0, 0, 0) !important;
+  -webkit-clip-path: inset(100%) !important;
+  clip-path: inset(100%) !important;
 }
 
 /* Fix multiple anchor tag conflicts - disable title links to prevent unwanted navigation */
