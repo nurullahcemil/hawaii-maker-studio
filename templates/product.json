@@ -364,7 +364,7 @@
                           "type": "text",
                           "name": "Heading",
                           "settings": {
-                            "text": "<p>Made with care</p>",
+                            "text": "<p>For Individuals</p>",
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -436,7 +436,7 @@
                           "type": "icon",
                           "name": "t:names.icon",
                           "settings": {
-                            "icon": "price_tag",
+                            "icon": "silhouette",
                             "width": 24,
                             "link": "",
                             "open_in_new_tab": false
@@ -447,7 +447,7 @@
                           "type": "text",
                           "name": "Heading",
                           "settings": {
-                            "text": "<p>Great value</p>",
+                            "text": "<p>For Corporates</p>",
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -565,7 +565,7 @@
                           "type": "icon",
                           "name": "t:names.icon",
                           "settings": {
-                            "icon": "plant",
+                            "icon": "star",
                             "width": 24,
                             "link": "",
                             "open_in_new_tab": false
@@ -576,7 +576,7 @@
                           "type": "text",
                           "name": "Heading",
                           "settings": {
-                            "text": "<p>Elegant design</p>",
+                            "text": "<p>Creative People</p>",
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -648,7 +648,7 @@
                           "type": "icon",
                           "name": "t:names.icon",
                           "settings": {
-                            "icon": "leather",
+                            "icon": "banana",
                             "width": 24,
                             "link": "",
                             "open_in_new_tab": false
@@ -659,7 +659,7 @@
                           "type": "text",
                           "name": "Heading",
                           "settings": {
-                            "text": "<p>Quality materials</p>",
+                            "text": "<p>Artists</p>",
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -730,7 +730,7 @@
                     "text_McjMWz": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>This product is crafted with quality materials to ensure durability and performance. Designed with your convenience in mind, it seamlessly fits into your everyday life.</p>",
+                        "text": "<p>Rentals are available by the hour with flexible scheduling. A brief safety and usage orientation is required before your first booking (must be scheduled separately). Rentals include workspace, ventilation, and access to basic hand tools if needed. Staff may not be present at all times during your rental, but we will meet you in person to set up and go over logistics. Design help or file prep is not included during rental time. Perfect for artists, makers, and small business projects.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -757,10 +757,50 @@
                     "text_McjMWz"
                   ]
                 },
+                "accordion_row_UrT7FN": {
+                  "type": "_accordion-row",
+                  "name": "t:names.accordion_row",
+                  "settings": {
+                    "heading": "Can I also purchase materials?",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_ddQQrp": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Only approved materials and files may be used during rentals. You are welcome to bring your own materials, or purchase from us if we have what you need in stock.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_ddQQrp"
+                  ]
+                },
                 "accordion_row_aaFerA": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Shipping & Returns",
+                    "heading": "Rental & Cacellations",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -769,7 +809,7 @@
                     "text_DNPAct": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>We strive to process and ship all orders in a timely manner, working diligently to ensure that your items are on their way to you as soon as possible. </p><p>We are committed to ensuring a positive shopping experience for all our customers. If for any reason you wish to return an item, we invite you to reach out to our team for assistance, and we will evaluate every return request with care and consideration.</p>",
+                        "text": "<p>All equipment rentals must be booked in advance with a minimum rental time of 1 hour. Additional time is billed in 30-minute increments. You may cancel for free up to 24 hours before your scheduled rental. </p><p>Cancellations within 24 hours or no-shows will be charged 50% of the rental fee. Renters are responsible for any damage caused by misuse or use of unauthorized materials. A brief safety overview is required before your first session.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -795,11 +835,53 @@
                   "block_order": [
                     "text_DNPAct"
                   ]
+                },
+                "accordion_row_gXNMKy": {
+                  "type": "_accordion-row",
+                  "name": "t:names.accordion_row",
+                  "settings": {
+                    "heading": "Who Can Rent?",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_xTT7Pf": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Equipment rentals are available to <strong>approved members</strong> and <strong>individuals who have completed a 1-on-1 introductory session</strong>. First-time users must schedule a private training session before booking rental time.</p><p>All rentals require a minimum of 1 hour, with additional time billed in 30-minute increments. Cancellations are free up to 24 hours in advance. Cancellations within 24 hours or no-shows will be charged 50% of the rental fee.</p><p>Renters are responsible for proper use of equipment and any damage caused by misuse or unauthorized materials. Only approved files and materials may be used.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_xTT7Pf"
+                  ]
                 }
               },
               "block_order": [
                 "accordion_row_VyFryh",
-                "accordion_row_aaFerA"
+                "accordion_row_UrT7FN",
+                "accordion_row_aaFerA",
+                "accordion_row_gXNMKy"
               ]
             }
           },
