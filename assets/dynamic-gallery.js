@@ -7,17 +7,105 @@ class DynamicGallery {
   constructor(container) {
     this.container = container;
     this.slideshow = container.querySelector('.dynamic-gallery__slideshow');
+    this.masonryGrid = container.querySelector('.dynamic-gallery__grid--masonry');
     this.images = [];
     this.currentSlide = 0;
     this.autoplayTimer = null;
+    this.columnHeights = [];
     
     this.init();
   }
 
   init() {
     this.setupSlideshow();
+    this.setupMasonry();
     this.setupZoom();
     this.setupKeyboardNavigation();
+    
+    // Re-layout on window resize
+    window.addEventListener('resize', () => {
+      if (this.masonryGrid) {
+        this.layoutMasonry();
+      }
+    });
+  }
+
+  setupMasonry() {
+    if (!this.masonryGrid) return;
+    
+    // Wait for images to load before positioning
+    const images = this.masonryGrid.querySelectorAll('img');
+    let loadedCount = 0;
+    
+    const checkAllLoaded = () => {
+      loadedCount++;
+      if (loadedCount === images.length) {
+        this.layoutMasonry();
+      }
+    };
+
+    images.forEach(img => {
+      if (img.complete) {
+        checkAllLoaded();
+      } else {
+        img.addEventListener('load', checkAllLoaded);
+        img.addEventListener('error', checkAllLoaded);
+      }
+    });
+
+    // If no images or all already loaded
+    if (images.length === 0) {
+      this.layoutMasonry();
+    }
+  }
+
+  layoutMasonry() {
+    if (!this.masonryGrid) return;
+
+    const items = this.masonryGrid.querySelectorAll('.dynamic-gallery__grid-item');
+    if (items.length === 0) return;
+
+    // Get current column count based on screen size
+    const computedStyle = getComputedStyle(this.container);
+    let columnCount;
+    let gap;
+    
+    if (window.innerWidth >= 990) {
+      columnCount = parseInt(computedStyle.getPropertyValue('--columns-desktop')) || 4;
+      gap = 24;
+    } else if (window.innerWidth >= 750) {
+      columnCount = parseInt(computedStyle.getPropertyValue('--columns-tablet')) || 3;
+      gap = 20;
+    } else {
+      columnCount = parseInt(computedStyle.getPropertyValue('--columns-mobile')) || 2;
+      gap = 16;
+    }
+
+    // Initialize column heights
+    this.columnHeights = new Array(columnCount).fill(0);
+    
+    // Position each item
+    items.forEach((item, index) => {
+      // Find shortest column
+      const shortestColumnIndex = this.columnHeights.indexOf(Math.min(...this.columnHeights));
+      
+      // Calculate position
+      const itemWidth = item.offsetWidth;
+      const itemHeight = item.offsetHeight;
+      const leftPosition = shortestColumnIndex * (itemWidth + gap);
+      const topPosition = this.columnHeights[shortestColumnIndex];
+      
+      // Position the item
+      item.style.left = `${leftPosition}px`;
+      item.style.top = `${topPosition}px`;
+      
+      // Update column height
+      this.columnHeights[shortestColumnIndex] += itemHeight + gap;
+    });
+
+    // Set container height
+    const maxHeight = Math.max(...this.columnHeights);
+    this.masonryGrid.style.height = `${maxHeight}px`;
   }
 
   setupSlideshow() {
