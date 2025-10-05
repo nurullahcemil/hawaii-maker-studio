@@ -1,5 +1,5 @@
 {%- doc -%}
-  Dynamic Image Gallery Block
+  Dynamic Image Gallery Section
   Uses product metafields to display a customizable image gallery
   
   Metafield Setup Required:
@@ -13,8 +13,7 @@
 {%- enddoc -%}
 
 {% liquid
-  assign block_settings = block.settings
-  assign product_resource = closest.product
+  assign product_resource = product
   
   # Get gallery images from metafield
   assign gallery_images = product_resource.metafields.custom.gallery_images.value
@@ -26,126 +25,130 @@
 %}
 
 {% if gallery_images.size > 0 %}
-  <div class="dynamic-gallery spacing-style" style="{% render 'spacing-style', settings: block_settings %}" {{ block.shopify_attributes }}>
-    
-    {% if block_settings.show_title and block_settings.gallery_title != blank %}
-      <h3 class="dynamic-gallery__title h4">{{ block_settings.gallery_title }}</h3>
-    {% endif %}
-
-    <div class="dynamic-gallery__container" data-gallery-layout="{{ block_settings.gallery_layout }}">
+  <div class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}">
+    <div class="dynamic-gallery spacing-style" style="{% render 'spacing-style', settings: section.settings %}">
       
-      {% if block_settings.gallery_layout == 'slideshow' %}
-        <!-- Slideshow Layout -->
-        <slideshow-component class="dynamic-gallery__slideshow">
-          <div class="slideshow" data-autoplay="{{ block_settings.autoplay }}" data-autoplay-speed="{{ block_settings.autoplay_speed }}">
-            <div class="slideshow__slides">
-              {% for image in gallery_images limit: block_settings.max_images %}
-                <div class="slideshow__slide dynamic-gallery__slide" {% if forloop.first %}data-active="true"{% endif %}>
-                  <div class="dynamic-gallery__image-container">
-                    {% if block_settings.enable_zoom %}
-                      <button type="button" class="dynamic-gallery__zoom-btn" aria-label="Zoom image" data-image-index="{{ forloop.index0 }}">
-                    {% endif %}
+      {% if section.settings.show_title and section.settings.gallery_title != blank %}
+        <h2 class="dynamic-gallery__title h3 text-center">{{ section.settings.gallery_title }}</h2>
+      {% endif %}
+
+      <div class="dynamic-gallery__container" data-gallery-layout="{{ section.settings.gallery_layout }}">
+        
+        {% if section.settings.gallery_layout == 'slideshow' %}
+          <!-- Slideshow Layout -->
+          <slideshow-component class="dynamic-gallery__slideshow">
+            <div class="slideshow" data-autoplay="{{ section.settings.autoplay }}" data-autoplay-speed="{{ section.settings.autoplay_speed }}">
+              <div class="slideshow__slides">
+                {% for image in gallery_images limit: section.settings.max_images %}
+                  <div class="slideshow__slide dynamic-gallery__slide" {% if forloop.first %}data-active="true"{% endif %}>
+                    <div class="dynamic-gallery__image-container">
+                      {% if section.settings.enable_zoom %}
+                        <button type="button" class="dynamic-gallery__zoom-btn" aria-label="Zoom image" data-image-index="{{ forloop.index0 }}">
+                      {% endif %}
+                      
+                      <img 
+                        src="{{ image | image_url: width: 800 }}"
+                        alt="{{ image.alt | default: product_resource.title | escape }}"
+                        width="{{ image.width }}"
+                        height="{{ image.height }}"
+                        loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                        class="dynamic-gallery__image"
+                        sizes="(min-width: 750px) calc(100vw - 22rem), calc(100vw - 3rem)"
+                      >
+                      
+                      {% if section.settings.enable_zoom %}
+                        </button>
+                      {% endif %}
+                    </div>
                     
-                    <img 
-                      src="{{ image | image_url: width: 800 }}"
-                      alt="{{ image.alt | default: product_resource.title | escape }}"
-                      width="{{ image.width }}"
-                      height="{{ image.height }}"
-                      loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
-                      class="dynamic-gallery__image"
-                      sizes="(min-width: 750px) calc(100vw - 22rem), calc(100vw - 3rem)"
-                    >
-                    
-                    {% if block_settings.enable_zoom %}
-                      </button>
+                    {% if section.settings.show_captions and image.alt != blank %}
+                      <p class="dynamic-gallery__caption">{{ image.alt }}</p>
                     {% endif %}
                   </div>
-                  
-                  {% if block_settings.show_captions and image.alt != blank %}
-                    <p class="dynamic-gallery__caption">{{ image.alt }}</p>
-                  {% endif %}
-                </div>
-              {% endfor %}
-            </div>
-            
-            {% if gallery_images.size > 1 %}
-              <button class="slideshow__btn slideshow__btn--prev" aria-label="Previous image">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              <button class="slideshow__btn slideshow__btn--next" aria-label="Next image">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-            {% endif %}
-          </div>
-          
-          {% if gallery_images.size > 1 and block_settings.show_dots %}
-            <div class="slideshow__dots">
-              {% for image in gallery_images limit: block_settings.max_images %}
-                <button class="slideshow__dot{% if forloop.first %} slideshow__dot--active{% endif %}" data-slide="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
-              {% endfor %}
-            </div>
-          {% endif %}
-        </slideshow-component>
-        
-      {% else %}
-        <!-- Grid Layout -->
-        <div class="dynamic-gallery__grid dynamic-gallery__grid--{{ block_settings.gallery_layout }}">
-          {% for image in gallery_images limit: block_settings.max_images %}
-            <div class="dynamic-gallery__grid-item">
-              <div class="dynamic-gallery__image-container">
-                {% if block_settings.enable_zoom %}
-                  <button type="button" class="dynamic-gallery__zoom-btn" aria-label="Zoom image" data-image-index="{{ forloop.index0 }}">
-                {% endif %}
-                
-                <img 
-                  src="{{ image | image_url: width: 600 }}"
-                  alt="{{ image.alt | default: product_resource.title | escape }}"
-                  width="{{ image.width }}"
-                  height="{{ image.height }}"
-                  loading="{% if forloop.index <= 4 %}eager{% else %}lazy{% endif %}"
-                  class="dynamic-gallery__image"
-                  sizes="(min-width: 1200px) calc((100vw - 22rem) / {{ block_settings.columns_desktop }}), (min-width: 750px) calc((100vw - 3rem) / {{ block_settings.columns_tablet }}), calc((100vw - 3rem) / {{ block_settings.columns_mobile }})"
-                >
-                
-                {% if block_settings.enable_zoom %}
-                  </button>
-                {% endif %}
+                {% endfor %}
               </div>
               
-              {% if block_settings.show_captions and image.alt != blank %}
-                <p class="dynamic-gallery__caption">{{ image.alt }}</p>
+              {% if gallery_images.size > 1 %}
+                <button class="slideshow__btn slideshow__btn--prev" aria-label="Previous image">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button class="slideshow__btn slideshow__btn--next" aria-label="Next image">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
               {% endif %}
             </div>
-          {% endfor %}
+            
+            {% if gallery_images.size > 1 and section.settings.show_dots %}
+              <div class="slideshow__dots">
+                {% for image in gallery_images limit: section.settings.max_images %}
+                  <button class="slideshow__dot{% if forloop.first %} slideshow__dot--active{% endif %}" data-slide="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </slideshow-component>
+          
+        {% else %}
+          <!-- Grid Layout -->
+          <div class="dynamic-gallery__grid dynamic-gallery__grid--{{ section.settings.gallery_layout }}">
+            {% for image in gallery_images limit: section.settings.max_images %}
+              <div class="dynamic-gallery__grid-item">
+                <div class="dynamic-gallery__image-container">
+                  {% if section.settings.enable_zoom %}
+                    <button type="button" class="dynamic-gallery__zoom-btn" aria-label="Zoom image" data-image-index="{{ forloop.index0 }}">
+                  {% endif %}
+                  
+                  <img 
+                    src="{{ image | image_url: width: 600 }}"
+                    alt="{{ image.alt | default: product_resource.title | escape }}"
+                    width="{{ image.width }}"
+                    height="{{ image.height }}"
+                    loading="{% if forloop.index <= 4 %}eager{% else %}lazy{% endif %}"
+                    class="dynamic-gallery__image"
+                    sizes="(min-width: 1200px) calc((100vw - 22rem) / {{ section.settings.columns_desktop }}), (min-width: 750px) calc((100vw - 3rem) / {{ section.settings.columns_tablet }}), calc((100vw - 3rem) / {{ section.settings.columns_mobile }})"
+                  >
+                  
+                  {% if section.settings.enable_zoom %}
+                    </button>
+                  {% endif %}
+                </div>
+                
+                {% if section.settings.show_captions and image.alt != blank %}
+                  <p class="dynamic-gallery__caption">{{ image.alt }}</p>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if section.settings.enable_zoom %}
+        <!-- Zoom Modal -->
+        <div class="dynamic-gallery__zoom-modal" id="gallery-zoom-{{ section.id }}" aria-hidden="true">
+          <div class="dynamic-gallery__zoom-overlay">
+            <div class="dynamic-gallery__zoom-content">
+              <button class="dynamic-gallery__zoom-close" aria-label="Close zoom">&times;</button>
+              <img class="dynamic-gallery__zoom-image" src="" alt="">
+              <div class="dynamic-gallery__zoom-nav">
+                <button class="dynamic-gallery__zoom-prev" aria-label="Previous image">&larr;</button>
+                <button class="dynamic-gallery__zoom-next" aria-label="Next image">&rarr;</button>
+              </div>
+            </div>
+          </div>
         </div>
       {% endif %}
     </div>
-
-    {% if block_settings.enable_zoom %}
-      <!-- Zoom Modal -->
-      <div class="dynamic-gallery__zoom-modal" id="gallery-zoom-{{ block.id }}" aria-hidden="true">
-        <div class="dynamic-gallery__zoom-overlay">
-          <div class="dynamic-gallery__zoom-content">
-            <button class="dynamic-gallery__zoom-close" aria-label="Close zoom">&times;</button>
-            <img class="dynamic-gallery__zoom-image" src="" alt="">
-            <div class="dynamic-gallery__zoom-nav">
-              <button class="dynamic-gallery__zoom-prev" aria-label="Previous image">&larr;</button>
-              <button class="dynamic-gallery__zoom-next" aria-label="Next image">&rarr;</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    {% endif %}
   </div>
 {% endif %}
 
 {% stylesheet %}
   .dynamic-gallery {
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .dynamic-gallery__title {
@@ -165,19 +168,19 @@
   }
 
   .dynamic-gallery__grid--grid-2 {
-    grid-template-columns: repeat({{ block_settings.columns_mobile | default: 1 }}, 1fr);
+    grid-template-columns: repeat({{ section.settings.columns_mobile | default: 1 }}, 1fr);
   }
 
   .dynamic-gallery__grid--grid-3 {
-    grid-template-columns: repeat({{ block_settings.columns_mobile | default: 1 }}, 1fr);
+    grid-template-columns: repeat({{ section.settings.columns_mobile | default: 1 }}, 1fr);
   }
 
   .dynamic-gallery__grid--grid-4 {
-    grid-template-columns: repeat({{ block_settings.columns_mobile | default: 2 }}, 1fr);
+    grid-template-columns: repeat({{ section.settings.columns_mobile | default: 2 }}, 1fr);
   }
 
   .dynamic-gallery__grid--masonry {
-    columns: {{ block_settings.columns_mobile | default: 1 }};
+    columns: {{ section.settings.columns_mobile | default: 1 }};
     column-gap: var(--spacing-md);
   }
 
@@ -188,37 +191,37 @@
 
   @media screen and (min-width: 750px) {
     .dynamic-gallery__grid--grid-2 {
-      grid-template-columns: repeat({{ block_settings.columns_tablet | default: 2 }}, 1fr);
+      grid-template-columns: repeat({{ section.settings.columns_tablet | default: 2 }}, 1fr);
     }
 
     .dynamic-gallery__grid--grid-3 {
-      grid-template-columns: repeat({{ block_settings.columns_tablet | default: 2 }}, 1fr);
+      grid-template-columns: repeat({{ section.settings.columns_tablet | default: 2 }}, 1fr);
     }
 
     .dynamic-gallery__grid--grid-4 {
-      grid-template-columns: repeat({{ block_settings.columns_tablet | default: 3 }}, 1fr);
+      grid-template-columns: repeat({{ section.settings.columns_tablet | default: 3 }}, 1fr);
     }
 
     .dynamic-gallery__grid--masonry {
-      columns: {{ block_settings.columns_tablet | default: 2 }};
+      columns: {{ section.settings.columns_tablet | default: 2 }};
     }
   }
 
   @media screen and (min-width: 990px) {
     .dynamic-gallery__grid--grid-2 {
-      grid-template-columns: repeat({{ block_settings.columns_desktop | default: 2 }}, 1fr);
+      grid-template-columns: repeat({{ section.settings.columns_desktop | default: 2 }}, 1fr);
     }
 
     .dynamic-gallery__grid--grid-3 {
-      grid-template-columns: repeat({{ block_settings.columns_desktop | default: 3 }}, 1fr);
+      grid-template-columns: repeat({{ section.settings.columns_desktop | default: 3 }}, 1fr);
     }
 
     .dynamic-gallery__grid--grid-4 {
-      grid-template-columns: repeat({{ block_settings.columns_desktop | default: 4 }}, 1fr);
+      grid-template-columns: repeat({{ section.settings.columns_desktop | default: 4 }}, 1fr);
     }
 
     .dynamic-gallery__grid--masonry {
-      columns: {{ block_settings.columns_desktop | default: 3 }};
+      columns: {{ section.settings.columns_desktop | default: 3 }};
     }
   }
 
@@ -226,7 +229,7 @@
   .dynamic-gallery__image-container {
     position: relative;
     overflow: hidden;
-    border-radius: {{ block_settings.image_radius | default: 8 }}px;
+    border-radius: {{ section.settings.image_radius | default: 8 }}px;
     background-color: var(--color-background);
   }
 
@@ -265,7 +268,7 @@
   .slideshow {
     position: relative;
     overflow: hidden;
-    border-radius: {{ block_settings.image_radius | default: 8 }}px;
+    border-radius: {{ section.settings.image_radius | default: 8 }}px;
   }
 
   .slideshow__slides {
@@ -545,6 +548,32 @@
       "step": 1,
       "unit": "s",
       "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Section width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "Page width"
+        },
+        {
+          "value": "full-width",
+          "label": "Full width"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
     },
     {
       "type": "header",
