@@ -239,6 +239,21 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "button_rkNixa": {
+                  "type": "button",
+                  "name": "t:names.button",
+                  "settings": {
+                    "label": "Take Classes",
+                    "link": "shopify://collections/all",
+                    "open_in_new_tab": false,
+                    "style_class": "button",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
+                },
                 "group_XqRYxC": {
                   "type": "group",
                   "name": "Row 1",
@@ -665,6 +680,7 @@
                 }
               },
               "block_order": [
+                "button_rkNixa",
                 "group_XqRYxC",
                 "group_e7FkRj"
               ]
