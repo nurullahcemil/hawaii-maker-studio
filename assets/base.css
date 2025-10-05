@@ -2131,6 +2131,26 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   min-width: max-content;
 }
 
+/* Fix multiple anchor tag conflicts */
+.view-product-title a {
+  position: relative;
+  z-index: calc(var(--layer-flat) + 10);
+  pointer-events: auto;
+}
+
+/* Prevent nested anchor tag conflicts */
+a[ref="productTitleLink"] {
+  position: relative;
+  z-index: calc(var(--layer-flat) + 9);
+}
+
+/* Ensure cowlendar buttons have proper z-index */
+.cowlendar-btn,
+button[class*="cowlendar"] {
+  position: relative;
+  z-index: calc(var(--layer-flat) + 5);
+}
+
 .sticky-content {
   position: sticky;
   top: var(--sticky-header-offset, 0);
