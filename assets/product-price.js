@@ -37,7 +37,12 @@ class ProductPrice extends HTMLElement {
     if (!newPrice || !currentPrice) return;
 
     if (currentPrice.innerHTML !== newPrice.innerHTML) {
-      currentPrice.replaceWith(newPrice);
+      // Add smooth transition for price updates
+      currentPrice.style.opacity = '0.5';
+      setTimeout(() => {
+        currentPrice.replaceWith(newPrice);
+        newPrice.style.opacity = '1';
+      }, 100);
     }
   };
 }

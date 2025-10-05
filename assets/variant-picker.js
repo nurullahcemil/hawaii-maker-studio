@@ -21,6 +21,31 @@ export default class VariantPicker extends Component {
     super.connectedCallback();
 
     this.addEventListener('change', this.variantChanged.bind(this));
+    // Add click handler specifically for variant inputs to prevent conflicts
+    this.addEventListener('click', this.handleVariantClick.bind(this), { capture: true });
+  }
+
+  /**
+   * Handles click events on variant inputs to prevent conflicts with other elements
+   * @param {Event} event - The click event
+   */
+  handleVariantClick(event) {
+    const target = event.target;
+    
+    // Only handle clicks on variant inputs (radio buttons or select options)
+    if (target instanceof HTMLInputElement && target.type === 'radio' && target.name.includes('options[')) {
+      // Prevent the click from bubbling to other elements like cowlendar
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      
+      // Ensure the radio button gets properly selected
+      if (!target.checked) {
+        target.checked = true;
+        // Trigger change event manually to ensure variant change is processed
+        const changeEvent = new Event('change', { bubbles: true, cancelable: true });
+        target.dispatchEvent(changeEvent);
+      }
+    }
   }
 
   /**
@@ -29,6 +54,10 @@ export default class VariantPicker extends Component {
    */
   variantChanged(event) {
     if (!(event.target instanceof HTMLElement)) return;
+
+    // Prevent event from triggering other elements like cowlendar
+    event.preventDefault();
+    event.stopImmediatePropagation();
 
     const selectedOption =
       event.target instanceof HTMLSelectElement ? event.target.options[event.target.selectedIndex] : event.target;

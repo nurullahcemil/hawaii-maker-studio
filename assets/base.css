@@ -2070,6 +2070,48 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   border-radius: var(--variant-picker-swatch-radius);
 }
 
+/* Enhanced variant picker styling for better clickability and cowlendar compatibility */
+.variant-picker {
+  position: relative;
+  z-index: var(--layer-flat);
+}
+
+.variant-picker .variant-option--buttons {
+  position: relative;
+  z-index: calc(var(--layer-flat) + 1);
+}
+
+.variant-picker .variant-option--buttons label {
+  position: relative;
+  z-index: calc(var(--layer-flat) + 2);
+  cursor: pointer;
+  display: block;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.variant-picker .variant-option--buttons input[type="radio"] {
+  position: relative;
+  z-index: calc(var(--layer-flat) + 3);
+  cursor: pointer;
+}
+
+.variant-picker .variant-option--buttons input[type="radio"]:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Ensure variant buttons don't interfere with other elements */
+.variant-picker .variant-option--buttons label:active {
+  transform: none;
+}
+
+.variant-picker .variant-option--buttons input[type="radio"]:checked + label {
+  pointer-events: auto;
+}
+
 .sticky-content {
   position: sticky;
   top: var(--sticky-header-offset, 0);

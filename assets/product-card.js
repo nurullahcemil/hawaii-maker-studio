@@ -455,6 +455,32 @@ class SwatchesVariantPickerComponent extends VariantPicker {
 
     // Listen for variant updates to apply pending URL changes
     this.addEventListener(ThemeEvents.variantUpdate, this.#handleCardVariantUrlUpdate.bind(this));
+    
+    // Add click handler specifically for variant inputs to prevent conflicts
+    this.addEventListener('click', this.handleVariantClick.bind(this), { capture: true });
+  }
+
+  /**
+   * Handles click events on variant inputs to prevent conflicts with other elements
+   * @param {Event} event - The click event
+   */
+  handleVariantClick(event) {
+    const target = event.target;
+    
+    // Only handle clicks on variant inputs (radio buttons)
+    if (target instanceof HTMLInputElement && target.type === 'radio' && target.name.includes('-swatch')) {
+      // Prevent the click from bubbling to other elements like cowlendar
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      
+      // Ensure the radio button gets properly selected
+      if (!target.checked) {
+        target.checked = true;
+        // Trigger change event manually to ensure variant change is processed
+        const changeEvent = new Event('change', { bubbles: true, cancelable: true });
+        target.dispatchEvent(changeEvent);
+      }
+    }
   }
 
   /**
@@ -476,6 +502,10 @@ class SwatchesVariantPickerComponent extends VariantPicker {
   variantChanged(event) {
     if (!(event.target instanceof HTMLElement)) return;
 
+    // Always prevent conflicts with other clickable elements like cowlendar
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
     // Check if this is a swatch input
     const isSwatchInput = event.target instanceof HTMLInputElement && event.target.name?.includes('-swatch');
     const clickedSwatch = event.target;
@@ -485,8 +515,6 @@ class SwatchesVariantPickerComponent extends VariantPicker {
     // For swatch inputs, check if we need special handling
     if (isSwatchInput && availableCount > 0 && firstAvailableVariantId) {
       // If this is an unavailable variant but there are available alternatives
-      // Prevent the default handling
-      event.stopPropagation();
 
       // Update the selected option visually
       this.updateSelectedOption(clickedSwatch);
