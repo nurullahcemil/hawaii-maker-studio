@@ -188,6 +188,21 @@
               },
               "blocks": {}
             },
+            "button_MAjGdT": {
+              "type": "button",
+              "name": "t:names.button",
+              "settings": {
+                "label": "Custom Commission Request",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button-secondary",
+                "width": "custom",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            },
             "product_description_LfDYCg": {
               "type": "product-description",
               "name": "t:names.product_description",
@@ -795,6 +810,7 @@
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
             "button_gggbYx",
+            "button_MAjGdT",
             "product_description_LfDYCg",
             "group_X39hBc",
             "accordion_g8EVVp"
@@ -807,7 +823,7 @@
         "equal_columns": false,
         "limit_details_width": false,
         "gap": 48,
-        "color_scheme": "",
+        "color_scheme": "scheme-1",
         "padding-block-start": 40,
         "padding-block-end": 32
       }
