@@ -46,7 +46,14 @@
 %}
 
 <div class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}">
-  <div class="dynamic-gallery spacing-style" style="{% render 'spacing-style', settings: section.settings %}">
+  <div class="dynamic-gallery spacing-style" 
+       style="
+         {% render 'spacing-style', settings: section.settings %}
+         --columns-mobile: {{ section.settings.columns_mobile | default: 2 }};
+         --columns-tablet: {{ section.settings.columns_tablet | default: 3 }};
+         --columns-desktop: {{ section.settings.columns_desktop | default: 4 }};
+         --image-radius: {{ section.settings.image_radius | default: 12 }}px;
+       ">
     
     {% if section.settings.show_title and section.settings.gallery_title != blank %}
       <h2 class="dynamic-gallery__title h3 text-center">{{ section.settings.gallery_title }}</h2>
@@ -187,19 +194,19 @@
   }
 
   .dynamic-gallery__grid--grid-2 {
-    grid-template-columns: repeat({{ section.settings.columns_mobile | default: 1 }}, 1fr);
+    grid-template-columns: repeat(var(--columns-mobile), 1fr);
   }
 
   .dynamic-gallery__grid--grid-3 {
-    grid-template-columns: repeat({{ section.settings.columns_mobile | default: 1 }}, 1fr);
+    grid-template-columns: repeat(var(--columns-mobile), 1fr);
   }
 
   .dynamic-gallery__grid--grid-4 {
-    grid-template-columns: repeat({{ section.settings.columns_mobile | default: 1 }}, 1fr);
+    grid-template-columns: repeat(var(--columns-mobile), 1fr);
   }
 
   .dynamic-gallery__grid--masonry {
-    columns: {{ section.settings.columns_mobile | default: 2 }};
+    columns: var(--columns-mobile);
     column-gap: 16px;
     column-fill: balance;
   }
@@ -220,38 +227,38 @@
 
   @media screen and (min-width: 750px) {
     .dynamic-gallery__grid--grid-2 {
-      grid-template-columns: repeat({{ section.settings.columns_tablet | default: 2 }}, 1fr);
+      grid-template-columns: repeat(var(--columns-tablet), 1fr);
     }
 
     .dynamic-gallery__grid--grid-3 {
-      grid-template-columns: repeat({{ section.settings.columns_tablet | default: 2 }}, 1fr);
+      grid-template-columns: repeat(var(--columns-tablet), 1fr);
     }
 
     .dynamic-gallery__grid--grid-4 {
-      grid-template-columns: repeat({{ section.settings.columns_tablet | default: 3 }}, 1fr);
+      grid-template-columns: repeat(var(--columns-tablet), 1fr);
     }
 
     .dynamic-gallery__grid--masonry {
-      columns: {{ section.settings.columns_tablet | default: 3 }};
+      columns: var(--columns-tablet);
       column-gap: 20px;
     }
   }
 
   @media screen and (min-width: 990px) {
     .dynamic-gallery__grid--grid-2 {
-      grid-template-columns: repeat({{ section.settings.columns_desktop | default: 2 }}, 1fr);
+      grid-template-columns: repeat(var(--columns-desktop), 1fr);
     }
 
     .dynamic-gallery__grid--grid-3 {
-      grid-template-columns: repeat({{ section.settings.columns_desktop | default: 3 }}, 1fr);
+      grid-template-columns: repeat(var(--columns-desktop), 1fr);
     }
 
     .dynamic-gallery__grid--grid-4 {
-      grid-template-columns: repeat({{ section.settings.columns_desktop | default: 4 }}, 1fr);
+      grid-template-columns: repeat(var(--columns-desktop), 1fr);
     }
 
     .dynamic-gallery__grid--masonry {
-      columns: {{ section.settings.columns_desktop | default: 4 }};
+      columns: var(--columns-desktop);
       column-gap: 24px;
     }
   }
@@ -260,7 +267,7 @@
   .dynamic-gallery__image-container {
     position: relative;
     overflow: hidden;
-    border-radius: {{ section.settings.image_radius | default: 12 }}px;
+    border-radius: var(--image-radius);
     background-color: var(--color-background);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -276,7 +283,7 @@
     height: auto;
     display: block;
     transition: transform 0.3s ease;
-    border-radius: {{ section.settings.image_radius | default: 12 }}px;
+    border-radius: var(--image-radius);
   }
 
   .dynamic-gallery__zoom-btn {
@@ -286,7 +293,7 @@
     cursor: zoom-in;
     width: 100%;
     height: 100%;
-    border-radius: {{ section.settings.image_radius | default: 12 }}px;
+    border-radius: var(--image-radius);
     position: relative;
   }
 
@@ -299,7 +306,7 @@
     bottom: 0;
     background: rgba(0, 0, 0, 0);
     transition: background 0.3s ease;
-    border-radius: {{ section.settings.image_radius | default: 12 }}px;
+    border-radius: var(--image-radius);
     z-index: 1;
   }
 
