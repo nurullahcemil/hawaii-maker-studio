@@ -757,6 +757,46 @@
                     "text_McjMWz"
                   ]
                 },
+                "accordion_row_gXNMKy": {
+                  "type": "_accordion-row",
+                  "name": "t:names.accordion_row",
+                  "settings": {
+                    "heading": "Who Can Rent?",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_xTT7Pf": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Equipment rentals are available to <strong>approved members</strong> and <strong>individuals who have completed a 1-on-1 introductory session</strong>. First-time users must schedule a private training session before booking rental time.</p><p>All rentals require a minimum of 1 hour, with additional time billed in 30-minute increments. Cancellations are free up to 24 hours in advance. Cancellations within 24 hours or no-shows will be charged 50% of the rental fee.</p><p>Renters are responsible for proper use of equipment and any damage caused by misuse or unauthorized materials. Only approved files and materials may be used.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_xTT7Pf"
+                  ]
+                },
                 "accordion_row_UrT7FN": {
                   "type": "_accordion-row",
                   "name": "t:names.accordion_row",
@@ -835,53 +875,13 @@
                   "block_order": [
                     "text_DNPAct"
                   ]
-                },
-                "accordion_row_gXNMKy": {
-                  "type": "_accordion-row",
-                  "name": "t:names.accordion_row",
-                  "settings": {
-                    "heading": "Who Can Rent?",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "text_xTT7Pf": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Equipment rentals are available to <strong>approved members</strong> and <strong>individuals who have completed a 1-on-1 introductory session</strong>. First-time users must schedule a private training session before booking rental time.</p><p>All rentals require a minimum of 1 hour, with additional time billed in 30-minute increments. Cancellations are free up to 24 hours in advance. Cancellations within 24 hours or no-shows will be charged 50% of the rental fee.</p><p>Renters are responsible for proper use of equipment and any damage caused by misuse or unauthorized materials. Only approved files and materials may be used.</p>",
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_xTT7Pf"
-                  ]
                 }
               },
               "block_order": [
                 "accordion_row_VyFryh",
+                "accordion_row_gXNMKy",
                 "accordion_row_UrT7FN",
-                "accordion_row_aaFerA",
-                "accordion_row_gXNMKy"
+                "accordion_row_aaFerA"
               ]
             }
           },
