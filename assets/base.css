@@ -2112,8 +2112,9 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   pointer-events: auto;
 }
 
-/* Fix variant layout - keep variants in single row */
-.variant-picker .variant-option--buttons {
+/* Fix variant layout - keep variants in single row with stronger specificity */
+.variant-picker .variant-option--buttons,
+.variant-picker .variant-option.variant-option--buttons {
   flex-wrap: nowrap !important;
   overflow-x: auto;
   overflow-y: hidden;
@@ -2121,7 +2122,8 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   -ms-overflow-style: none; /* IE and Edge */
 }
 
-.variant-picker .variant-option--buttons::-webkit-scrollbar {
+.variant-picker .variant-option--buttons::-webkit-scrollbar,
+.variant-picker .variant-option.variant-option--buttons::-webkit-scrollbar {
   display: none; /* Chrome, Safari and Opera */
 }
 
@@ -2131,17 +2133,34 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   min-width: max-content;
 }
 
-/* Fix multiple anchor tag conflicts */
+/* Fix multiple anchor tag conflicts - disable title links to prevent unwanted navigation */
 .view-product-title a {
   position: relative;
   z-index: calc(var(--layer-flat) + 10);
-  pointer-events: auto;
+  pointer-events: none !important;
+  cursor: default !important;
 }
 
-/* Prevent nested anchor tag conflicts */
+/* Prevent nested anchor tag conflicts - disable product title links */
 a[ref="productTitleLink"] {
   position: relative;
   z-index: calc(var(--layer-flat) + 9);
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+/* Also disable any title-related clickable areas - be specific to product titles only */
+.view-product-title {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+/* Disable product title text blocks specifically */
+.text-block--align-left p,
+.text-block h2 p,
+.text-block.h2 p {
+  pointer-events: none !important;
+  cursor: default !important;
 }
 
 /* Ensure cowlendar buttons have proper z-index */
