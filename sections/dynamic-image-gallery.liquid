@@ -56,7 +56,9 @@
        ">
     
     {% if section.settings.show_title and section.settings.gallery_title != blank %}
-      <h2 class="dynamic-gallery__title h3 text-center">{{ section.settings.gallery_title }}</h2>
+      <{{ section.settings.heading_tag | default: 'h2' }} class="dynamic-gallery__title {{ section.settings.heading_style | default: 'h3' }} text-center" style="margin-bottom: {{ section.settings.title_spacing | default: 32 }}px;">
+        {{ section.settings.gallery_title }}
+      </{{ section.settings.heading_tag | default: 'h2' }}>
     {% endif %}
 
       <div class="dynamic-gallery__container" data-gallery-layout="{{ section.settings.gallery_layout }}">
@@ -484,6 +486,80 @@
       "id": "gallery_title",
       "label": "Gallery title",
       "default": "Product Gallery"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "heading_style",
+      "label": "Heading style",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1 Style"
+        },
+        {
+          "value": "h2",
+          "label": "H2 Style"
+        },
+        {
+          "value": "h3",
+          "label": "H3 Style"
+        },
+        {
+          "value": "h4",
+          "label": "H4 Style"
+        },
+        {
+          "value": "h5",
+          "label": "H5 Style"
+        },
+        {
+          "value": "h6",
+          "label": "H6 Style"
+        }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "label": "Space below title",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
     },
     {
       "type": "select",
