@@ -2112,6 +2112,25 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   pointer-events: auto;
 }
 
+/* Fix variant layout - keep variants in single row */
+.variant-picker .variant-option--buttons {
+  flex-wrap: nowrap !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.variant-picker .variant-option--buttons::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+/* Ensure variant buttons don't shrink too much */
+.variant-picker .variant-option--buttons .variant-option__button-label {
+  flex-shrink: 0;
+  min-width: max-content;
+}
+
 .sticky-content {
   position: sticky;
   top: var(--sticky-header-offset, 0);

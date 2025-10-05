@@ -394,7 +394,8 @@ export class ProductCard extends Component {
     // Don't navigate if this product card is marked as no-navigation (e.g., in theme editor)
     if (this.hasAttribute('data-no-navigation')) return;
 
-    const interactiveElement = event.target.closest('button, input, label, select, [tabindex="1"]');
+    // Prevent navigation if clicked on variant picker, titles, or other elements that might trigger cowlendar
+    const interactiveElement = event.target.closest('button, input, label, select, [tabindex="1"], .variant-picker, .variant-option, h1, h2, h3, h4, h5, h6, [data-cowlendar], [data-booking]');
 
     // If the click was on an interactive element, do nothing.
     if (interactiveElement) {
