@@ -52,7 +52,7 @@
          --columns-mobile: {{ section.settings.columns_mobile | default: 2 }};
          --columns-tablet: {{ section.settings.columns_tablet | default: 3 }};
          --columns-desktop: {{ section.settings.columns_desktop | default: 4 }};
-         --image-radius: {{ section.settings.image_radius | default: 12 }}px;
+         --image-radius: {{ section.settings.image_radius | default: 0 }}px;
        ">
     
     {% if section.settings.show_title and section.settings.gallery_title != blank %}
@@ -213,12 +213,11 @@
   .dynamic-gallery__grid--masonry .dynamic-gallery__grid-item {
     position: absolute;
     width: calc((100% - (var(--columns-mobile) - 1) * 16px) / var(--columns-mobile));
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
   }
 
   .dynamic-gallery__grid--masonry .dynamic-gallery__grid-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
     z-index: 10;
   }
 
@@ -256,19 +255,17 @@
     }
   }
 
-  /* Pinterest-Style Image Styling */
+  /* Clean Pinterest-Style Image Styling */
   .dynamic-gallery__image-container {
     position: relative;
     overflow: hidden;
     border-radius: var(--image-radius);
     background-color: var(--color-background);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
   }
 
   .dynamic-gallery__image-container:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 
   .dynamic-gallery__image {
@@ -568,7 +565,7 @@
       "max": 20,
       "step": 1,
       "unit": "px",
-      "default": 12
+      "default": 0
     },
     {
       "type": "checkbox",
