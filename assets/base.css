@@ -2081,11 +2081,11 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   z-index: calc(var(--layer-flat) + 1);
 }
 
-.variant-picker .variant-option--buttons label {
+/* Only enhance the clickability without breaking existing layout */
+.variant-picker .variant-option--buttons .variant-option__button-label {
   position: relative;
   z-index: calc(var(--layer-flat) + 2);
   cursor: pointer;
-  display: block;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -2104,11 +2104,11 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
 }
 
 /* Ensure variant buttons don't interfere with other elements */
-.variant-picker .variant-option--buttons label:active {
+.variant-picker .variant-option--buttons .variant-option__button-label:active {
   transform: none;
 }
 
-.variant-picker .variant-option--buttons input[type="radio"]:checked + label {
+.variant-picker .variant-option--buttons input[type="radio"]:checked + .variant-option__button-label {
   pointer-events: auto;
 }
 
