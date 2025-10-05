@@ -45,40 +45,11 @@
   endif
 %}
 
-<!-- Debug Info (remove in production) -->
-{% comment %}
-Product: {{ product_resource.title }}
-Gallery images count: {{ gallery_images.size }}
-Metafield value: {{ product_resource.metafields.custom.gallery_images.value }}
-Regular images count: {{ product_resource.images.size }}
-{% endcomment %}
-
 <div class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}">
   <div class="dynamic-gallery spacing-style" style="{% render 'spacing-style', settings: section.settings %}">
     
     {% if section.settings.show_title and section.settings.gallery_title != blank %}
       <h2 class="dynamic-gallery__title h3 text-center">{{ section.settings.gallery_title }}</h2>
-    {% endif %}
-    
-    <!-- Show debug info temporarily -->
-    {% if product_resource %}
-      <div style="background: #f0f0f0; padding: 10px; margin: 10px 0; font-size: 12px;">
-        <strong>Debug Info:</strong><br>
-        Product: {{ product_resource.title }}<br>
-        Metafield images: {{ gallery_images.size }}<br>
-        {% if gallery_images.size > 0 %}
-          Images found: 
-          {% for img in gallery_images limit: 3 %}
-            {{ img.alt | default: 'Image' | append: ', ' }}
-          {% endfor %}
-        {% else %}
-          No metafield images found. Using product images: {{ product_resource.images.size }}
-        {% endif %}
-      </div>
-    {% else %}
-      <div style="background: #ffcccc; padding: 10px; margin: 10px 0;">
-        <strong>Error:</strong> No product found in section context
-      </div>
     {% endif %}
 
       <div class="dynamic-gallery__container" data-gallery-layout="{{ section.settings.gallery_layout }}">
@@ -228,13 +199,23 @@ Regular images count: {{ product_resource.images.size }}
   }
 
   .dynamic-gallery__grid--masonry {
-    columns: {{ section.settings.columns_mobile | default: 1 }};
-    column-gap: var(--spacing-md);
+    columns: {{ section.settings.columns_mobile | default: 2 }};
+    column-gap: 16px;
+    column-fill: balance;
   }
 
   .dynamic-gallery__grid--masonry .dynamic-gallery__grid-item {
     break-inside: avoid;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: 16px;
+    page-break-inside: avoid;
+    display: inline-block;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .dynamic-gallery__grid--masonry .dynamic-gallery__grid-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 
   @media screen and (min-width: 750px) {
@@ -251,7 +232,8 @@ Regular images count: {{ product_resource.images.size }}
     }
 
     .dynamic-gallery__grid--masonry {
-      columns: {{ section.settings.columns_tablet | default: 2 }};
+      columns: {{ section.settings.columns_tablet | default: 3 }};
+      column-gap: 20px;
     }
   }
 
@@ -269,16 +251,24 @@ Regular images count: {{ product_resource.images.size }}
     }
 
     .dynamic-gallery__grid--masonry {
-      columns: {{ section.settings.columns_desktop | default: 3 }};
+      columns: {{ section.settings.columns_desktop | default: 4 }};
+      column-gap: 24px;
     }
   }
 
-  /* Image Styling */
+  /* Pinterest-Style Image Styling */
   .dynamic-gallery__image-container {
     position: relative;
     overflow: hidden;
-    border-radius: {{ section.settings.image_radius | default: 8 }}px;
+    border-radius: {{ section.settings.image_radius | default: 12 }}px;
     background-color: var(--color-background);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .dynamic-gallery__image-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 
   .dynamic-gallery__image {
@@ -286,6 +276,7 @@ Regular images count: {{ product_resource.images.size }}
     height: auto;
     display: block;
     transition: transform 0.3s ease;
+    border-radius: {{ section.settings.image_radius | default: 12 }}px;
   }
 
   .dynamic-gallery__zoom-btn {
@@ -295,17 +286,38 @@ Regular images count: {{ product_resource.images.size }}
     cursor: zoom-in;
     width: 100%;
     height: 100%;
+    border-radius: {{ section.settings.image_radius | default: 12 }}px;
+    position: relative;
+  }
+
+  .dynamic-gallery__zoom-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s ease;
+    border-radius: {{ section.settings.image_radius | default: 12 }}px;
+    z-index: 1;
+  }
+
+  .dynamic-gallery__zoom-btn:hover::before {
+    background: rgba(0, 0, 0, 0.1);
   }
 
   .dynamic-gallery__zoom-btn:hover .dynamic-gallery__image {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 
   .dynamic-gallery__caption {
-    margin-top: var(--spacing-xs);
-    font-size: var(--font-size-sm);
+    margin-top: 12px;
+    font-size: 14px;
     color: var(--color-foreground-75);
-    text-align: center;
+    text-align: left;
+    line-height: 1.4;
+    font-weight: 400;
   }
 
   /* Slideshow Styles */
@@ -502,7 +514,7 @@ Regular images count: {{ product_resource.images.size }}
           "label": "Masonry"
         }
       ],
-      "default": "grid-3"
+      "default": "masonry"
     },
     {
       "type": "range",
@@ -524,7 +536,7 @@ Regular images count: {{ product_resource.images.size }}
       "min": 1,
       "max": 3,
       "step": 1,
-      "default": 1
+      "default": 2
     },
     {
       "type": "range",
@@ -533,7 +545,7 @@ Regular images count: {{ product_resource.images.size }}
       "min": 1,
       "max": 4,
       "step": 1,
-      "default": 2
+      "default": 3
     },
     {
       "type": "range",
@@ -542,7 +554,7 @@ Regular images count: {{ product_resource.images.size }}
       "min": 1,
       "max": 6,
       "step": 1,
-      "default": 3
+      "default": 4
     },
     {
       "type": "header",
@@ -556,7 +568,7 @@ Regular images count: {{ product_resource.images.size }}
       "max": 20,
       "step": 1,
       "unit": "px",
-      "default": 8
+      "default": 12
     },
     {
       "type": "checkbox",
