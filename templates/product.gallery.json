@@ -392,7 +392,7 @@
         "padding-block-end": 0
       }
     },
-    "machine_features": {
+    "product_list_zR9Cym": {
       "type": "section",
       "name": "Machine Features",
       "blocks": {
@@ -758,5 +758,5 @@
       }
     }
   },
-  "order": ["main", "dynamic_gallery_section", "machine_features"]
+  "order": ["main", "dynamic_gallery_section", "product_list_zR9Cym"]
 }
