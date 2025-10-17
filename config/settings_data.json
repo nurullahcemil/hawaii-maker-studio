@@ -9,6 +9,9 @@
  */
 {
   "current": {
+    "logo": "shopify://shop_images/maker_studio_logo_96cbc2ad-45f1-44ca-bdd5-a96829c0803e.png",
+    "logo_inverse": "shopify://shop_images/maker_studio_logo_white_936beb71-e9ee-4008-9032-5118c45c4ff9.png",
+    "favicon": "shopify://shop_images/thunderbird_e3c18900-491a-491e-99f1-f7bdc0454a13.png",
     "type_body_font": "instrument_sans_n4",
     "type_subheading_font": "instrument_sans_n4",
     "type_heading_font": "instrument_serif_n4",
