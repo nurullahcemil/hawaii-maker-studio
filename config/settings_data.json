@@ -33,6 +33,16 @@
     "card_corner_radius": 10,
     "variant_button_radius": 100,
     "variant_button_width": "default-width-buttons",
+    "business_type": "CreativeWork",
+    "business_description": "We’re a Honolulu-based maker space and craft studio offering hands-on workshops, tool rentals (laser cutter, UV printer, 3D printer), and custom art services in Chinatown.",
+    "business_phone": "8087539578",
+    "business_email": "hello@hawaiimakerspace.com",
+    "business_address_street": "941 River St #240",
+    "business_address_city": "Honolulu",
+    "business_address_state": "Hawaii",
+    "business_address_zip": "96817",
+    "business_hours": "Mon-Fri 8:00-20:00",
+    "default_rating": 5,
     "content_for_index": [],
     "blocks": {
       "8154336783611098045": {
