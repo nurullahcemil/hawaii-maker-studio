@@ -2326,5 +2326,245 @@
         "default": "equal-width-buttons"
       }
     ]
+  },
+  {
+    "name": "Schema & SEO Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Schema Markup Configuration"
+      },
+      {
+        "type": "paragraph",
+        "content": "Configure structured data to improve Google search visibility and rich snippets."
+      },
+      {
+        "type": "header",
+        "content": "Local Business Schema"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_local_business_schema",
+        "label": "Enable Local Business Schema",
+        "default": true,
+        "info": "Helps with local SEO and Google My Business integration"
+      },
+      {
+        "type": "text",
+        "id": "business_name",
+        "label": "Business Name",
+        "default": "Hawaii Maker Studio",
+        "info": "Your official business name"
+      },
+      {
+        "type": "select",
+        "id": "business_type",
+        "label": "Business Type",
+        "options": [
+          {
+            "value": "LocalBusiness",
+            "label": "Local Business"
+          },
+          {
+            "value": "Store",
+            "label": "Retail Store"
+          },
+          {
+            "value": "CreativeWork",
+            "label": "Creative Studio"
+          },
+          {
+            "value": "EducationalOrganization",
+            "label": "Educational/Workshop"
+          }
+        ],
+        "default": "Store"
+      },
+      {
+        "type": "textarea",
+        "id": "business_description",
+        "label": "Business Description",
+        "info": "Brief description of your business for search engines"
+      },
+      {
+        "type": "text",
+        "id": "business_phone",
+        "label": "Phone Number",
+        "placeholder": "+1-808-123-4567"
+      },
+      {
+        "type": "text",
+        "id": "business_email",
+        "label": "Email Address",
+        "placeholder": "info@hawaiimakerstudio.com"
+      },
+      {
+        "type": "text",
+        "id": "business_address_street",
+        "label": "Street Address",
+        "placeholder": "123 Maker Street"
+      },
+      {
+        "type": "text",
+        "id": "business_address_city",
+        "label": "City",
+        "placeholder": "Honolulu"
+      },
+      {
+        "type": "text",
+        "id": "business_address_state",
+        "label": "State/Province",
+        "placeholder": "Hawaii"
+      },
+      {
+        "type": "text",
+        "id": "business_address_zip",
+        "label": "Postal Code",
+        "placeholder": "96801"
+      },
+      {
+        "type": "text",
+        "id": "business_address_country",
+        "label": "Country",
+        "placeholder": "United States",
+        "default": "United States"
+      },
+      {
+        "type": "text",
+        "id": "business_hours",
+        "label": "Business Hours",
+        "placeholder": "Mon-Fri 9:00-17:00",
+        "info": "Format: Mon-Fri 9:00-17:00"
+      },
+      {
+        "type": "header",
+        "content": "Breadcrumb Schema"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_breadcrumb_schema",
+        "label": "Enable Breadcrumb Schema",
+        "default": true,
+        "info": "Shows navigation paths in Google search results"
+      },
+      {
+        "type": "header",
+        "content": "FAQ Schema"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_faq_schema",
+        "label": "Enable FAQ Schema",
+        "default": true,
+        "info": "Makes FAQs appear directly in search results"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_product_faq_schema",
+        "label": "Enable Product FAQ Schema",
+        "default": true,
+        "info": "Adds FAQ schema to product pages"
+      },
+      {
+        "type": "header",
+        "content": "Review & Rating Schema"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_review_schema",
+        "label": "Enable Enhanced Review Schema",
+        "default": true,
+        "info": "Shows star ratings in search results"
+      },
+      {
+        "type": "range",
+        "id": "default_rating",
+        "min": 1,
+        "max": 5,
+        "step": 0.1,
+        "label": "Default Product Rating",
+        "default": 4.5,
+        "info": "Used when no reviews exist yet"
+      },
+      {
+        "type": "number",
+        "id": "default_review_count",
+        "label": "Default Review Count",
+        "default": 0,
+        "info": "Used when no reviews exist yet"
+      },
+      {
+        "type": "header",
+        "content": "Video Schema"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_video_schema",
+        "label": "Enable Video Schema",
+        "default": true,
+        "info": "Enhances video visibility in search results"
+      },
+      {
+        "type": "header",
+        "content": "HowTo Schema"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_howto_schema",
+        "label": "Enable HowTo Schema",
+        "default": true,
+        "info": "Perfect for maker tutorials and assembly guides"
+      },
+      {
+        "type": "header",
+        "content": "Website Search Schema"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_website_schema",
+        "label": "Enable Website Search Schema",
+        "default": true,
+        "info": "Adds search box to your brand's Google results"
+      },
+      {
+        "type": "header",
+        "content": "Social Media Links"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook",
+        "label": "Facebook URL",
+        "placeholder": "https://facebook.com/hawaiimakerstudio"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram URL",
+        "placeholder": "https://instagram.com/hawaiimakerstudio"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube",
+        "label": "YouTube URL",
+        "placeholder": "https://youtube.com/@hawaiimakerstudio"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "TikTok URL",
+        "placeholder": "https://tiktok.com/@hawaiimakerstudio"
+      },
+      {
+        "type": "header",
+        "content": "Advanced Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "schema_debug_mode",
+        "label": "Debug Mode",
+        "default": false,
+        "info": "Shows schema markup in browser console for testing"
+      }
+    ]
   }
 ]

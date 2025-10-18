@@ -1,0 +1,81 @@
+{% comment %}
+  Enhanced Product Schema Snippet
+  Extends Shopify's default product schema with additional review and rating data
+  Usage: {% render 'schema-enhanced-product', product: product %}
+{% endcomment %}
+
+{% if settings.enable_review_schema and product %}
+{% liquid
+  # Get product reviews data (this would integrate with your review system)
+  # For now, using default values from settings
+  assign rating_value = settings.default_rating | default: 4.5
+  assign review_count = settings.default_review_count | default: 0
+  
+  # If you have a review app, you can override these values
+  # Example: if product.metafields.reviews.rating
+  #   assign rating_value = product.metafields.reviews.rating
+  #   assign review_count = product.metafields.reviews.count
+  # endif
+%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | truncate: 300 | json }},
+  "sku": {{ product.selected_or_first_available_variant.sku | json }},
+  "mpn": {{ product.selected_or_first_available_variant.barcode | json }},
+  "brand": {
+    "@type": "Brand",
+    "name": {{ product.vendor | default: shop.name | json }}
+  },
+  {% if product.featured_image %}
+  "image": [
+    {% for image in product.images limit: 5 %}
+      {{ image | image_url: width: 800 | prepend: "https:" | json }}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  {% endif %}
+  "offers": {
+    "@type": "Offer",
+    "url": {{ product.url | prepend: shop.url | json }},
+    "priceCurrency": {{ cart.currency.iso_code | json }},
+    "price": {{ product.price | divided_by: 100.0 | json }},
+    {% if product.compare_at_price > product.price %}
+    "priceValidUntil": {{ 'now' | date: '%s' | plus: 2592000 | date: '%Y-%m-%d' | json }},
+    {% endif %}
+    "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+    "seller": {
+      "@type": "Organization",
+      "name": {{ shop.name | json }}
+    }
+  },
+  {% if review_count > 0 %}
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": {{ rating_value | json }},
+    "reviewCount": {{ review_count | json }},
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  {% endif %}
+  "category": {{ product.type | json }},
+  {% if product.tags.size > 0 %}
+  "keywords": {{ product.tags | join: ', ' | json }},
+  {% endif %}
+  "manufacturer": {
+    "@type": "Organization",
+    "name": {{ product.vendor | default: shop.name | json }}
+  }
+}
+</script>
+
+{% if settings.schema_debug_mode %}
+<script>
+console.log('Enhanced Product Schema for:', {{ product.title | json }});
+console.log('Rating:', {{ rating_value | json }});
+console.log('Review Count:', {{ review_count | json }});
+</script>
+{% endif %}
+{% endif %}

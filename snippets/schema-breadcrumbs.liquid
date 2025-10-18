@@ -1,0 +1,71 @@
+{% comment %}
+  Breadcrumb Schema Snippet
+  Generates breadcrumb structured data based on current page context
+{% endcomment %}
+
+{% if settings.enable_breadcrumb_schema %}
+{% liquid
+  assign breadcrumb_items = ''
+  assign position = 1
+  
+  # Home page item
+  assign home_item = '{"@type": "ListItem", "position": ' | append: position | append: ', "name": "Home", "item": "' | append: shop.url | append: '"}'
+  assign breadcrumb_items = breadcrumb_items | append: home_item
+  assign position = position | plus: 1
+  
+  # Handle different page types
+  case request.page_type
+    when 'collection'
+      assign collection_item = '{"@type": "ListItem", "position": ' | append: position | append: ', "name": "' | append: collection.title | append: '", "item": "' | append: collection.url | prepend: shop.url | append: '"}'
+      assign breadcrumb_items = breadcrumb_items | append: ',' | append: collection_item
+      
+    when 'product'
+      if collection
+        assign collection_item = '{"@type": "ListItem", "position": ' | append: position | append: ', "name": "' | append: collection.title | append: '", "item": "' | append: collection.url | prepend: shop.url | append: '"}'
+        assign breadcrumb_items = breadcrumb_items | append: ',' | append: collection_item
+        assign position = position | plus: 1
+      endif
+      
+      assign product_item = '{"@type": "ListItem", "position": ' | append: position | append: ', "name": "' | append: product.title | append: '", "item": "' | append: product.url | prepend: shop.url | append: '"}'
+      assign breadcrumb_items = breadcrumb_items | append: ',' | append: product_item
+      
+    when 'blog'
+      assign blog_item = '{"@type": "ListItem", "position": ' | append: position | append: ', "name": "' | append: blog.title | append: '", "item": "' | append: blog.url | prepend: shop.url | append: '"}'
+      assign breadcrumb_items = breadcrumb_items | append: ',' | append: blog_item
+      
+    when 'article'
+      assign blog_item = '{"@type": "ListItem", "position": ' | append: position | append: ', "name": "' | append: blog.title | append: '", "item": "' | append: blog.url | prepend: shop.url | append: '"}'
+      assign breadcrumb_items = breadcrumb_items | append: ',' | append: blog_item
+      assign position = position | plus: 1
+      
+      assign article_item = '{"@type": "ListItem", "position": ' | append: position | append: ', "name": "' | append: article.title | append: '", "item": "' | append: article.url | prepend: shop.url | append: '"}'
+      assign breadcrumb_items = breadcrumb_items | append: ',' | append: article_item
+      
+    when 'page'
+      assign page_item = '{"@type": "ListItem", "position": ' | append: position | append: ', "name": "' | append: page.title | append: '", "item": "' | append: page.url | prepend: shop.url | append: '"}'
+      assign breadcrumb_items = breadcrumb_items | append: ',' | append: page_item
+      
+    when 'search'
+      assign search_item = '{"@type": "ListItem", "position": ' | append: position | append: ', "name": "Search Results", "item": "' | append: request.origin | append: request.path | append: '"}'
+      assign breadcrumb_items = breadcrumb_items | append: ',' | append: search_item
+  endcase
+%}
+
+{% if breadcrumb_items != blank %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{{ breadcrumb_items }}]
+}
+</script>
+{% endif %}
+
+{% if settings.schema_debug_mode %}
+<script>
+console.log('Breadcrumb Schema enabled:', {{ settings.enable_breadcrumb_schema | json }});
+console.log('Page type:', {{ request.page_type | json }});
+console.log('Breadcrumb items generated:', {{ breadcrumb_items | size }});
+</script>
+{% endif %}
+{% endif %}

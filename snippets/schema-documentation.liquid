@@ -1,0 +1,88 @@
+{% comment %}
+===========================================
+HAWAII MAKER STUDIO - SCHEMA DOCUMENTATION
+===========================================
+
+This theme now includes comprehensive schema markup settings that can be managed through:
+Shopify Admin → Online Store → Themes → Customize → Theme Settings → "Schema & SEO Settings"
+
+IMPLEMENTED SCHEMAS:
+===================
+
+1. LOCAL BUSINESS SCHEMA (schema-local-business.liquid)
+   - Helps with local SEO and Google My Business integration
+   - Configurable business info, address, hours, social media
+   - Settings: enable_local_business_schema, business_name, business_type, etc.
+
+2. BREADCRUMB SCHEMA (schema-breadcrumbs.liquid)  
+   - Shows navigation paths in Google search results
+   - Automatically generates breadcrumbs for all page types
+   - Settings: enable_breadcrumb_schema
+
+3. WEBSITE SCHEMA (schema-website.liquid)
+   - Adds search box to your brand's Google results
+   - Enables site search functionality in SERPs
+   - Settings: enable_website_schema
+
+4. ENHANCED PRODUCT SCHEMA (schema-enhanced-product.liquid)
+   - Extends Shopify's default product schema
+   - Includes detailed review/rating data
+   - Settings: enable_review_schema, default_rating, default_review_count
+
+5. FAQ SCHEMA (schema-faq.liquid)
+   - Makes FAQs appear directly in search results
+   - Supports product-specific FAQs via metafields
+   - Includes common product FAQs (shipping, returns, warranty)
+   - Settings: enable_faq_schema, enable_product_faq_schema
+
+USAGE EXAMPLES:
+==============
+
+In templates:
+{% render 'schema-local-business' %}
+{% render 'schema-breadcrumbs' %}
+{% render 'schema-website' %}
+{% render 'schema-enhanced-product', product: product %}
+{% render 'schema-faq', product: product %}
+
+Custom FAQ usage:
+{% assign custom_faqs = '[{"question": "How to use?", "answer": "Follow the guide"}]' | parse_json %}
+{% render 'schema-faq', faqs: custom_faqs %}
+
+METAFIELD SETUP FOR PRODUCT FAQS:
+=================================
+
+To use custom product FAQs, set up these metafields:
+- Namespace: custom
+- Key: faq_questions
+- Type: Single line text
+- Value: Question 1||Question 2||Question 3
+
+- Namespace: custom  
+- Key: faq_answers
+- Type: Multi-line text
+- Value: Answer 1||Answer 2||Answer 3
+
+TESTING YOUR SCHEMA:
+===================
+
+1. Enable "Debug Mode" in Schema & SEO Settings
+2. Check browser console for schema debug info
+3. Use Google's Rich Results Test: https://search.google.com/test/rich-results
+4. Use Schema Markup Validator: https://validator.schema.org/
+
+CURRENT IMPLEMENTATION:
+======================
+✅ Local Business Schema - header.liquid
+✅ Website Schema - header.liquid  
+✅ Breadcrumb Schema - header.liquid
+✅ Enhanced Product Schema - product-information.liquid, featured-product.liquid
+✅ FAQ Schema - product-information.liquid
+
+PENDING IMPLEMENTATIONS:
+=======================
+⏳ HowTo Schema - for maker tutorials
+⏳ Collection Schema - for product collections  
+⏳ Video Schema - for product demonstration videos
+
+{% endcomment %}

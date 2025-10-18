@@ -1,0 +1,41 @@
+{% comment %}
+  Website Schema Snippet
+  Adds website search functionality to Google results
+{% endcomment %}
+
+{% if settings.enable_website_schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ shop.name | json }},
+  "description": {{ shop.description | default: shop.name | json }},
+  "url": {{ shop.url | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ shop.url }}/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {% if settings.logo %}
+      "logo": {
+        "@type": "ImageObject",
+        "url": {{ settings.logo | image_url: width: 600 | prepend: "https:" | json }}
+      },
+    {% endif %}
+    "url": {{ shop.url | json }}
+  }
+}
+</script>
+{% endif %}
+
+{% if settings.schema_debug_mode %}
+<script>
+console.log('Website Schema enabled:', {{ settings.enable_website_schema | json }});
+</script>
+{% endif %}

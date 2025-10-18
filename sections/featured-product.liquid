@@ -1,8 +1,10 @@
 
 
+{% comment %} Enhanced Product Schema {% endcomment %}
 <script type="application/ld+json">
   {{ section.settings.product | structured_data }}
 </script>
+{% render 'schema-enhanced-product', product: section.settings.product %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div

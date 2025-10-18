@@ -1,0 +1,104 @@
+{% comment %}
+  FAQ Schema Snippet
+  Usage: {% render 'schema-faq', faqs: faq_array %}
+  
+  FAQ array format:
+  [
+    { question: "Question 1", answer: "Answer 1" },
+    { question: "Question 2", answer: "Answer 2" }
+  ]
+  
+  Or use with product metafields:
+  {% render 'schema-faq', product: product %}
+{% endcomment %}
+
+{% if settings.enable_faq_schema %}
+{% liquid
+  assign faq_items = ''
+  assign has_faqs = false
+  
+  # Handle different FAQ sources
+  if faqs and faqs.size > 0
+    # Direct FAQ array passed
+    for faq in faqs
+      if faq.question and faq.answer
+        assign faq_item = '{"@type": "Question", "name": "' | append: faq.question | append: '", "acceptedAnswer": {"@type": "Answer", "text": "' | append: faq.answer | append: '"}}'
+        if faq_items != blank
+          assign faq_items = faq_items | append: ','
+        endif
+        assign faq_items = faq_items | append: faq_item
+        assign has_faqs = true
+      endif
+    endfor
+    
+  elsif product and settings.enable_product_faq_schema
+    # Try to get FAQs from product metafields
+    # This assumes you have FAQ metafields set up
+    # Adjust the metafield namespace/key based on your setup
+    
+    if product.metafields.custom.faq_questions and product.metafields.custom.faq_answers
+      assign questions = product.metafields.custom.faq_questions.value | split: '||'
+      assign answers = product.metafields.custom.faq_answers.value | split: '||'
+      
+      for question in questions
+        assign index = forloop.index0
+        assign answer = answers[index]
+        if question != blank and answer != blank
+          assign faq_item = '{"@type": "Question", "name": "' | append: question | escape | append: '", "acceptedAnswer": {"@type": "Answer", "text": "' | append: answer | escape | append: '"}}'
+          if faq_items != blank
+            assign faq_items = faq_items | append: ','
+          endif
+          assign faq_items = faq_items | append: faq_item
+          assign has_faqs = true
+        endif
+      endfor
+    endif
+    
+    # Common product FAQs (you can customize these)
+    if product and faq_items == blank
+      assign common_faqs = ''
+      
+      # Shipping FAQ
+      if product.available
+        assign shipping_faq = '{"@type": "Question", "name": "How long does shipping take?", "acceptedAnswer": {"@type": "Answer", "text": "We typically ship within 1-2 business days. Delivery time depends on your location and shipping method selected."}}'
+        assign common_faqs = common_faqs | append: shipping_faq
+      endif
+      
+      # Return FAQ
+      assign return_faq = '{"@type": "Question", "name": "What is your return policy?", "acceptedAnswer": {"@type": "Answer", "text": "We accept returns within 30 days of purchase. Items must be in original condition."}}'
+      if common_faqs != blank
+        assign common_faqs = common_faqs | append: ','
+      endif
+      assign common_faqs = common_faqs | append: return_faq
+      
+      # Warranty FAQ
+      if product.type contains 'tool' or product.type contains 'equipment'
+        assign warranty_faq = '{"@type": "Question", "name": "Does this come with a warranty?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, this product includes a manufacturer warranty. Please check the product description for specific warranty terms."}}'
+        assign common_faqs = common_faqs | append: ',' | append: warranty_faq
+      endif
+      
+      assign faq_items = common_faqs
+      assign has_faqs = true
+    endif
+  endif
+%}
+
+{% if has_faqs and faq_items != blank %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{{ faq_items }}]
+}
+</script>
+{% endif %}
+
+{% if settings.schema_debug_mode %}
+<script>
+console.log('FAQ Schema enabled:', {{ settings.enable_faq_schema | json }});
+console.log('Product FAQ Schema enabled:', {{ settings.enable_product_faq_schema | json }});
+console.log('Has FAQs:', {{ has_faqs | json }});
+console.log('FAQ items count:', {{ faq_items | size }});
+</script>
+{% endif %}
+{% endif %}
