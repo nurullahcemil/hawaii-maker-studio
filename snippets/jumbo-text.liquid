@@ -55,17 +55,17 @@
 {% endcomment %}
 <div class="jumbo-text__container">
   {% if text != blank %}
-    {% if block_settings.heading_tag != blank and block_settings.heading_tag != 'none' %}
-      <{{ block_settings.heading_tag }} class="jumbo-text-semantic">
+    {% if block_settings.use_semantic_heading %}
+      <{{ block_settings.heading_level | default: 'h2' }} class="jumbo-text-semantic">
         <jumbo-text {{ attributes }}>{{ text }}</jumbo-text>
-      </{{ block_settings.heading_tag }}>
+      </{{ block_settings.heading_level | default: 'h2' }}>
     {% else %}
       <jumbo-text {{ attributes }}>{{ text }}</jumbo-text>
     {% endif %}
   {% else %}
     <span class="visually-hidden">{{ shown_text }}</span>
-    {% if block_settings.heading_tag != blank and block_settings.heading_tag != 'none' %}
-      <{{ block_settings.heading_tag }} class="jumbo-text-semantic">
+    {% if block_settings.use_semantic_heading %}
+      <{{ block_settings.heading_level | default: 'h2' }} class="jumbo-text-semantic">
         <jumbo-text
           {{ attributes }}
           data-text-effect="{{ block_settings.text_effect }}"
@@ -111,8 +111,8 @@
         </span>
       {%- endfor -%}
     </jumbo-text>
-    {% if block_settings.heading_tag != blank and block_settings.heading_tag != 'none' %}
-      </{{ block_settings.heading_tag }}>
+    {% if block_settings.use_semantic_heading %}
+      </{{ block_settings.heading_level | default: 'h2' }}>
     {% endif %}
   {% endif %}
 </div>
