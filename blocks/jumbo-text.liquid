@@ -44,23 +44,25 @@
       "default": "left"
     },
     {
-      "type": "checkbox",
-      "id": "use_semantic_heading",
-      "label": "Use as semantic heading for SEO",
-      "info": "Enable to make this text count as a heading for search engines. Keep disabled for decorative text only.",
-      "default": false
+      "type": "header",
+      "content": "Semantic Heading (SEO)"
     },
     {
       "type": "select",
-      "id": "heading_level",
-      "label": "Heading Level",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "info": "Choose heading level for SEO, or 'None' for decorative text only",
       "options": [
+        {
+          "value": "none",
+          "label": "None (Decorative)"
+        },
         {
           "value": "h1",
           "label": "H1 (Main heading)"
         },
         {
-          "value": "h2",
+          "value": "h2", 
           "label": "H2 (Section heading)"
         },
         {
@@ -80,8 +82,7 @@
           "label": "H6"
         }
       ],
-      "default": "h2",
-      "visible_if": "{{ block.settings.use_semantic_heading == true }}"
+      "default": "none"
     },
     {
       "type": "select",
