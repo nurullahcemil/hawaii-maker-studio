@@ -2,40 +2,38 @@
   Product Event Schema - Enhanced structured data for event products
 {% endcomment %}
 
-{% if product.metafields.custom.event_data %}
+{%- liquid
+  assign event_handle = product.metafields.custom.event_handle
+  if event_handle != blank
+    assign event = shop.metaobjects.event[event_handle]
+  endif
+-%}
+
+{% if event %}
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Event",
     "name": "{{ product.title | escape }}",
-    "description": "{{ product.description | strip_html | escape }}",
+    "description": "{{ event.description | strip_html | escape }}",
     "url": "{{ shop.url }}{{ product.url }}",
     "image": [
       {% for media in product.media limit: 5 %}
         "{{ media | image_url: width: 1200 }}"{% unless forloop.last %},{% endunless %}
       {% endfor %}
     ],
-    "startDate": "{{ product.metafields.custom.event_data.start_date }}",
-    "endDate": "{{ product.metafields.custom.event_data.end_date }}",
     "eventStatus": "https://schema.org/EventScheduled",
-    "eventAttendanceMode": "{% if product.metafields.custom.event_data.location_type == 'virtual' %}https://schema.org/OnlineEventAttendanceMode{% else %}https://schema.org/OfflineEventAttendanceMode{% endif %}",
-    "location": {% if product.metafields.custom.event_data.location_type == 'virtual' %}
+    "eventAttendanceMode": "{% if event.location.value contains 'Virtual' %}https://schema.org/OnlineEventAttendanceMode{% else %}https://schema.org/OfflineEventAttendanceMode{% endif %}",
+    "location": {% if event.location.value contains 'Virtual' %}
       {
         "@type": "VirtualLocation",
-        "url": "{{ product.metafields.custom.event_data.virtual_link }}"
+        "url": "{{ shop.url }}{{ product.url }}"
       }
     {% else %}
       {
         "@type": "Place",
-        "name": "{{ product.metafields.custom.event_data.location_name }}",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "{{ product.metafields.custom.event_data.address }}",
-          "addressLocality": "{{ product.metafields.custom.event_data.city }}",
-          "addressRegion": "{{ product.metafields.custom.event_data.state }}",
-          "postalCode": "{{ product.metafields.custom.event_data.zip }}",
-          "addressCountry": "{{ product.metafields.custom.event_data.country }}"
-        }
+        "name": "{{ event.location.value }}",
+        "address": "{{ event.location.value }}"
       }
     {% endif %},
     "organizer": {
@@ -50,11 +48,12 @@
       "priceCurrency": "{{ cart.currency.iso_code }}",
       "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
       "validFrom": "{{ 'now' | date: '%Y-%m-%d' }}"
-    },
+    }{% if event.host_name.value != blank %},
     "performer": {
-      "@type": "Organization",
-      "name": "{{ shop.name }}"
-    }
+      "@type": "Person",
+      "name": "{{ event.host_name.value }}"
+    }{% endif %}{% if event.duration.value != blank %},
+    "duration": "PT{{ event.duration.value }}M"{% endif %}
   }
   </script>
 {% endif %}

@@ -91,17 +91,17 @@
               </div>
             {% endif %}
             
-            {% if event.location_type.value != blank %}
+            {% if event.location.value != blank %}
               <div class="hawaii-event-badge hawaii-badge-location">
                 <span class="hawaii-badge-icon">
-                  {% if event.location_type.value contains 'Virtual' %}💻
-                  {% elsif event.location_type.value contains 'Honolulu' %}🌺
-                  {% elsif event.location_type.value contains 'New York' %}🗽
-                  {% elsif event.location_type.value contains 'San Francisco' %}🌉
+                  {% if event.location.value contains 'Virtual' %}💻
+                  {% elsif event.location.value contains 'Honolulu' %}🌺
+                  {% elsif event.location.value contains 'New York' %}🗽
+                  {% elsif event.location.value contains 'San Francisco' %}🌉
                   {% else %}📍
                   {% endif %}
                 </span>
-                {{ event.location_type.value }}
+                {{ event.location.value }}
               </div>
             {% endif %}
           </div>
@@ -120,10 +120,10 @@
         <!-- Event Details using Hawaii detail boxes -->
         {% if event %}
           <div class="hawaii-event-details">
-            {% if event.event_duration.value != blank %}
+            {% if event.duration.value != blank %}
               <div class="hawaii-detail-item">
                 <span class="hawaii-detail-label">Duration</span>
-                <span class="hawaii-detail-value">{{ event.event_duration.value }} mins</span>
+                <span class="hawaii-detail-value">{{ event.duration.value }} mins</span>
               </div>
             {% endif %}
             {% if event.group_size.value != blank %}
@@ -325,9 +325,9 @@
     </div>
     
     <!-- Event Description using Hawaii content blocks -->
-    {% if event and event.event_description %}
+    {% if event and event.description %}
       <div class="hawaii-event-description spacing-style">
-        <div class="rte">{{ event.event_description }}</div>
+        <div class="rte">{{ event.description }}</div>
       </div>
     {% endif %}
     
