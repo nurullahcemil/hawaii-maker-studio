@@ -910,56 +910,6 @@
         "padding-block-end": 32
       }
     },
-    "dynamic_image_gallery_qjRkhk": {
-      "type": "dynamic-image-gallery",
-      "name": "Dynamic Image Gallery",
-      "settings": {
-        "show_title": true,
-        "gallery_title": "What Can You Make with xTool P2S",
-        "heading_tag": "h2",
-        "heading_style": "h3",
-        "title_spacing": 32,
-        "gallery_layout": "grid-4",
-        "max_images": 20,
-        "columns_mobile": 1,
-        "columns_tablet": 3,
-        "columns_desktop": 3,
-        "image_radius": 8,
-        "show_captions": false,
-        "enable_zoom": true,
-        "show_dots": true,
-        "autoplay": false,
-        "autoplay_speed": 5,
-        "section_width": "page-width",
-        "color_scheme": "",
-        "padding-block-start": 36,
-        "padding-block-end": 36
-      }
-    },
-    "test_section": {
-      "type": "test-section",
-      "name": "Test Section",
-      "settings": {}
-    },
-    "dynamic_event_content": {
-      "type": "dynamic-event-content",
-      "name": "Dynamic Event Content",
-      "settings": {
-        "show_description": true,
-        "description_title": "Description",
-        "show_details": true,
-        "skill_title": "Skill Level",
-        "audience_title": "Who is it for?",
-        "duration_title": "Duration",
-        "show_expectations": true,
-        "expectations_title": "What to Expect",
-        "show_quote": true,
-        "show_host": true,
-        "host_title": "Host",
-        "container_size": "medium",
-        "color_scheme": "default"
-      }
-    },
     "section_BHeC9b": {
       "type": "section",
       "blocks": {
@@ -1083,9 +1033,6 @@
   },
   "order": [
     "main",
-    "test_section",
-    "dynamic_event_content",
-    "dynamic_image_gallery_qjRkhk",
     "section_BHeC9b"
   ]
 }
