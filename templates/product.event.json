@@ -200,15 +200,6 @@
         "show_quantity_selector": true
       }
     },
-    "event_information_section": {
-      "type": "event-information",
-      "name": "Event Information",
-      "settings": {
-        "event_handle": "",
-        "container_size": "medium",
-        "color_scheme": "default"
-      }
-    },
     "dynamic_booking_form_xLRhbt": {
       "type": "dynamic-booking-form",
       "name": "Dynamic Booking Form",
@@ -225,11 +216,14 @@
         "google_maps_api_key": ""
       }
     },
+    "17513163403e1ce268": {
+      "type": "apps",
+      "settings": {}
+    }
   },
   "order": [
     "main",
     "media_gallery_with_product_M8aKtE",
-    "event_information_section",
     "dynamic_booking_form_xLRhbt",
     "17513163403e1ce268"
   ]
