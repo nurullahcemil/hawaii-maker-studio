@@ -12,101 +12,116 @@
       "main": {
         "type": "product-information",
         "blocks": {
-          "vendor": {
-            "type": "vendor",
-            "settings": {}
-          },
-          "title": {
-            "type": "title",
+          "media-gallery": {
+            "type": "_product-media-gallery",
+            "static": true,
             "settings": {
-              "heading_size": "h4"
+              "media_presentation": "grid",
+              "media_columns": "two",
+              "image_gap": 12,
+              "large_first_image": true,
+              "icons_style": "chevron",
+              "slideshow_controls_style": "dots",
+              "slideshow_mobile_controls_style": "dots",
+              "thumbnail_position": "bottom",
+              "thumbnail_width": 44,
+              "aspect_ratio": "adapt",
+              "constrain_to_viewport": true,
+              "media_fit": "cover",
+              "media_radius": 20,
+              "extend_media": false,
+              "zoom": true,
+              "video_loop": false,
+              "hide_variants": false
             }
           },
-          "price": {
-            "type": "price",
+          "product-details": {
+            "type": "_product-details",
+            "static": true,
             "settings": {
-              "price_size": "sm",
-              "show_tax_status": false,
-              "show_sale_amount_badge": true,
-              "highlight_sale_price": true
-            }
-          },
-          "variant_picker": {
-            "type": "variant_picker",
-            "settings": {
-              "option_type": "button-outline",
-              "show_swatches": true,
-              "primary_swatch_option_type": "variant-images",
-              "secondary_swatch_option_type": "button-solid",
-              "hide_single_value_options": true,
-              "option_name": "",
-              "information_drawer_button_label": "",
-              "text": "",
-              "page": "",
-              "image_width": 60
-            }
-          },
-          "quantity_selector": {
-            "type": "quantity_selector",
-            "settings": {}
-          },
-          "buy_buttons": {
-            "type": "buy_buttons",
-            "settings": {
-              "show_dynamic_checkout": false,
-              "enable_pickup_availability": false,
-              "enable_gift_card": false,
-              "add_to_cart_btn_style": "solid",
-              "checkout_btn_style": "solid"
-            }
-          },
-          "description": {
-            "type": "description",
-            "settings": {
-              "title": "",
-              "heading_size": "caption3",
-              "body_size": "body3",
-              "block_style": "static",
-              "icon": "none",
-              "icon_size": 24
-            }
-          },
-          "share": {
-            "type": "share",
-            "settings": {}
+              "width": "fill",
+              "custom_width": 100,
+              "width_mobile": "fill",
+              "custom_width_mobile": 100,
+              "height": "fit",
+              "details_position": "flex-start",
+              "gap": 16,
+              "sticky_details_desktop": true
+            },
+            "blocks": {
+              "product_title": {
+                "type": "product-title",
+                "settings": {
+                  "type_preset": "h2",
+                  "font": "var(--font-body--family)",
+                  "font_size": "1.5rem"
+                }
+              },
+              "price": {
+                "type": "price",
+                "settings": {
+                  "show_sale_price_first": true,
+                  "show_installments": true,
+                  "show_tax_info": true,
+                  "type_preset": "h4"
+                }
+              },
+              "variant_picker": {
+                "type": "variant-picker",
+                "settings": {
+                  "variant_style": "buttons",
+                  "show_swatches": true
+                }
+              },
+              "buy_buttons": {
+                "type": "buy-buttons",
+                "settings": {
+                  "stacking": false,
+                  "show_pickup_availability": false
+                },
+                "blocks": {
+                  "quantity": {
+                    "type": "quantity",
+                    "static": true,
+                    "settings": {}
+                  },
+                  "add-to-cart": {
+                    "type": "add-to-cart",
+                    "static": true,
+                    "settings": {
+                      "style_class": "button"
+                    }
+                  }
+                }
+              },
+              "description": {
+                "type": "product-description",
+                "settings": {
+                  "text": "{{ closest.product.description }}",
+                  "type_preset": "rte"
+                }
+              }
+            },
+            "block_order": [
+              "product_title",
+              "price",
+              "variant_picker",
+              "buy_buttons",
+              "description"
+            ]
           }
         },
         "block_order": [
-          "vendor",
-          "title",
-          "price",
-          "variant_picker",
-          "quantity_selector",
-          "buy_buttons",
-          "description",
-          "share"
+          "media-gallery",
+          "product-details"
         ],
-        "disabled": true,
         "settings": {
-          "color_scheme": "default",
-          "container_size": "medium",
-          "media_to_content_ratio": "60-40",
-          "img_ratio": "1.5",
-          "layout": "thumbnails-left",
-          "desktop_space_between_media": 32,
-          "thumbnails_size": 80,
-          "mobile_layout": "thumbnails-bottom",
-          "mobile_space_between_media": 10,
-          "show_only_selected_variants": true,
-          "enable_image_zoom": true,
-          "enable_video_looping": true,
-          "enable_video_autoplay": true,
-          "scale_video": true,
-          "add_side_paddings": true,
-          "desktop_spacing_top": 40,
-          "desktop_spacing_bottom": 30,
-          "mobile_spacing_top": 12,
-          "mobile_spacing_bottom": 12
+          "content_width": "content-center-aligned",
+          "desktop_media_position": "left",
+          "equal_columns": false,
+          "limit_details_width": false,
+          "gap": 48,
+          "color_scheme": "scheme-1"
         }
       },
       "media_gallery_with_product_HF7zMA": {
