@@ -62,11 +62,48 @@
           <h1 class="hawaii-product-title">{{ product.title }}</h1>
         {% endif %}
         
-        <!-- Event Type Badge using Hawaii styling -->
-        {% if event and event.event_type.value != blank %}
-          <div class="hawaii-event-badge">
-            <span class="hawaii-badge-icon">🌺</span>
-            {{ event.event_type.value }}
+        <!-- Event Badges using Hawaii styling -->
+        {% if event %}
+          <div class="hawaii-event-badges">
+            {% if event.skill_level.value != blank %}
+              <div class="hawaii-event-badge hawaii-badge-skill">
+                <span class="hawaii-badge-icon">
+                  {% if event.skill_level.value == 'Beginner' %}⭐
+                  {% elsif event.skill_level.value == 'Intermediate' %}⭐⭐
+                  {% elsif event.skill_level.value == 'Advanced' %}⭐⭐⭐
+                  {% endif %}
+                </span>
+                {{ event.skill_level.value }}
+              </div>
+            {% endif %}
+            
+            {% if event.audience.value != blank %}
+              <div class="hawaii-event-badge hawaii-badge-audience">
+                <span class="hawaii-badge-icon">
+                  {% if event.audience.value contains 'Kids' %}👶
+                  {% elsif event.audience.value contains 'Teens' %}🧑
+                  {% elsif event.audience.value contains 'Families' %}👨‍👩‍👧‍👦
+                  {% elsif event.audience.value contains 'Adults' %}👤
+                  {% else %}🌺
+                  {% endif %}
+                </span>
+                {{ event.audience.value }}
+              </div>
+            {% endif %}
+            
+            {% if event.location_type.value != blank %}
+              <div class="hawaii-event-badge hawaii-badge-location">
+                <span class="hawaii-badge-icon">
+                  {% if event.location_type.value contains 'Virtual' %}💻
+                  {% elsif event.location_type.value contains 'Honolulu' %}🌺
+                  {% elsif event.location_type.value contains 'New York' %}🗽
+                  {% elsif event.location_type.value contains 'San Francisco' %}🌉
+                  {% else %}📍
+                  {% endif %}
+                </span>
+                {{ event.location_type.value }}
+              </div>
+            {% endif %}
           </div>
         {% endif %}
         
@@ -406,22 +443,42 @@
   }
   
   /* Event Badge using Hawaii badge styling */
+  .hawaii-event-badges {
+    display: flex;
+    gap: var(--gap-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-md);
+  }
+  
   .hawaii-event-badge {
     display: inline-flex;
     align-items: center;
     gap: var(--gap-xs);
-    background: linear-gradient(45deg, #FF6B35, #F7931E);
-    color: var(--color-white);
     padding: var(--padding-xs) var(--padding-md);
     border-radius: var(--style-border-radius-pills);
     font-size: var(--font-size--sm);
     font-weight: 600;
-    text-transform: uppercase;
     width: fit-content;
+  }
+  
+  .hawaii-badge-skill {
+    background: linear-gradient(135deg, #4F46E5, #7C3AED);
+    color: var(--color-white);
+  }
+  
+  .hawaii-badge-audience {
+    background: linear-gradient(135deg, #EC4899, #F472B6);
+    color: var(--color-white);
+  }
+  
+  .hawaii-badge-location {
+    background: linear-gradient(135deg, #FF6B35, #F7931E);
+    color: var(--color-white);
   }
   
   .hawaii-badge-icon {
     font-size: 1.2em;
+    line-height: 1;
   }
   
   /* Price Display using Hawaii typography */

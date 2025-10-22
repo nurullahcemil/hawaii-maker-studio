@@ -20,7 +20,7 @@
   # Combine: first two images + videos + remaining images
   assign sorted_media = first_two_images | concat: video_media | concat: external_video_media | concat: remaining_images
   
-  # Determine collection URL based on event type (same logic)
+  # Determine collection URL based on location type
   assign collection_url = ''
   assign collection_text = ''
   
@@ -28,18 +28,21 @@
     assign event_handle = product.metafields.custom.event_handle.value
     assign event = shop.metaobjects.event[event_handle]
     
-    if event and event.event_type.value != blank
-      assign event_type_val = event.event_type.value | downcase
+    if event and event.location_type.value != blank
+      assign location_type_val = event.location_type.value | downcase
       
-      if event_type_val contains 'honolulu'
+      if location_type_val contains 'honolulu'
         assign collection_url = '/collections/honolulu'
         assign collection_text = 'All Honolulu Classes'
-      elsif event_type_val contains 'new york' or event_type_val contains 'nyc'
+      elsif location_type_val contains 'new york' or location_type_val contains 'nyc'
         assign collection_url = '/pages/team-building-events-nyc'
         assign collection_text = 'All NYC Classes'
-      elsif event_type_val contains 'virtual'
+      elsif location_type_val contains 'virtual'
         assign collection_url = '/collections/virtual'
         assign collection_text = 'All Virtual Classes'
+      elsif location_type_val contains 'san francisco' or location_type_val contains 'sf'
+        assign collection_url = '/collections/san-francisco'
+        assign collection_text = 'All San Francisco Classes'
       else
         assign collection_url = '/collections/workshops'
         assign collection_text = 'All Classes'
