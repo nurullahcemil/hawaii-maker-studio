@@ -100,32 +100,9 @@
         "gap": 48,
         "color_scheme": "scheme-1"
       }
-    },
-    "dynamic_image_gallery": {
-      "type": "dynamic-image-gallery",
-      "settings": {
-        "show_title": true,
-        "gallery_title": "What Can You Make",
-        "heading_tag": "h2",
-        "heading_style": "h3",
-        "title_spacing": 32,
-        "gallery_layout": "grid-4",
-        "max_images": 20,
-        "columns_mobile": 1,
-        "columns_tablet": 3,
-        "columns_desktop": 3,
-        "image_radius": 8,
-        "show_captions": false,
-        "enable_zoom": true,
-        "show_dots": true,
-        "autoplay": false,
-        "autoplay_speed": 5,
-        "section_width": "page-width"
-      }
     }
   },
   "order": [
-    "main",
-    "dynamic_image_gallery"
+    "main"
   ]
 }
