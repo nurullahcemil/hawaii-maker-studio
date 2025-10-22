@@ -1,6 +1,464 @@
+{% doc %}
+  @prompt
+    generate a section for event details like:
+    event description
+    what to expect
+    easiness level
+    audience type
+    duration
+    location
+    group size
+    
+    
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-event-details-{{ ai_gen_id }} {
+    padding: 40px 20px;
+    background-color: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-event-details__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-event-details__heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 32px;
+    text-align: {{ block.settings.heading_alignment }};
+  }
+
+  .ai-event-details__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .ai-event-details__card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: 24px;
+    transition: transform 0.2s ease;
+  }
+
+  .ai-event-details__card-{{ ai_gen_id }}:hover {
+    transform: translateY(-2px);
+  }
+
+  .ai-event-details__card-icon-{{ ai_gen_id }} {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 12px;
+    color: {{ block.settings.icon_color }};
+  }
+
+  .ai-event-details__card-label-{{ ai_gen_id }} {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: {{ block.settings.label_color }};
+    margin: 0 0 8px;
+    font-weight: 600;
+  }
+
+  .ai-event-details__card-value-{{ ai_gen_id }} {
+    font-size: 18px;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .ai-event-details__description-{{ ai_gen_id }} {
+    margin-bottom: 32px;
+  }
+
+  .ai-event-details__section-title-{{ ai_gen_id }} {
+    font-size: 24px;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 16px;
+  }
+
+  .ai-event-details__section-content-{{ ai_gen_id }} {
+    font-size: 16px;
+    line-height: 1.6;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-event-details__level-indicator-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ai-event-details__level-dot-{{ ai_gen_id }} {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: {{ block.settings.level_dot_color }};
+  }
+
+  .ai-event-details__level-dot-{{ ai_gen_id }}.inactive {
+    opacity: 0.2;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-event-details-{{ ai_gen_id }} {
+      padding: 24px 16px;
+    }
+
+    .ai-event-details__heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.7 }}px;
+      margin-bottom: 24px;
+    }
+
+    .ai-event-details__grid-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .ai-event-details__card-{{ ai_gen_id }} {
+      padding: 20px;
+    }
+
+    .ai-event-details__section-title-{{ ai_gen_id }} {
+      font-size: 20px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-event-details-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-event-details__container-{{ ai_gen_id }}">
+    {% if block.settings.main_heading != blank %}
+      <h2 class="ai-event-details__heading-{{ ai_gen_id }}">{{ block.settings.main_heading }}</h2>
+    {% endif %}
+
+    <div class="ai-event-details__grid-{{ ai_gen_id }}">
+      {% if block.settings.show_duration %}
+        <div class="ai-event-details__card-{{ ai_gen_id }}">
+          <svg class="ai-event-details__card-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p class="ai-event-details__card-label-{{ ai_gen_id }}">Duration</p>
+          <p class="ai-event-details__card-value-{{ ai_gen_id }}">{{ block.settings.duration }}</p>
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_location %}
+        <div class="ai-event-details__card-{{ ai_gen_id }}">
+          <svg class="ai-event-details__card-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <p class="ai-event-details__card-label-{{ ai_gen_id }}">Location</p>
+          <p class="ai-event-details__card-value-{{ ai_gen_id }}">{{ block.settings.location }}</p>
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_group_size %}
+        <div class="ai-event-details__card-{{ ai_gen_id }}">
+          <svg class="ai-event-details__card-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <p class="ai-event-details__card-label-{{ ai_gen_id }}">Group size</p>
+          <p class="ai-event-details__card-value-{{ ai_gen_id }}">{{ block.settings.group_size }}</p>
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_audience %}
+        <div class="ai-event-details__card-{{ ai_gen_id }}">
+          <svg class="ai-event-details__card-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+          <p class="ai-event-details__card-label-{{ ai_gen_id }}">Audience</p>
+          <p class="ai-event-details__card-value-{{ ai_gen_id }}">{{ block.settings.audience_type }}</p>
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_easiness %}
+        <div class="ai-event-details__card-{{ ai_gen_id }}">
+          <svg class="ai-event-details__card-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+          <p class="ai-event-details__card-label-{{ ai_gen_id }}">Difficulty level</p>
+          <div class="ai-event-details__card-value-{{ ai_gen_id }}">
+            <div class="ai-event-details__level-indicator-{{ ai_gen_id }}">
+              {% assign level_value = block.settings.easiness_level %}
+              {% for i in (1..5) %}
+                {% if i <= level_value %}
+                  <span class="ai-event-details__level-dot-{{ ai_gen_id }}"></span>
+                {% else %}
+                  <span class="ai-event-details__level-dot-{{ ai_gen_id }} inactive"></span>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if block.settings.show_description and block.settings.event_description != blank %}
+      <div class="ai-event-details__description-{{ ai_gen_id }}">
+        <h3 class="ai-event-details__section-title-{{ ai_gen_id }}">{{ block.settings.description_heading }}</h3>
+        <div class="ai-event-details__section-content-{{ ai_gen_id }}">
+          {{ block.settings.event_description }}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_what_to_expect and block.settings.what_to_expect != blank %}
+      <div class="ai-event-details__description-{{ ai_gen_id }}">
+        <h3 class="ai-event-details__section-title-{{ ai_gen_id }}">{{ block.settings.what_to_expect_heading }}</h3>
+        <div class="ai-event-details__section-content-{{ ai_gen_id }}">
+          {{ block.settings.what_to_expect }}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Event details",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main heading",
+      "default": "Event details"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 36
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Event information"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_duration",
+      "label": "Show duration",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "duration",
+      "label": "Duration",
+      "default": "2 hours"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_location",
+      "label": "Show location",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "location",
+      "label": "Location",
+      "default": "Hawaii Maker Space, Honolulu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_group_size",
+      "label": "Show group size",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "group_size",
+      "label": "Group size",
+      "default": "Up to 12 people"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_audience",
+      "label": "Show audience type",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "audience_type",
+      "label": "Audience type",
+      "default": "All skill levels"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_easiness",
+      "label": "Show difficulty level",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "easiness_level",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "label": "Difficulty level",
+      "default": 2
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "description_heading",
+      "label": "Description heading",
+      "default": "About this event"
+    },
+    {
+      "type": "richtext",
+      "id": "event_description",
+      "label": "Event description",
+      "default": "<p>Join us for an exciting hands-on workshop where you'll learn new skills and create something amazing. Our experienced instructors will guide you through every step of the process.</p>"
+    },
+    {
+      "type": "header",
+      "content": "What to expect"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_what_to_expect",
+      "label": "Show what to expect",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "what_to_expect_heading",
+      "label": "What to expect heading",
+      "default": "What to expect"
+    },
+    {
+      "type": "richtext",
+      "id": "what_to_expect",
+      "label": "What to expect",
+      "default": "<p>You'll get hands-on experience with professional tools and equipment. All materials are provided, and you'll take home your finished project. No prior experience necessary!</p>"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Headings",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#f7f7f7"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icons",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Labels",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "level_dot_color",
+      "label": "Difficulty dots",
+      "default": "#c3cca6"
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Event details"
+    }
+  ]
+}
 {% endschema %}
