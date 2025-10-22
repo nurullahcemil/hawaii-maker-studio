@@ -7,201 +7,224 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
-    "sections": {
-      "main": {
-        "type": "product-information",
-        "blocks": {
-          "media-gallery": {
-            "type": "_product-media-gallery",
-            "static": true,
-            "settings": {
-              "media_presentation": "grid",
-              "media_columns": "two",
-              "image_gap": 12,
-              "large_first_image": true,
-              "icons_style": "chevron",
-              "slideshow_controls_style": "dots",
-              "slideshow_mobile_controls_style": "dots",
-              "thumbnail_position": "bottom",
-              "thumbnail_width": 44,
-              "aspect_ratio": "adapt",
-              "constrain_to_viewport": true,
-              "media_fit": "cover",
-              "media_radius": 20,
-              "extend_media": false,
-              "zoom": true,
-              "video_loop": false,
-              "hide_variants": false
+{
+  "sections": {
+    "main": {
+      "type": "product-information",
+      "blocks": {
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "slideshow",
+            "media_columns": "two",
+            "image_gap": 12,
+            "large_first_image": true,
+            "icons_style": "chevron",
+            "slideshow_controls_style": "dots",
+            "slideshow_mobile_controls_style": "dots",
+            "thumbnail_position": "bottom",
+            "thumbnail_width": 44,
+            "aspect_ratio": "adapt",
+            "constrain_to_viewport": true,
+            "media_fit": "cover",
+            "media_radius": 20,
+            "extend_media": false,
+            "zoom": true,
+            "video_loop": true,
+            "hide_variants": false,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "details_position": "flex-start",
+            "gap": 16,
+            "sticky_details_desktop": false,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_title": {
+              "type": "text",
+              "settings": {
+                "text": "<h1>{{ closest.product.title }}</h1>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h1",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price": {
+              "type": "price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": true,
+                "type_preset": "h3",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "variant_picker": {
+              "type": "variant-picker",
+              "settings": {
+                "variant_style": "pills",
+                "show_swatches": true,
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 8,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons": {
+              "type": "buy-buttons",
+              "settings": {
+                "stacking": false,
+                "show_pickup_availability": true,
+                "gift_card_form": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button-secondary"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
             }
           },
-          "product-details": {
-            "type": "_product-details",
-            "static": true,
-            "settings": {
-              "width": "fill",
-              "custom_width": 100,
-              "width_mobile": "fill",
-              "custom_width_mobile": 100,
-              "height": "fit",
-              "details_position": "flex-start",
-              "gap": 16,
-              "sticky_details_desktop": true
-            },
-            "blocks": {
-              "product_title": {
-                "type": "product-title",
-                "settings": {
-                  "type_preset": "h2",
-                  "font": "var(--font-body--family)",
-                  "font_size": "1.5rem"
-                }
-              },
-              "price": {
-                "type": "price",
-                "settings": {
-                  "show_sale_price_first": true,
-                  "show_installments": true,
-                  "show_tax_info": true,
-                  "type_preset": "h4"
-                }
-              },
-              "variant_picker": {
-                "type": "variant-picker",
-                "settings": {
-                  "variant_style": "buttons",
-                  "show_swatches": true
-                }
-              },
-              "buy_buttons": {
-                "type": "buy-buttons",
-                "settings": {
-                  "stacking": false,
-                  "show_pickup_availability": false
-                },
-                "blocks": {
-                  "quantity": {
-                    "type": "quantity",
-                    "static": true,
-                    "settings": {}
-                  },
-                  "add-to-cart": {
-                    "type": "add-to-cart",
-                    "static": true,
-                    "settings": {
-                      "style_class": "button"
-                    }
-                  }
-                }
-              },
-              "description": {
-                "type": "product-description",
-                "settings": {
-                  "text": "{{ closest.product.description }}",
-                  "type_preset": "rte"
-                }
-              }
-            },
-            "block_order": [
-              "product_title",
-              "price",
-              "variant_picker",
-              "buy_buttons",
-              "description"
-            ]
-          }
-        },
-        "block_order": [
-          "media-gallery",
-          "product-details"
-        ],
-        "settings": {
-          "content_width": "content-center-aligned",
-          "desktop_media_position": "left",
-          "equal_columns": false,
-          "limit_details_width": false,
-          "gap": 48,
-          "color_scheme": "scheme-1"
+          "block_order": [
+            "product_title",
+            "price",
+            "variant_picker",
+            "buy_buttons"
+          ]
         }
       },
-      "media_gallery_with_product_HF7zMA": {
-        "type": "media-gallery-with-product",
-        "name": "Media Gallery with Product",
-        "settings": {
-          "container_size": "medium",
-          "add_side_paddings": false,
-          "mobile_side_padding": 20,
-          "top_padding": 10,
-          "bottom_padding": 10,
-          "image_orientation": "vertical",
-          "desktop_columns": 4,
-          "mobile_columns": 2,
-          "product": "",
-          "show_product_title": true,
-          "show_quantity_selector": true
-        }
-      },
-      "dynamic_booking_form_gVTmJA": {
-        "type": "dynamic-booking-form",
-        "name": "Dynamic Booking Form",
-        "settings": {
-          "event_handle": "",
-          "container_size": "medium",
-          "add_side_paddings": true,
-          "mobile_side_padding": 20,
-          "custom_booking_code": "",
-          "color_scheme": "default",
-          "private_booking_style": "style3",
-          "show_next_class": true,
-          "enable_location_detection": true,
-          "google_maps_api_key": ""
-        }
-      },
-      "product_event_schema": {
-        "type": "custom-liquid",
-        "settings": {
-          "color_scheme": "default",
-          "container_size": "large",
-          "custom_liquid": "{% comment %} Event Schema Markup {% endcomment %}\n{% if product.metafields.custom.event_handle != blank %}\n  {% assign event_handle = product.metafields.custom.event_handle.value %}\n  {% assign event = shop.metaobjects.event[event_handle] %}\n  {% if event %}\n    <script type=\"application/ld+json\">\n    {\n      \"@context\": \"https://schema.org\",\n      \"@type\": \"Event\",\n      \"name\": {{ product.title | json }},\n      \"description\": {{ product.description | strip_html | truncate: 300 | json }},\n      {% if event.location.value != blank %}\n      \"location\": {\n        \"@type\": \"Place\",\n        \"name\": {{ event.location.value | json }}\n      },\n      {% endif %}\n      \"offers\": {\n        \"@type\": \"Offer\",\n        \"url\": {{ product.url | prepend: shop.url | json }},\n        \"priceCurrency\": {{ cart.currency.iso_code | json }},\n        \"price\": {{ product.price | divided_by: 100.0 | json }},\n        \"availability\": \"{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}\"\n      }\n    }\n    </script>\n  {% endif %}\n{% endif %}",
-          "add_side_paddings": true,
-          "section_spacing_top": 0,
-          "section_spacing_bottom": 0
-        }
-      },
-      "17513163403e1ce268": {
-        "type": "apps",
-        "blocks": {
-          "loox_reviews_loox_dynamic_section_FEnCwn": {
-            "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
-            "settings": {
-              "only_photos": false,
-              "aggregated": false,
-              "limit": 20,
-              "hide_thumbnails": false,
-              "maxwidth": 1080,
-              "is_sample": true
-            }
-          }
-        },
-        "block_order": [
-          "loox_reviews_loox_dynamic_section_FEnCwn"
-        ],
-        "settings": {
-          "color_scheme": "default",
-          "container_size": "large",
-          "custom_liquid": "",
-          "add_side_paddings": true,
-          "section_spacing_top": 48,
-          "section_spacing_bottom": 48
-        }
+      "disabled": true,
+      "settings": {
+        "content_width": "content-center-aligned",
+        "desktop_media_position": "left",
+        "equal_columns": false,
+        "limit_details_width": false,
+        "gap": 48,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 40,
+        "padding-block-end": 32
       }
     },
-    "order": [
-      "main",
-      "media_gallery_with_product_HF7zMA",
-      "dynamic_booking_form_gVTmJA",
-      "product_event_schema",
-      "17513163403e1ce268"
-    ]
-  }
-  
+    "media_gallery_with_product_M8aKtE": {
+      "type": "media-gallery-with-product",
+      "name": "Gallery with Product",
+      "settings": {
+        "container_size": "medium",
+        "add_side_paddings": true,
+        "mobile_side_padding": 20,
+        "top_padding": 20,
+        "bottom_padding": 20,
+        "image_orientation": "auto",
+        "desktop_columns": 4,
+        "mobile_columns": 2,
+        "product": "",
+        "show_product_title": true,
+        "show_quantity_selector": true
+      }
+    },
+    "dynamic_booking_form_xLRhbt": {
+      "type": "dynamic-booking-form",
+      "name": "Dynamic Booking Form",
+      "settings": {
+        "event_handle": "",
+        "container_size": "large",
+        "add_side_paddings": true,
+        "mobile_side_padding": 20,
+        "custom_booking_code": "",
+        "color_scheme": "default",
+        "private_booking_style": "style3",
+        "show_next_class": true,
+        "enable_location_detection": true,
+        "google_maps_api_key": ""
+      }
+    },
+    "17513163403e1ce268": {
+      "type": "apps",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "media_gallery_with_product_M8aKtE",
+    "dynamic_booking_form_xLRhbt",
+    "17513163403e1ce268"
+  ]
+}

@@ -229,15 +229,7 @@
         {{ collection_text }}
       </a>
       
-      {% if event and event != blank %}
-        <a href="{{ collection_url }}" class="discover-workshops-btn">
-          <span>🔍</span>
-          <span>Discover More Workshops</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
-      {% endif %}
+      {% comment %} Discover workshops button removed - snippet deleted {% endcomment %}
     </div>
   {% endif %}
   
@@ -353,37 +345,6 @@
 
   .back-to-collection-btn:hover svg {
     transform: translateX(-2px);
-  }
-
-  /* Discover Workshops Button */
-  .discover-workshops-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 9px 16px;
-    border-radius: 25px;
-    text-decoration: none;
-    color: #253230;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-    border: 1px solid #253230;
-    background-color: transparent;
-  }
-
-  .discover-workshops-btn:hover {
-    background-color: #253230;
-    color: white;
-    transform: translateX(2px);
-  }
-
-  .discover-workshops-btn svg {
-    transition: transform 0.3s ease;
-  }
-
-  .discover-workshops-btn:hover svg {
-    transform: translateX(3px);
   }
 
   @media (max-width: 600px) {
