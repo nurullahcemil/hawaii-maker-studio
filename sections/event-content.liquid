@@ -1,0 +1,118 @@
+{% comment %}
+  Event Content Section
+  Simple section that displays event content from metaobjects
+{% endcomment %}
+
+{%- assign event_handle = product.metafields.custom.event_handle -%}
+{%- if event_handle != blank -%}
+  {%- assign event = shop.metaobjects.event[event_handle] -%}
+{%- endif -%}
+
+<div class="event-content-section section section--{{ section.settings.container_size }} spacing-style color-{{ section.settings.color_scheme }}">
+  <div class="section-content-wrapper">
+    
+    {%- if event -%}
+      
+      {%- if event.title != blank -%}
+        <h2 class="event-title">{{ event.title }}</h2>
+      {%- endif -%}
+      
+      {%- if event.description != blank -%}
+        <div class="event-description">
+          {{ event.description }}
+        </div>
+      {%- endif -%}
+      
+      <div class="event-details">
+        {%- if event.skill_level != blank -%}
+          <div class="event-detail">
+            <strong>Skill Level:</strong> {{ event.skill_level }}
+          </div>
+        {%- endif -%}
+        
+        {%- if event.audience != blank -%}
+          <div class="event-detail">
+            <strong>Who is it for:</strong> {{ event.audience }}
+          </div>
+        {%- endif -%}
+        
+        {%- if event.duration != blank -%}
+          <div class="event-detail">
+            <strong>Duration:</strong> {{ event.duration }}
+          </div>
+        {%- endif -%}
+        
+        {%- if event.what_to_expect != blank -%}
+          <div class="event-detail">
+            <strong>What to Expect:</strong> {{ event.what_to_expect }}
+          </div>
+        {%- endif -%}
+        
+        {%- if event.location != blank -%}
+          <div class="event-detail">
+            <strong>Location:</strong> {{ event.location }}
+          </div>
+        {%- endif -%}
+        
+        {%- if event.host_name != blank -%}
+          <div class="event-detail">
+            <strong>Host:</strong> {{ event.host_name }}
+          </div>
+        {%- endif -%}
+        
+        {%- if event.host_bio != blank -%}
+          <div class="event-detail">
+            <strong>About the Host:</strong> {{ event.host_bio }}
+          </div>
+        {%- endif -%}
+      </div>
+      
+    {%- else -%}
+      <div class="event-content">
+        <p>No event information available.</p>
+      </div>
+    {%- endif -%}
+    
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Event Content",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "container_size",
+      "label": "Container size",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Event Content"
+    }
+  ]
+}
+{% endschema %}
