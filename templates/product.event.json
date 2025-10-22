@@ -7,11 +7,11 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
-  "sections": {
-    "main": {
+ {
+    "sections": {
+      "main": {
       "type": "product-information",
-      "blocks": {
+        "blocks": {
         "media-gallery": {
           "type": "_product-media-gallery",
           "static": true,
@@ -43,7 +43,7 @@
         "product-details": {
           "type": "_product-details",
           "static": true,
-          "settings": {
+            "settings": {
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -91,10 +91,10 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            },
-            "price": {
-              "type": "price",
-              "settings": {
+          },
+          "price": {
+            "type": "price",
+            "settings": {
                 "show_sale_price_first": true,
                 "show_installments": false,
                 "show_tax_info": true,
@@ -275,7 +275,7 @@
             "text_wjQ4QU": {
               "type": "text",
               "settings": {
-                "text": "<p>Discover the exciting world of laser cutting in this hands-on beginner workshop. You’ll learn how to design, prepare, and cut materials like wood and acrylic using our professional-grade laser machines. By the end of the class, you’ll understand how to safely operate a laser cutter and create your first personalized project — such as a custom keychain, name tag, or ornament.</p>",
+                "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.description.value != blank %}{{ event.description.value }}{% else %}Discover the exciting world of laser cutting in this hands-on beginner workshop. You'll learn how to design, prepare, and cut materials like wood and acrylic using our professional-grade laser machines. By the end of the class, you'll understand how to safely operate a laser cutter and create your first personalized project — such as a custom keychain, name tag, or ornament.{% endif %}{% else %}Discover the exciting world of laser cutting in this hands-on beginner workshop. You'll learn how to design, prepare, and cut materials like wood and acrylic using our professional-grade laser machines. By the end of the class, you'll understand how to safely operate a laser cutter and create your first personalized project — such as a custom keychain, name tag, or ornament.{% endif %}</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -300,7 +300,7 @@
             "button_jBakcN": {
               "type": "button",
               "disabled": true,
-              "settings": {
+            "settings": {
                 "label": "Shop now",
                 "link": "shopify://collections/all",
                 "open_in_new_tab": false,
@@ -471,8 +471,8 @@
                 },
                 "text_8FpK4Q": {
                   "type": "text",
-                  "settings": {
-                    "text": "<p>Everything we do starts with why</p>",
+            "settings": {
+                    "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.skill_level.value != blank %}{{ event.skill_level.value }}{% else %}Everything we do starts with why{% endif %}{% else %}Everything we do starts with why{% endif %}</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -621,8 +621,8 @@
                 },
                 "text_aDfm9Y": {
                   "type": "text",
-                  "settings": {
-                    "text": "<p>Adults, Creatives, Makers, Designers</p>",
+            "settings": {
+                    "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.target_audience.value != blank %}{{ event.target_audience.value }}{% else %}Adults, Creatives, Makers, Designers{% endif %}{% else %}Adults, Creatives, Makers, Designers{% endif %}</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -772,7 +772,7 @@
                 "text_c7FPgR": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>2 hours</p>",
+                    "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.duration.value != blank %}{{ event.duration.value }}{% else %}2 hours{% endif %}{% else %}2 hours{% endif %}</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -805,9 +805,9 @@
             "icon_cQmpXK",
             "group_fqgyc7"
           ]
-        }
-      },
-      "block_order": [
+          }
+        },
+        "block_order": [
         "group_eW9yHA",
         "group_FK6AQN",
         "group_N3MN3p"
@@ -912,7 +912,7 @@
             "text_GMTgjB": {
               "type": "text",
               "settings": {
-                "text": "<p>Made with care and unconditionally loved by our customers, this sWe’ll start with a brief introduction to laser-cutting technology, safety, and design preparation. Then you’ll move into the fun part — cutting your design! Each participant will have guided access to the machine, time to experiment, and plenty of creative freedom. All materials are included, and you’ll leave with your completed project and new maker confidence.ignature bestseller exceeds all expectations.</p>",
+                "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.what_to_expect.value != blank %}{{ event.what_to_expect.value }}{% else %}We'll start with a brief introduction to laser-cutting technology, safety, and design preparation. Then you'll move into the fun part — cutting your design! Each participant will have guided access to the machine, time to experiment, and plenty of creative freedom. All materials are included, and you'll leave with your completed project and new maker confidence.{% endif %}{% else %}We'll start with a brief introduction to laser-cutting technology, safety, and design preparation. Then you'll move into the fun part — cutting your design! Each participant will have guided access to the machine, time to experiment, and plenty of creative freedom. All materials are included, and you'll leave with your completed project and new maker confidence.{% endif %}</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -942,7 +942,7 @@
         },
         "image_HKBG8L": {
           "type": "image",
-          "settings": {
+        "settings": {
             "image": "shopify://shop_images/maker-studio-hawaii.jpg",
             "link": "",
             "image_ratio": "square",
@@ -1001,8 +1001,8 @@
       "blocks": {
         "text_p3LknH": {
           "type": "text",
-          "settings": {
-            "text": "<p>The moment you see your idea take shape from a beam of light, you realize creativity has no limits.</p>",
+        "settings": {
+            "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.inspirational_quote.value != blank %}{{ event.inspirational_quote.value }}{% else %}The moment you see your idea take shape from a beam of light, you realize creativity has no limits.{% endif %}{% else %}The moment you see your idea take shape from a beam of light, you realize creativity has no limits.{% endif %}</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
@@ -1149,8 +1149,8 @@
             },
             "text_bLE3m3": {
               "type": "text",
-              "settings": {
-                "text": "<p>Nurullah is a designer, maker, and founder of KraftStories Maker Studio. He has years of experience combining technology with art, from 3D printing to laser cutting and handcraft design. His mission is to help others explore creativity through hands-on experiences that blend innovation with craftsmanship.</p>",
+        "settings": {
+                "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.instructor_bio.value != blank %}{{ event.instructor_bio.value }}{% else %}Nurullah is a designer, maker, and founder of KraftStories Maker Studio. He has years of experience combining technology with art, from 3D printing to laser cutting and handcraft design. His mission is to help others explore creativity through hands-on experiences that blend innovation with craftsmanship.{% endif %}{% else %}Nurullah is a designer, maker, and founder of KraftStories Maker Studio. He has years of experience combining technology with art, from 3D printing to laser cutting and handcraft design. His mission is to help others explore creativity through hands-on experiences that blend innovation with craftsmanship.{% endif %}</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1268,7 +1268,7 @@
         },
         "email_signup_YHEhX9": {
           "type": "email-signup",
-          "settings": {
+        "settings": {
             "width": "custom",
             "custom_width": 50,
             "inherit_color_scheme": true,
@@ -1368,11 +1368,11 @@
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
-          "blocks": {
+        "blocks": {
             "submit-button": {
               "type": "contact-form-submit-button",
               "static": true,
-              "settings": {
+            "settings": {
                 "label": "Submit",
                 "style_class": "button",
                 "width": "fit-content",
@@ -1384,9 +1384,9 @@
             }
           },
           "block_order": []
-        }
-      },
-      "block_order": [
+          }
+        },
+        "block_order": [
         "text_ePYCXk",
         "contact_form_k3G9xz"
       ],
@@ -1423,9 +1423,9 @@
       "type": "media-gallery-with-product",
       "disabled": true,
       "name": "Gallery with Product",
-      "settings": {
+        "settings": {
         "container_size": "medium",
-        "add_side_paddings": true,
+          "add_side_paddings": true,
         "mobile_side_padding": 20,
         "top_padding": 20,
         "bottom_padding": 20,
@@ -1440,10 +1440,10 @@
     "17513163403e1ce268": {
       "type": "apps",
       "settings": {}
-    }
-  },
-  "order": [
-    "main",
+      }
+    },
+    "order": [
+      "main",
     "section_qykyzH",
     "section_KWkeq3",
     "section_8bYLHh",
@@ -1452,6 +1452,7 @@
     "section_L6Mkym",
     "section_8WzJaD",
     "media_gallery_with_product_M8aKtE",
-    "17513163403e1ce268"
-  ]
-}
+      "17513163403e1ce268"
+    ]
+  }
+  
