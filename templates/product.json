@@ -936,6 +936,25 @@
         "padding-block-end": 36
       }
     },
+    "dynamic_event_content": {
+      "type": "dynamic-event-content",
+      "name": "Dynamic Event Content",
+      "settings": {
+        "show_description": true,
+        "description_title": "Description",
+        "show_details": true,
+        "skill_title": "Skill Level",
+        "audience_title": "Who is it for?",
+        "duration_title": "Duration",
+        "show_expectations": true,
+        "expectations_title": "What to Expect",
+        "show_quote": true,
+        "show_host": true,
+        "host_title": "Host",
+        "container_size": "medium",
+        "color_scheme": "default"
+      }
+    },
     "section_BHeC9b": {
       "type": "section",
       "blocks": {
@@ -1059,6 +1078,7 @@
   },
   "order": [
     "main",
+    "dynamic_event_content",
     "dynamic_image_gallery_qjRkhk",
     "section_BHeC9b"
   ]
