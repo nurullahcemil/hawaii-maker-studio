@@ -147,10 +147,10 @@
         "settings": {
           "color_scheme": "default",
           "container_size": "large",
-          "custom_liquid": "{% render 'product-event-schema' %}",
+          "custom_liquid": "{% comment %} Event Schema Markup {% endcomment %}\n{% if product.metafields.custom.event_handle != blank %}\n  {% assign event_handle = product.metafields.custom.event_handle.value %}\n  {% assign event = shop.metaobjects.event[event_handle] %}\n  {% if event %}\n    <script type=\"application/ld+json\">\n    {\n      \"@context\": \"https://schema.org\",\n      \"@type\": \"Event\",\n      \"name\": {{ product.title | json }},\n      \"description\": {{ product.description | strip_html | truncate: 300 | json }},\n      {% if event.location.value != blank %}\n      \"location\": {\n        \"@type\": \"Place\",\n        \"name\": {{ event.location.value | json }}\n      },\n      {% endif %}\n      \"offers\": {\n        \"@type\": \"Offer\",\n        \"url\": {{ product.url | prepend: shop.url | json }},\n        \"priceCurrency\": {{ cart.currency.iso_code | json }},\n        \"price\": {{ product.price | divided_by: 100.0 | json }},\n        \"availability\": \"{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}\"\n      }\n    }\n    </script>\n  {% endif %}\n{% endif %}",
           "add_side_paddings": true,
-          "section_spacing_top": 48,
-          "section_spacing_bottom": 48
+          "section_spacing_top": 0,
+          "section_spacing_bottom": 0
         }
       },
       "17513163403e1ce268": {
