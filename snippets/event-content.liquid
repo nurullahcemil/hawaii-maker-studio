@@ -1,0 +1,71 @@
+{% comment %}
+  SIMPLE EVENT CONTENT SNIPPET
+  Just include this anywhere: {% render 'event-content' %}
+{% endcomment %}
+
+{%- assign event_handle = product.metafields.custom.event_handle -%}
+{%- if event_handle != blank -%}
+  {%- assign event = shop.metaobjects.event[event_handle] -%}
+{%- endif -%}
+
+{%- if event -%}
+  <div class="event-content">
+    
+    {%- if event.title != blank -%}
+      <h2>{{ event.title }}</h2>
+    {%- endif -%}
+    
+    {%- if event.description != blank -%}
+      <div class="event-description">
+        {{ event.description }}
+      </div>
+    {%- endif -%}
+    
+    {%- if event.skill_level != blank -%}
+      <div class="event-detail">
+        <strong>Skill Level:</strong> {{ event.skill_level }}
+      </div>
+    {%- endif -%}
+    
+    {%- if event.audience != blank -%}
+      <div class="event-detail">
+        <strong>Who is it for:</strong> {{ event.audience }}
+      </div>
+    {%- endif -%}
+    
+    {%- if event.duration != blank -%}
+      <div class="event-detail">
+        <strong>Duration:</strong> {{ event.duration }}
+      </div>
+    {%- endif -%}
+    
+    {%- if event.what_to_expect != blank -%}
+      <div class="event-detail">
+        <strong>What to Expect:</strong> {{ event.what_to_expect }}
+      </div>
+    {%- endif -%}
+    
+    {%- if event.location != blank -%}
+      <div class="event-detail">
+        <strong>Location:</strong> {{ event.location }}
+      </div>
+    {%- endif -%}
+    
+    {%- if event.host_name != blank -%}
+      <div class="event-detail">
+        <strong>Host:</strong> {{ event.host_name }}
+      </div>
+    {%- endif -%}
+    
+    {%- if event.host_bio != blank -%}
+      <div class="event-detail">
+        <strong>About the Host:</strong> {{ event.host_bio }}
+      </div>
+    {%- endif -%}
+    
+  </div>
+{%- else -%}
+  <div class="event-content">
+    <p>No event information available.</p>
+  </div>
+{%- endif -%}
