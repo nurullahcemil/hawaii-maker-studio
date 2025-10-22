@@ -7,185 +7,182 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
-    "sections": {
-      "main": {
-        "type": "product-information",
-        "blocks": {
-          "media-gallery": {
-            "type": "_product-media-gallery",
-            "static": true,
-            "settings": {
-              "media_presentation": "slideshow",
-              "media_columns": "two",
-              "image_gap": 12,
-              "large_first_image": true,
-              "icons_style": "chevron",
-              "slideshow_controls_style": "dots",
-              "slideshow_mobile_controls_style": "dots",
-              "thumbnail_position": "bottom",
-              "thumbnail_width": 44,
-              "aspect_ratio": "adapt",
-              "constrain_to_viewport": true,
-              "media_fit": "cover",
-              "media_radius": 20,
-              "extend_media": false,
-              "zoom": true,
-              "video_loop": true,
-              "hide_variants": false
-            }
+{
+  "sections": {
+    "main": {
+      "type": "product-information",
+      "blocks": {
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "slideshow",
+            "media_columns": "two",
+            "image_gap": 12,
+            "large_first_image": true,
+            "icons_style": "chevron",
+            "slideshow_controls_style": "dots",
+            "slideshow_mobile_controls_style": "dots",
+            "thumbnail_position": "bottom",
+            "thumbnail_width": 44,
+            "aspect_ratio": "adapt",
+            "constrain_to_viewport": true,
+            "media_fit": "cover",
+            "media_radius": 20,
+            "extend_media": false,
+            "zoom": true,
+            "video_loop": true,
+            "hide_variants": false
+          }
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "gap": 16,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100
           },
-          "product-details": {
-            "type": "_product-details",
-            "static": true,
-            "settings": {
-              "width": "fill",
-              "custom_width": 100,
-              "gap": 16,
-              "inherit_color_scheme": true,
-              "color_scheme": "",
-              "border": "none",
-              "border_width": 1,
-              "border_opacity": 100
-            },
-            "blocks": {
-              "product_title": {
-                "type": "text",
-                "settings": {
-                  "text": "<h1>{{ closest.product.title }}</h1>",
-                  "type_preset": "h1",
-                  "alignment": "left"
-                }
-              },
-              "price": {
-                "type": "price",
-                "settings": {
-                  "show_tax_info": true,
-                  "type_preset": "h3",
-                  "alignment": "left"
-                }
-              },
-              "variant_picker": {
-                "type": "variant-picker",
-                "settings": {
-                  "variant_style": "pills"
-                }
-              },
-              "buy_buttons": {
-                "type": "buy-buttons",
-                "settings": {
-                  "show_dynamic_checkout": false,
-                  "show_gift_card_recipient": false
-                }
+          "blocks": {
+            "product_title": {
+              "type": "text",
+              "settings": {
+                "text": "<h1>{{ closest.product.title }}</h1>",
+                "type_preset": "h1",
+                "alignment": "left"
               }
             },
-            "block_order": [
-              "product_title",
-              "price", 
-              "variant_picker",
-              "buy_buttons"
-            ]
-          }
-        },
-        "block_order": [
-          "media-gallery",
-          "product-details"
-        ],
-        "settings": {
-          "content_width": "content-center-aligned",
-          "desktop_media_position": "left",
-          "equal_columns": false,
-          "limit_details_width": false,
-          "gap": 48,
-          "color_scheme": "scheme-1",
-          "padding-block-start": 40,
-          "padding-block-end": 32
-        }
-      },
-      "hawaii_media_gallery": {
-        "type": "hawaii-media-gallery",
-        "name": "Hawaii Media Gallery",
-        "settings": {
-          "section_width": "page-width",
-          "gallery_layout": "row",
-          "desktop_columns": 4,
-          "mobile_columns": 2,
-          "image_gap": 16,
-          "media_radius": 20,
-          "show_captions": false,
-          "color_scheme": "scheme-1",
-          "border_style": "none",
-          "border_width": 1,
-          "border_opacity": 20,
-          "padding-block-start": 20,
-          "padding-block-end": 20
-        }
-      },
-      "hawaii_booking_form": {
-        "type": "hawaii-booking-form",
-        "name": "Hawaii Booking Form",
-        "settings": {
-          "section_width": "page-width",
-          "header_gap": 40,
-          "show_product_title": true,
-          "show_quantity_selector": true,
-          "show_private_booking": true,
-          "event_handle": "",
-          "card_radius": 20,
-          "card_padding": 24,
-          "color_scheme": "scheme-1",
-          "border_style": "solid",
-          "border_width": 1,
-          "border_opacity": 20,
-          "padding-block-start": 40,
-          "padding-block-end": 40
-        }
-      },
-      "product_event_schema": {
-        "type": "custom-liquid",
-        "settings": {
-          "color_scheme": "default",
-          "container_size": "large",
-          "custom_liquid": "{% render 'product-event-schema' %}",
-          "add_side_paddings": true,
-          "section_spacing_top": 48,
-          "section_spacing_bottom": 48
-        }
-      },
-      "17513163403e1ce268": {
-        "type": "apps",
-        "blocks": {
-          "loox_reviews_loox_dynamic_section_FEnCwn": {
-            "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
-            "settings": {
-              "only_photos": false,
-              "aggregated": false,
-              "limit": 20,
-              "hide_thumbnails": false,
-              "maxwidth": 1080,
-              "is_sample": true
+            "price": {
+              "type": "price",
+              "settings": {
+                "show_tax_info": true,
+                "type_preset": "h3",
+                "alignment": "left"
+              }
+            },
+            "variant_picker": {
+              "type": "variant-picker",
+              "settings": {
+                "variant_style": "pills"
+              }
+            },
+            "buy_buttons": {
+              "type": "buy-buttons",
+              "settings": {
+                "show_dynamic_checkout": false,
+                "show_gift_card_recipient": false
+              }
             }
-          }
-        },
-        "block_order": [
-          "loox_reviews_loox_dynamic_section_FEnCwn"
-        ],
-        "settings": {
-          "color_scheme": "default",
-          "container_size": "large",
-          "custom_liquid": "",
-          "add_side_paddings": true,
-          "section_spacing_top": 48,
-          "section_spacing_bottom": 48
+          },
+          "block_order": [
+            "product_title",
+            "price",
+            "variant_picker",
+            "buy_buttons"
+          ]
         }
+      },
+      "block_order": [
+        "media-gallery",
+        "product-details"
+      ],
+      "settings": {
+        "content_width": "content-center-aligned",
+        "desktop_media_position": "left",
+        "equal_columns": false,
+        "limit_details_width": false,
+        "gap": 48,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 40,
+        "padding-block-end": 32
       }
     },
-    "order": [
-      "main",
-      "hawaii_media_gallery",
-      "hawaii_booking_form",
-      "product_event_schema",
-      "17513163403e1ce268"
-    ]
-  }
-  
+    "hawaii_media_gallery": {
+      "type": "hawaii-media-gallery",
+      "settings": {
+        "section_width": "page-width",
+        "gallery_layout": "row",
+        "desktop_columns": 4,
+        "mobile_columns": 2,
+        "image_gap": 16,
+        "media_radius": 20,
+        "show_captions": false,
+        "color_scheme": "scheme-1",
+        "border_style": "none",
+        "border_width": 1,
+        "border_opacity": 20,
+        "padding-block-start": 20,
+        "padding-block-end": 20
+      }
+    },
+    "hawaii_booking_form": {
+      "type": "hawaii-booking-form",
+      "settings": {
+        "section_width": "page-width",
+        "header_gap": 40,
+        "show_product_title": true,
+        "show_quantity_selector": true,
+        "show_private_booking": true,
+        "event_handle": "",
+        "card_radius": 20,
+        "card_padding": 24,
+        "color_scheme": "scheme-1",
+        "border_style": "solid",
+        "border_width": 1,
+        "border_opacity": 20,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "product_event_schema": {
+      "type": "custom-liquid",
+      "settings": {
+        "color_scheme": "default",
+        "container_size": "large",
+        "custom_liquid": "{% render 'product-event-schema' %}",
+        "add_side_paddings": true,
+        "section_spacing_top": 48,
+        "section_spacing_bottom": 48
+      }
+    },
+    "17513163403e1ce268": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_dynamic_section_FEnCwn": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "only_photos": false,
+            "aggregated": false,
+            "limit": 20,
+            "hide_thumbnails": false,
+            "maxwidth": 1080,
+            "is_sample": true
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_dynamic_section_FEnCwn"
+      ],
+      "settings": {
+        "color_scheme": "default",
+        "container_size": "large",
+        "custom_liquid": "",
+        "add_side_paddings": true,
+        "section_spacing_top": 48,
+        "section_spacing_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "main",
+    "hawaii_media_gallery",
+    "hawaii_booking_form",
+    "product_event_schema",
+    "17513163403e1ce268"
+  ]
+}
