@@ -1,0 +1,399 @@
+{% comment %}
+  Dynamic Event Content Section
+  Connects product event_handle metafield to event metaobject and displays content
+{% endcomment %}
+
+<!-- Get event handle from product metafield -->
+{% assign event_handle = product.metafields.custom.event_handle %}
+
+<!-- Load event data from metaobject -->
+{% if event_handle != blank %}
+  {% assign event = shop.metaobjects.event[event_handle] %}
+{% endif %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="dynamic-event-content section section--{{ section.settings.container_size }} spacing-style color-{{ section.settings.color_scheme }}">
+  <div class="section-content-wrapper">
+    
+    {%- if event -%}
+      
+      <!-- Event Description Section -->
+      {%- if section.settings.show_description and event.description.value != blank -%}
+        <div class="event-description-section">
+          <div class="event-section-header">
+            <h2 class="event-section-title">{{ section.settings.description_title | default: 'Description' }}</h2>
+          </div>
+          <div class="event-description-content">
+            {{ event.description.value }}
+          </div>
+        </div>
+      {%- endif -%}
+      
+      <!-- Event Details Grid -->
+      {%- if section.settings.show_details -%}
+        <div class="event-details-grid">
+          
+          <!-- Skill Level -->
+          {%- if event.skill_level.value != blank -%}
+            <div class="event-detail-card">
+              <div class="event-detail-icon">👁️</div>
+              <div class="event-detail-content">
+                <h3 class="event-detail-title">{{ section.settings.skill_title | default: 'Skill Level' }}</h3>
+                <p class="event-detail-value">{{ event.skill_level.value }}</p>
+              </div>
+            </div>
+          {%- endif -%}
+          
+          <!-- Target Audience -->
+          {%- if event.target_audience.value != blank -%}
+            <div class="event-detail-card">
+              <div class="event-detail-icon">👤</div>
+              <div class="event-detail-content">
+                <h3 class="event-detail-title">{{ section.settings.audience_title | default: 'Who is it for?' }}</h3>
+                <p class="event-detail-value">{{ event.target_audience.value }}</p>
+              </div>
+            </div>
+          {%- endif -%}
+          
+          <!-- Duration -->
+          {%- if event.duration.value != blank -%}
+            <div class="event-detail-card">
+              <div class="event-detail-icon">❓</div>
+              <div class="event-detail-content">
+                <h3 class="event-detail-title">{{ section.settings.duration_title | default: 'Duration' }}</h3>
+                <p class="event-detail-value">{{ event.duration.value }}</p>
+              </div>
+            </div>
+          {%- endif -%}
+          
+        </div>
+      {%- endif -%}
+      
+      <!-- What to Expect Section -->
+      {%- if section.settings.show_expectations and event.what_to_expect.value != blank -%}
+        <div class="event-expectations-section">
+          <div class="event-section-header">
+            <h2 class="event-section-title">{{ section.settings.expectations_title | default: 'What to Expect' }}</h2>
+          </div>
+          <div class="event-expectations-content">
+            {{ event.what_to_expect.value }}
+          </div>
+        </div>
+      {%- endif -%}
+      
+      <!-- Inspirational Quote -->
+      {%- if section.settings.show_quote and event.inspirational_quote.value != blank -%}
+        <div class="event-quote-section">
+          <div class="event-quote-content">
+            <p class="event-quote-text">{{ event.inspirational_quote.value }}</p>
+          </div>
+        </div>
+      {%- endif -%}
+      
+      <!-- Host Section -->
+      {%- if section.settings.show_host and event.instructor_bio.value != blank -%}
+        <div class="event-host-section">
+          <div class="event-section-header">
+            <h2 class="event-section-title">{{ section.settings.host_title | default: 'Host' }}</h2>
+          </div>
+          <div class="event-host-content">
+            {{ event.instructor_bio.value }}
+          </div>
+        </div>
+      {%- endif -%}
+      
+    {%- else -%}
+      
+      <!-- No Event Data -->
+      <div class="no-event-data">
+        <div class="no-event-icon">📅</div>
+        <h3 class="no-event-title">Event Information Not Available</h3>
+        <p class="no-event-message">
+          {% if event_handle == blank %}
+            Please add an event_handle metafield to this product.
+          {% else %}
+            No event found with handle: {{ event_handle }}
+          {% endif %}
+        </p>
+      </div>
+      
+    {%- endif -%}
+    
+  </div>
+</div>
+
+{% stylesheet %}
+  .dynamic-event-content {
+    padding: var(--spacing-xl) 0;
+  }
+  
+  .event-section-header {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .event-section-title {
+    font-family: var(--font-heading--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-foreground);
+  }
+  
+  .event-description-content,
+  .event-expectations-content,
+  .event-host-content {
+    font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    line-height: 1.6;
+    color: var(--color-foreground);
+    font-size: 1.1rem;
+  }
+  
+  .event-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+  }
+  
+  .event-detail-card {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--color-background-secondary, #f8f9fa);
+    border-radius: var(--border-radius-lg, 12px);
+    border: 1px solid var(--color-border, #e9ecef);
+  }
+  
+  .event-detail-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+  
+  .event-detail-content {
+    flex: 1;
+  }
+  
+  .event-detail-title {
+    font-family: var(--font-heading--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 var(--spacing-xs) 0;
+    color: var(--color-foreground);
+  }
+  
+  .event-detail-value {
+    font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0;
+    color: var(--color-foreground);
+  }
+  
+  .event-quote-section {
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+    margin: var(--spacing-xl) 0;
+  }
+  
+  .event-quote-text {
+    font-family: var(--font-heading--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-style: italic;
+    margin: 0;
+    color: var(--color-foreground);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .no-event-data {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: var(--color-background-secondary, #f8f9fa);
+    border-radius: var(--border-radius-lg, 12px);
+    border: 1px solid var(--color-border, #e9ecef);
+  }
+  
+  .no-event-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .no-event-title {
+    font-family: var(--font-heading--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--color-foreground);
+  }
+  
+  .no-event-message {
+    font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    color: var(--color-foreground);
+    margin: 0;
+    opacity: 0.8;
+  }
+  
+  @media (max-width: 768px) {
+    .event-details-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+    
+    .event-detail-card {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .event-quote-text {
+      font-size: 1.25rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Dynamic Event Content",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content Display"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show Description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "description_title",
+      "label": "Description Title",
+      "default": "Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_details",
+      "label": "Show Event Details",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "skill_title",
+      "label": "Skill Level Title",
+      "default": "Skill Level"
+    },
+    {
+      "type": "text",
+      "id": "audience_title",
+      "label": "Audience Title",
+      "default": "Who is it for?"
+    },
+    {
+      "type": "text",
+      "id": "duration_title",
+      "label": "Duration Title",
+      "default": "Duration"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_expectations",
+      "label": "Show What to Expect",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "expectations_title",
+      "label": "Expectations Title",
+      "default": "What to Expect"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quote",
+      "label": "Show Inspirational Quote",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_host",
+      "label": "Show Host Information",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "host_title",
+      "label": "Host Title",
+      "default": "Host"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "container_size",
+      "label": "Container Size",
+      "options": [
+        {
+          "value": "full-width",
+          "label": "Full Width"
+        },
+        {
+          "value": "page-width",
+          "label": "Page Width"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        }
+      ],
+      "default": "default"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dynamic Event Content"
+    }
+  ]
+}
+{% endschema %}
