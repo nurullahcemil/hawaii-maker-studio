@@ -3,6 +3,11 @@
   Connects product event_handle metafield to event metaobject and displays content
 {% endcomment %}
 
+<!-- SIMPLE TEST - THIS SHOULD ALWAYS APPEAR -->
+<div style="position: fixed; top: 0; left: 0; width: 100%; background: #00ff00; color: black; padding: 10px; font-size: 20px; font-weight: bold; z-index: 9999; text-align: center;">
+  🟢 SECTION IS LOADING! Product: {{ product.title }} - ID: {{ product.id }}
+</div>
+
 <!-- Get event handle from product metafield -->
 {% assign event_handle = product.metafields.custom.event_handle %}
 
