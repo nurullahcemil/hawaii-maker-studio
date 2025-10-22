@@ -2539,7 +2539,37 @@ h3.section-title {
       {% if section.settings.show_product_title != false %}
                 <div class="title-with-tag-column">
           <!-- Event Tag on Top -->
-          {% comment %} Event type tag removed - event-icons snippet deleted {% endcomment %}
+          <!-- Event Location Tag on Top -->
+          {%- if event and event.location.value != blank -%}
+            {%- liquid
+              assign event_location_val = event.location.value | downcase
+              assign bg_color = '#4caf50'
+              assign location_icon = '📍'
+              
+              if event_location_val contains 'virtual'
+                assign bg_color = '#4caf50'
+                assign location_icon = '💻'
+              elsif event_location_val contains 'new york' or event_location_val contains 'nyc'
+                assign bg_color = '#f44336'
+                assign location_icon = '🗽'
+              elsif event_location_val contains 'honolulu'
+                assign bg_color = 'linear-gradient(45deg, #FF6B35, #F7931E, #FFD23F, #06FFA5, #00D4FF)'
+                assign location_icon = '🌺'
+              elsif event_location_val contains 'san francisco'
+                assign bg_color = '#FFA500'
+                assign location_icon = '🌉'
+              elsif event_location_val contains 'irvine'
+                assign bg_color = '#2196F3'
+                assign location_icon = '🏖️'
+              endif
+            -%}
+            <div class="event-tag-top">
+              <div class="event-type" data-bg-color="{{ bg_color }}" style="background: {{ bg_color }};">
+                <span style="margin-right: 6px;">{{ location_icon }}</span>
+                <span>{{ event.location.value }}</span>
+              </div>
+            </div>
+          {%- endif -%}
           
           <!-- Title and Rating Row -->
           <div class="title-rating-row">
