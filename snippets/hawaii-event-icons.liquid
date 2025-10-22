@@ -1,0 +1,23 @@
+{% comment %}
+  Hawaii Event Icons Snippet
+  Provides location-specific icons for event types
+{% endcomment %}
+
+{% liquid
+  assign event_type_lower = event_type | downcase
+  assign icon_content = ''
+  
+  if event_type_lower contains 'honolulu'
+    assign icon_content = '🌺'
+  elsif event_type_lower contains 'new york'
+    assign icon_content = '🗽'
+  elsif event_type_lower contains 'virtual'
+    assign icon_content = '💻'
+  elsif event_type_lower contains 'san francisco'
+    assign icon_content = '🌉'
+  else
+    assign icon_content = '🎨'
+  endif
+%}
+
+<span class="hawaii-event-icon">{{ icon_content }}</span>

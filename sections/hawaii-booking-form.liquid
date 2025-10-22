@@ -1,0 +1,1313 @@
+{% comment %}
+  Hawaii Maker Studio - Booking Form Section
+  Integrates booking functionality with Hawaii design language
+{% endcomment %}
+
+{%- liquid
+  assign selected_variant = product.selected_or_first_available_variant
+  assign available = selected_variant.available
+  assign product_form_id = 'hawaii-product-form-' | append: product.id | append: '-' | append: section.id
+  assign add_to_cart_label = 'Book Now'
+  assign sold_out_label = 'Sold Out'
+  
+  # Get event data
+  assign event_handle = product.metafields.custom.event_handle | default: section.settings.event_handle
+  if event_handle != blank
+    assign event = shop.metaobjects.event[event_handle]
+  endif
+  
+  # Price calculation
+  assign price_per_person = selected_variant.price | money_without_currency | default: 99
+-%}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="
+    hawaii-booking-section
+    section
+    section--{{ section.settings.section_width }}
+    color-{{ section.settings.color_scheme }}
+    spacing-style
+  "
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  <div class="section-content-wrapper">
+    
+    <!-- Product Header using Hawaii design -->
+    <div 
+      class="
+        hawaii-product-header
+        layout-panel-flex
+        layout-panel-flex--row
+        mobile-column
+        border-style
+        spacing-style
+      "
+      style="
+        --gap: {{ section.settings.header_gap }}px;
+        --border-radius: {{ section.settings.card_radius }}px;
+        --border-width: {{ section.settings.border_width }}px;
+        --border-style: {{ section.settings.border_style }};
+        --border-color: rgb(var(--color-border-rgb) / {{ section.settings.border_opacity }}%);
+        --padding-block-start: {{ section.settings.card_padding }}px;
+        --padding-block-end: {{ section.settings.card_padding }}px;
+        --padding-inline-start: {{ section.settings.card_padding }}px;
+        --padding-inline-end: {{ section.settings.card_padding }}px;
+      "
+    >
+      
+      <!-- Product Title and Info -->
+      <div class="hawaii-product-info">
+        {% if section.settings.show_product_title %}
+          <h1 class="hawaii-product-title">{{ product.title }}</h1>
+        {% endif %}
+        
+        <!-- Event Type Badge using Hawaii styling -->
+        {% if event and event.event_type.value != blank %}
+          <div class="hawaii-event-badge">
+            <span class="hawaii-badge-icon">🌺</span>
+            {{ event.event_type.value }}
+          </div>
+        {% endif %}
+        
+        <!-- Price Display using Hawaii typography -->
+        <div class="hawaii-price-display">
+          {% if selected_variant.compare_at_price > selected_variant.price %}
+            <span class="hawaii-price hawaii-price--sale">{{ selected_variant.price | money }}</span>
+            <span class="hawaii-price hawaii-price--original">{{ selected_variant.compare_at_price | money }}</span>
+          {% else %}
+            <span class="hawaii-price">{{ selected_variant.price | money }}</span>
+          {% endif %}
+        </div>
+        
+        <!-- Event Details using Hawaii detail boxes -->
+        {% if event %}
+          <div class="hawaii-event-details">
+            {% if event.event_duration.value != blank %}
+              <div class="hawaii-detail-item">
+                <span class="hawaii-detail-label">Duration</span>
+                <span class="hawaii-detail-value">{{ event.event_duration.value }} mins</span>
+              </div>
+            {% endif %}
+            {% if event.group_size.value != blank %}
+              <div class="hawaii-detail-item">
+                <span class="hawaii-detail-label">Group Size</span>
+                <span class="hawaii-detail-value">{{ event.group_size.value }}</span>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+      
+      <!-- Booking Form using Hawaii form styling -->
+      <div class="hawaii-booking-form-container">
+        {%- form 'product', product, id: product_form_id, class: 'hawaii-product-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+          <input type="hidden" name="id" value="{{ selected_variant.id }}" data-hawaii-variant>
+          
+          <!-- Variant Selector using Hawaii button design -->
+          {% if product.variants.size > 1 %}
+            <div class="hawaii-variant-selector">
+              <h4 class="hawaii-selector-title">Choose Your Option</h4>
+              <div class="hawaii-variant-options">
+                {% for variant in product.variants %}
+                  <button
+                    type="button"
+                    class="
+                      hawaii-variant-button
+                      {% if variant.id == selected_variant.id %}hawaii-variant-selected{% endif %}
+                      {% unless variant.available %}hawaii-variant-unavailable{% endunless %}
+                    "
+                    data-variant-id="{{ variant.id }}"
+                    data-variant-price="{{ variant.price }}"
+                    data-variant-available="{{ variant.available }}"
+                    onclick="hawaiiSelectVariant({{ variant.id }}, this)"
+                    {% unless variant.available %}disabled{% endunless %}
+                  >
+                    {% if variant.image %}
+                      <div class="hawaii-variant-image">
+                        {{ variant.image | image_url: width: 100 | image_tag: alt: variant.title, loading: 'lazy' }}
+                      </div>
+                    {% endif %}
+                    <div class="hawaii-variant-info">
+                      <span class="hawaii-variant-title">{{ variant.title }}</span>
+                      <span class="hawaii-variant-price">{{ variant.price | money }}</span>
+                    </div>
+                    {% if variant.id == selected_variant.id %}
+                      <span class="hawaii-variant-checkmark">
+                        <span class="svg-wrapper">
+                          {{ 'icon-checkmark.svg' | inline_asset_content }}
+                        </span>
+                      </span>
+                    {% endif %}
+                  </button>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+          
+          <!-- Quantity Selector using Hawaii design -->
+          {% if section.settings.show_quantity_selector %}
+            <div class="hawaii-quantity-section">
+              <label class="hawaii-quantity-label">Quantity</label>
+              <div class="hawaii-quantity-controls">
+                <button type="button" class="hawaii-quantity-button" onclick="hawaiiUpdateQuantity(-1)">
+                  <span class="svg-wrapper">
+                    {{ 'icon-minus.svg' | inline_asset_content }}
+                  </span>
+                </button>
+                <input 
+                  type="number" 
+                  id="hawaii-quantity-{{ product.id }}" 
+                  name="quantity" 
+                  value="1" 
+                  min="1" 
+                  class="hawaii-quantity-input"
+                  onchange="hawaiiUpdateQuantityDisplay(this.value)"
+                >
+                <span class="hawaii-quantity-text" id="hawaii-quantity-text-{{ product.id }}">person</span>
+                <button type="button" class="hawaii-quantity-button" onclick="hawaiiUpdateQuantity(1)">
+                  <span class="svg-wrapper">
+                    {{ 'icon-plus.svg' | inline_asset_content }}
+                  </span>
+                </button>
+              </div>
+            </div>
+          {% endif %}
+          
+          <!-- Book Now Button using Hawaii button styling -->
+          <button
+            type="submit"
+            name="add"
+            class="
+              hawaii-book-button
+              button
+              button--primary
+              {% if available == false %}button--disabled{% endif %}
+            "
+            {% if available == false %}disabled{% endif %}
+          >
+            <span class="hawaii-button-text">
+              {%- if available -%}{{ add_to_cart_label }}{%- else -%}{{ sold_out_label }}{%- endif -%}
+            </span>
+            <div class="hawaii-loading-spinner"></div>
+          </button>
+          
+        {%- endform -%}
+        
+        <!-- Private Event Form using Hawaii design -->
+        {% if section.settings.show_private_booking %}
+          <div class="hawaii-private-booking">
+            <button class="hawaii-private-toggle" onclick="hawaiiTogglePrivateForm()">
+              <span class="hawaii-private-icon">🌺</span>
+              Request Private Event
+              <span class="hawaii-toggle-arrow">
+                <span class="svg-wrapper">
+                  {{ 'icon-caret.svg' | inline_asset_content }}
+                </span>
+              </span>
+            </button>
+            
+            <div class="hawaii-private-form" id="hawaii-private-form" style="display: none;">
+              <div class="hawaii-form-content">
+                
+                <!-- Team Size using Hawaii input styling -->
+                <div class="hawaii-input-group">
+                  <label class="hawaii-input-label">Team Size</label>
+                  <select class="hawaii-select" id="hawaii-team-size" onchange="hawaiiCalculateTotal()">
+                    {% for i in (1..50) %}
+                      <option value="{{ i }}" {% if i == 10 %}selected{% endif %}>{{ i }} people</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                
+                <!-- Date Picker using Hawaii design -->
+                <div class="hawaii-input-group">
+                  <label class="hawaii-input-label">Preferred Date</label>
+                  <input type="date" class="hawaii-input" id="hawaii-event-date" required>
+                </div>
+                
+                <!-- Time Picker using Hawaii select -->
+                <div class="hawaii-input-group">
+                  <label class="hawaii-input-label">Preferred Time</label>
+                  <select class="hawaii-select" id="hawaii-event-time">
+                    <option value="09:00">9:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="13:00">1:00 PM</option>
+                    <option value="14:00">2:00 PM</option>
+                    <option value="15:00">3:00 PM</option>
+                    <option value="16:00">4:00 PM</option>
+                    <option value="17:00">5:00 PM</option>
+                  </select>
+                </div>
+                
+                <!-- Contact Info using Hawaii inputs -->
+                <div class="hawaii-input-group">
+                  <label class="hawaii-input-label">Your Name</label>
+                  <input type="text" class="hawaii-input" id="hawaii-customer-name" required>
+                </div>
+                
+                <div class="hawaii-input-group">
+                  <label class="hawaii-input-label">Email Address</label>
+                  <input type="email" class="hawaii-input" id="hawaii-customer-email" required>
+                </div>
+                
+                <div class="hawaii-input-group">
+                  <label class="hawaii-input-label">Special Requests (Optional)</label>
+                  <textarea class="hawaii-textarea" id="hawaii-message" rows="3" placeholder="Any special requirements or requests..."></textarea>
+                </div>
+                
+                <!-- Total Price Display -->
+                <div class="hawaii-total-display">
+                  <span class="hawaii-total-label">Estimated Total:</span>
+                  <span class="hawaii-total-price" id="hawaii-total-price">$990.00</span>
+                </div>
+                
+                <!-- Submit Button using Hawaii primary button -->
+                <button type="button" class="hawaii-submit-button button button--primary" onclick="hawaiiSubmitPrivateForm(this)">
+                  Get Quote
+                </button>
+                
+                <!-- Success Message using Hawaii styling -->
+                <div class="hawaii-success-message" id="hawaii-success-message" style="display: none;">
+                  <span class="hawaii-success-icon">
+                    <span class="svg-wrapper">
+                      {{ 'icon-checkmark.svg' | inline_asset_content }}
+                    </span>
+                  </span>
+                  <span class="hawaii-success-text">Mahalo! We'll send you a quote within 2 hours.</span>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        
+      </div>
+    </div>
+    
+    <!-- Event Description using Hawaii content blocks -->
+    {% if event and event.event_description %}
+      <div class="hawaii-event-description spacing-style">
+        <div class="rte">{{ event.event_description }}</div>
+      </div>
+    {% endif %}
+    
+    <!-- Event Details using Hawaii accordion -->
+    {% if event %}
+      <div class="hawaii-event-accordions">
+        
+        <!-- What to Expect -->
+        {% if event.what_to_expect != blank %}
+          <details class="hawaii-accordion-item">
+            <summary class="hawaii-accordion-header">
+              <h3>What to Expect</h3>
+              <span class="hawaii-accordion-icon">
+                <span class="svg-wrapper">
+                  {{ 'icon-plus.svg' | inline_asset_content }}
+                </span>
+              </span>
+            </summary>
+            <div class="hawaii-accordion-content">
+              <div class="rte">{{ event.what_to_expect | metafield_tag }}</div>
+            </div>
+          </details>
+        {% endif %}
+        
+        <!-- Kit Content -->
+        {% if event.kit_content != blank %}
+          <details class="hawaii-accordion-item">
+            <summary class="hawaii-accordion-header">
+              <h3>What's Included</h3>
+              <span class="hawaii-accordion-icon">
+                <span class="svg-wrapper">
+                  {{ 'icon-plus.svg' | inline_asset_content }}
+                </span>
+              </span>
+            </summary>
+            <div class="hawaii-accordion-content">
+              {% if event.kit_content_image != blank %}
+                <div class="hawaii-kit-content">
+                  <div class="hawaii-kit-image">
+                    {{ event.kit_content_image | image_url: width: 400 | image_tag: alt: 'Kit Contents', loading: 'lazy' }}
+                  </div>
+                  <div class="hawaii-kit-text">
+                    <div class="rte">{{ event.kit_content | metafield_tag }}</div>
+                  </div>
+                </div>
+              {% else %}
+                <div class="rte">{{ event.kit_content | metafield_tag }}</div>
+              {% endif %}
+            </div>
+          </details>
+        {% endif %}
+        
+        <!-- Host Information -->
+        {% if event.host_name.value != blank %}
+          <details class="hawaii-accordion-item">
+            <summary class="hawaii-accordion-header">
+              <h3>Meet Your Host</h3>
+              <span class="hawaii-accordion-icon">
+                <span class="svg-wrapper">
+                  {{ 'icon-plus.svg' | inline_asset_content }}
+                </span>
+              </span>
+            </summary>
+            <div class="hawaii-accordion-content">
+              <div class="hawaii-host-info">
+                {% if event.host_photo.value != blank %}
+                  <div class="hawaii-host-photo">
+                    {{ event.host_photo.value | image_url: width: 150 | image_tag: alt: event.host_name.value, loading: 'lazy' }}
+                  </div>
+                {% endif %}
+                <div class="hawaii-host-details">
+                  <h4 class="hawaii-host-name">{{ event.host_name.value }}</h4>
+                  {% if event.host_bio.value != blank %}
+                    <div class="hawaii-host-bio rte">{{ event.host_bio.value }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </details>
+        {% endif %}
+        
+      </div>
+    {% endif %}
+    
+  </div>
+</div>
+
+{% stylesheet %}
+  /* Hawaii Maker Studio Booking Form Styles */
+  .hawaii-booking-section {
+    position: relative;
+  }
+  
+  /* Product Header using Hawaii card design */
+  .hawaii-product-header {
+    background: rgb(var(--color-background-rgb));
+    margin-bottom: var(--margin-2xl);
+  }
+  
+  .hawaii-product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+  }
+  
+  .hawaii-product-title {
+    font-size: var(--font-size--3xl);
+    font-weight: var(--font-heading--weight);
+    color: var(--color-foreground-heading);
+    margin: 0;
+    line-height: 1.2;
+  }
+  
+  /* Event Badge using Hawaii badge styling */
+  .hawaii-event-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--gap-xs);
+    background: linear-gradient(45deg, #FF6B35, #F7931E);
+    color: var(--color-white);
+    padding: var(--padding-xs) var(--padding-md);
+    border-radius: var(--style-border-radius-pills);
+    font-size: var(--font-size--sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+  
+  .hawaii-badge-icon {
+    font-size: 1.2em;
+  }
+  
+  /* Price Display using Hawaii typography */
+  .hawaii-price-display {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-md);
+    flex-wrap: wrap;
+  }
+  
+  .hawaii-price {
+    font-size: var(--font-size--2xl);
+    font-weight: var(--font-heading--weight);
+    color: rgb(var(--color-foreground-rgb));
+  }
+  
+  .hawaii-price--sale {
+    color: rgb(var(--color-primary-rgb));
+  }
+  
+  .hawaii-price--original {
+    text-decoration: line-through;
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-60));
+    font-size: var(--font-size--xl);
+  }
+  
+  /* Event Details using Hawaii detail styling */
+  .hawaii-event-details {
+    display: flex;
+    gap: var(--gap-lg);
+    flex-wrap: wrap;
+  }
+  
+  .hawaii-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+    padding: var(--padding-sm) var(--padding-md);
+    background: rgb(var(--color-background-rgb) / var(--opacity-50));
+    border-radius: var(--style-border-radius-sm);
+    border: var(--style-border-width) solid rgb(var(--color-border-rgb) / var(--opacity-20));
+  }
+  
+  .hawaii-detail-label {
+    font-size: var(--font-size--xs);
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-70));
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  
+  .hawaii-detail-value {
+    font-size: var(--font-size--sm);
+    font-weight: 600;
+    color: rgb(var(--color-foreground-rgb));
+  }
+  
+  /* Booking Form Container */
+  .hawaii-booking-form-container {
+    flex: 0 0 auto;
+    min-width: 320px;
+    max-width: 400px;
+  }
+  
+  /* Variant Selector using Hawaii design */
+  .hawaii-variant-selector {
+    margin-bottom: var(--margin-lg);
+  }
+  
+  .hawaii-selector-title {
+    font-size: var(--font-size--md);
+    font-weight: 600;
+    color: rgb(var(--color-foreground-heading-rgb));
+    margin-bottom: var(--margin-sm);
+  }
+  
+  .hawaii-variant-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+  }
+  
+  .hawaii-variant-button {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-md);
+    padding: var(--padding-md);
+    background: rgb(var(--color-background-rgb));
+    border: var(--style-border-width-secondary) solid rgb(var(--color-border-rgb) / var(--opacity-30));
+    border-radius: var(--style-border-radius-buttons-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    position: relative;
+  }
+  
+  .hawaii-variant-button:hover {
+    border-color: rgb(var(--color-primary-rgb));
+    background: rgb(var(--color-primary-rgb) / var(--opacity-5));
+  }
+  
+  .hawaii-variant-selected {
+    border-color: rgb(var(--color-primary-rgb)) !important;
+    background: rgb(var(--color-primary-rgb) / var(--opacity-10)) !important;
+  }
+  
+  .hawaii-variant-unavailable {
+    opacity: var(--opacity-50);
+    cursor: not-allowed;
+  }
+  
+  .hawaii-variant-image {
+    flex: 0 0 60px;
+    width: 60px;
+    height: 60px;
+    border-radius: var(--style-border-radius-sm);
+    overflow: hidden;
+  }
+  
+  .hawaii-variant-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .hawaii-variant-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+  }
+  
+  .hawaii-variant-title {
+    font-weight: 600;
+    color: rgb(var(--color-foreground-rgb));
+  }
+  
+  .hawaii-variant-price {
+    font-size: var(--font-size--sm);
+    color: rgb(var(--color-primary-rgb));
+    font-weight: 600;
+  }
+  
+  .hawaii-variant-checkmark {
+    position: absolute;
+    top: var(--padding-sm);
+    right: var(--padding-sm);
+    width: 24px;
+    height: 24px;
+    background: rgb(var(--color-primary-rgb));
+    border-radius: var(--style-border-radius-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.2s ease;
+  }
+  
+  .hawaii-variant-selected .hawaii-variant-checkmark {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  /* Quantity Controls using Hawaii design */
+  .hawaii-quantity-section {
+    margin-bottom: var(--margin-lg);
+  }
+  
+  .hawaii-quantity-label {
+    display: block;
+    font-size: var(--font-size--sm);
+    font-weight: 600;
+    color: rgb(var(--color-foreground-rgb));
+    margin-bottom: var(--margin-xs);
+  }
+  
+  .hawaii-quantity-controls {
+    display: flex;
+    align-items: center;
+    background: rgb(var(--color-background-rgb));
+    border: var(--style-border-width) solid rgb(var(--color-border-rgb) / var(--opacity-30));
+    border-radius: var(--style-border-radius-buttons-primary);
+    overflow: hidden;
+  }
+  
+  .hawaii-quantity-button {
+    background: none;
+    border: none;
+    padding: var(--padding-md);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+    color: rgb(var(--color-foreground-rgb));
+  }
+  
+  .hawaii-quantity-button:hover {
+    background: rgb(var(--color-foreground-rgb) / var(--opacity-5));
+  }
+  
+  .hawaii-quantity-input {
+    border: none;
+    background: none;
+    text-align: center;
+    padding: var(--padding-md);
+    font-size: var(--font-size--md);
+    font-weight: 600;
+    color: rgb(var(--color-foreground-rgb));
+    width: 60px;
+    -moz-appearance: textfield;
+  }
+  
+  .hawaii-quantity-input::-webkit-outer-spin-button,
+  .hawaii-quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  .hawaii-quantity-text {
+    padding: 0 var(--padding-md);
+    font-size: var(--font-size--sm);
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-70));
+  }
+  
+  /* Book Button using Hawaii button styling */
+  .hawaii-book-button {
+    width: 100%;
+    position: relative;
+    margin-bottom: var(--margin-lg);
+  }
+  
+  .hawaii-loading-spinner {
+    display: none;
+    position: absolute;
+    right: var(--padding-lg);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: hawaii-spin 1s linear infinite;
+  }
+  
+  @keyframes hawaii-spin {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
+  }
+  
+  /* Private Booking using Hawaii design */
+  .hawaii-private-booking {
+    border-top: var(--style-border-width) solid rgb(var(--color-border-rgb) / var(--opacity-20));
+    padding-top: var(--padding-lg);
+  }
+  
+  .hawaii-private-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-md);
+    width: 100%;
+    background: rgb(var(--color-background-rgb));
+    border: var(--style-border-width) solid rgb(var(--color-border-rgb) / var(--opacity-30));
+    border-radius: var(--style-border-radius-buttons-secondary);
+    padding: var(--padding-lg);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+    color: rgb(var(--color-foreground-rgb));
+  }
+  
+  .hawaii-private-toggle:hover {
+    background: rgb(var(--color-primary-rgb) / var(--opacity-5));
+    border-color: rgb(var(--color-primary-rgb) / var(--opacity-50));
+  }
+  
+  .hawaii-private-icon {
+    font-size: 1.5em;
+  }
+  
+  .hawaii-toggle-arrow {
+    margin-left: auto;
+    transition: transform 0.2s ease;
+  }
+  
+  .hawaii-private-form.show .hawaii-toggle-arrow {
+    transform: rotate(180deg);
+  }
+  
+  .hawaii-private-form {
+    margin-top: var(--margin-lg);
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .hawaii-private-form.show {
+    opacity: 1;
+    max-height: 1000px;
+  }
+  
+  .hawaii-form-content {
+    padding: var(--padding-lg);
+    background: rgb(var(--color-background-rgb) / var(--opacity-50));
+    border-radius: var(--style-border-radius-md);
+    border: var(--style-border-width) solid rgb(var(--color-border-rgb) / var(--opacity-20));
+  }
+  
+  /* Form Inputs using Hawaii input styling */
+  .hawaii-input-group {
+    margin-bottom: var(--margin-lg);
+  }
+  
+  .hawaii-input-label {
+    display: block;
+    font-size: var(--font-size--sm);
+    font-weight: 600;
+    color: rgb(var(--color-foreground-rgb));
+    margin-bottom: var(--margin-xs);
+  }
+  
+  .hawaii-input,
+  .hawaii-select,
+  .hawaii-textarea {
+    width: 100%;
+    padding: var(--padding-md);
+    border: var(--style-border-width-inputs) solid rgb(var(--color-border-rgb) / var(--opacity-30));
+    border-radius: var(--style-border-radius-inputs);
+    background: rgb(var(--color-background-rgb));
+    color: rgb(var(--color-foreground-rgb));
+    font-size: var(--font-size--md);
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+  }
+  
+  .hawaii-input:focus,
+  .hawaii-select:focus,
+  .hawaii-textarea:focus {
+    outline: none;
+    border-color: rgb(var(--color-primary-rgb));
+    box-shadow: 0 0 0 2px rgb(var(--color-primary-rgb) / var(--opacity-20));
+  }
+  
+  .hawaii-textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  /* Total Display using Hawaii price styling */
+  .hawaii-total-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--padding-lg);
+    background: rgb(var(--color-primary-rgb) / var(--opacity-10));
+    border-radius: var(--style-border-radius-md);
+    margin-bottom: var(--margin-lg);
+    border: var(--style-border-width) solid rgb(var(--color-primary-rgb) / var(--opacity-20));
+  }
+  
+  .hawaii-total-label {
+    font-weight: 600;
+    color: rgb(var(--color-foreground-rgb));
+  }
+  
+  .hawaii-total-price {
+    font-size: var(--font-size--xl);
+    font-weight: var(--font-heading--weight);
+    color: rgb(var(--color-primary-rgb));
+  }
+  
+  /* Submit Button using Hawaii primary button */
+  .hawaii-submit-button {
+    width: 100%;
+  }
+  
+  /* Success Message using Hawaii success styling */
+  .hawaii-success-message {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-md);
+    padding: var(--padding-lg);
+    background: rgb(var(--color-success-rgb, 0 100 0) / var(--opacity-10));
+    border: var(--style-border-width) solid rgb(var(--color-success-rgb, 0 100 0) / var(--opacity-30));
+    border-radius: var(--style-border-radius-md);
+    margin-top: var(--margin-lg);
+  }
+  
+  .hawaii-success-icon {
+    width: 24px;
+    height: 24px;
+    background: var(--color-success, #006400);
+    border-radius: var(--style-border-radius-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    flex-shrink: 0;
+  }
+  
+  .hawaii-success-text {
+    color: var(--color-success, #006400);
+    font-weight: 500;
+  }
+  
+  /* Event Description using Hawaii content styling */
+  .hawaii-event-description {
+    margin-bottom: var(--margin-2xl);
+  }
+  
+  /* Accordions using Hawaii accordion design */
+  .hawaii-event-accordions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+  }
+  
+  .hawaii-accordion-item {
+    border: var(--style-border-width) solid rgb(var(--color-border-rgb) / var(--opacity-20));
+    border-radius: var(--style-border-radius-md);
+    background: rgb(var(--color-background-rgb));
+  }
+  
+  .hawaii-accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--padding-lg);
+    cursor: pointer;
+    list-style: none;
+    transition: background-color 0.2s ease;
+  }
+  
+  .hawaii-accordion-header::-webkit-details-marker {
+    display: none;
+  }
+  
+  .hawaii-accordion-header:hover {
+    background: rgb(var(--color-foreground-rgb) / var(--opacity-5));
+  }
+  
+  .hawaii-accordion-header h3 {
+    margin: 0;
+    font-size: var(--font-size--lg);
+    font-weight: 600;
+    color: rgb(var(--color-foreground-heading-rgb));
+  }
+  
+  .hawaii-accordion-icon {
+    transition: transform 0.2s ease;
+  }
+  
+  .hawaii-accordion-item[open] .hawaii-accordion-icon {
+    transform: rotate(45deg);
+  }
+  
+  .hawaii-accordion-content {
+    padding: 0 var(--padding-lg) var(--padding-lg);
+    border-top: var(--style-border-width) solid rgb(var(--color-border-rgb) / var(--opacity-10));
+  }
+  
+  /* Kit Content Layout */
+  .hawaii-kit-content {
+    display: flex;
+    gap: var(--gap-lg);
+    align-items: flex-start;
+  }
+  
+  .hawaii-kit-image {
+    flex: 0 0 200px;
+    border-radius: var(--style-border-radius-md);
+    overflow: hidden;
+  }
+  
+  .hawaii-kit-image img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .hawaii-kit-text {
+    flex: 1;
+  }
+  
+  /* Host Info Layout */
+  .hawaii-host-info {
+    display: flex;
+    gap: var(--gap-lg);
+    align-items: flex-start;
+  }
+  
+  .hawaii-host-photo {
+    flex: 0 0 100px;
+    width: 100px;
+    height: 100px;
+    border-radius: var(--style-border-radius-50);
+    overflow: hidden;
+  }
+  
+  .hawaii-host-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .hawaii-host-details {
+    flex: 1;
+  }
+  
+  .hawaii-host-name {
+    margin: 0 0 var(--margin-sm) 0;
+    font-size: var(--font-size--lg);
+    font-weight: 600;
+    color: rgb(var(--color-foreground-heading-rgb));
+  }
+  
+  .hawaii-host-bio {
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-80));
+    line-height: 1.5;
+  }
+  
+  /* Mobile Responsive */
+  @media (max-width: 749px) {
+    .hawaii-product-header {
+      flex-direction: column;
+      gap: var(--gap-xl);
+    }
+    
+    .hawaii-booking-form-container {
+      min-width: auto;
+      max-width: none;
+      width: 100%;
+    }
+    
+    .hawaii-product-title {
+      font-size: var(--font-size--2xl);
+      text-align: center;
+    }
+    
+    .hawaii-event-details {
+      justify-content: center;
+    }
+    
+    .hawaii-kit-content,
+    .hawaii-host-info {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .hawaii-kit-image,
+    .hawaii-host-photo {
+      flex: none;
+      margin: 0 auto;
+    }
+  }
+{% endstylesheet %}
+
+<script>
+// Hawaii Booking Form JavaScript
+let hawaiiBasePrice = {{ price_per_person | default: 99 }};
+let hawaiiCurrentVariantPrice = hawaiiBasePrice;
+
+document.addEventListener('DOMContentLoaded', function() {
+  hawaiiInitializeBookingForm();
+});
+
+function hawaiiInitializeBookingForm() {
+  // Initialize quantity display
+  const quantityInput = document.querySelector('#hawaii-quantity-{{ product.id }}');
+  if (quantityInput) {
+    hawaiiUpdateQuantityDisplay(quantityInput.value);
+  }
+  
+  // Initialize private form total
+  hawaiiCalculateTotal();
+  
+  // Set minimum date for booking (7 days from now)
+  const dateInput = document.getElementById('hawaii-event-date');
+  if (dateInput) {
+    const minDate = new Date();
+    minDate.setDate(minDate.getDate() + 7);
+    dateInput.min = minDate.toISOString().split('T')[0];
+    dateInput.value = minDate.toISOString().split('T')[0];
+  }
+}
+
+function hawaiiSelectVariant(variantId, element) {
+  // Check availability
+  const isAvailable = element.dataset.variantAvailable === 'true';
+  if (!isAvailable) return;
+  
+  // Update UI
+  document.querySelectorAll('.hawaii-variant-button').forEach(btn => {
+    btn.classList.remove('hawaii-variant-selected');
+  });
+  element.classList.add('hawaii-variant-selected');
+  
+  // Update hidden input
+  const variantInput = document.querySelector('input[data-hawaii-variant]');
+  if (variantInput) {
+    variantInput.value = variantId;
+  }
+  
+  // Update price
+  const variantPrice = element.dataset.variantPrice;
+  if (variantPrice) {
+    hawaiiCurrentVariantPrice = parseInt(variantPrice) / 100;
+    
+    // Update price display
+    const priceElements = document.querySelectorAll('.hawaii-price:not(.hawaii-price--original)');
+    priceElements.forEach(priceEl => {
+      const formattedPrice = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+      }).format(hawaiiCurrentVariantPrice);
+      priceEl.textContent = formattedPrice;
+    });
+  }
+}
+
+function hawaiiUpdateQuantity(change) {
+  const quantityInput = document.querySelector('#hawaii-quantity-{{ product.id }}');
+  if (!quantityInput) return;
+  
+  const currentValue = parseInt(quantityInput.value) || 1;
+  const newValue = Math.max(1, currentValue + change);
+  quantityInput.value = newValue;
+  
+  hawaiiUpdateQuantityDisplay(newValue);
+}
+
+function hawaiiUpdateQuantityDisplay(quantity) {
+  const quantityText = document.querySelector('#hawaii-quantity-text-{{ product.id }}');
+  if (!quantityText) return;
+  
+  const numericQuantity = parseInt(quantity) || 1;
+  quantityText.textContent = numericQuantity === 1 ? 'person' : 'people';
+}
+
+function hawaiiTogglePrivateForm() {
+  const privateForm = document.getElementById('hawaii-private-form');
+  const toggleArrow = document.querySelector('.hawaii-toggle-arrow');
+  
+  if (privateForm) {
+    privateForm.classList.toggle('show');
+  }
+}
+
+function hawaiiCalculateTotal() {
+  const teamSize = document.getElementById('hawaii-team-size');
+  const totalPrice = document.getElementById('hawaii-total-price');
+  
+  if (teamSize && totalPrice) {
+    const participants = parseInt(teamSize.value) || 10;
+    const total = participants * hawaiiBasePrice;
+    
+    totalPrice.textContent = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    }).format(total);
+  }
+}
+
+function hawaiiSubmitPrivateForm(button) {
+  // Get form data
+  const teamSize = document.getElementById('hawaii-team-size')?.value;
+  const eventDate = document.getElementById('hawaii-event-date')?.value;
+  const eventTime = document.getElementById('hawaii-event-time')?.value;
+  const customerName = document.getElementById('hawaii-customer-name')?.value;
+  const customerEmail = document.getElementById('hawaii-customer-email')?.value;
+  const message = document.getElementById('hawaii-message')?.value || 'No additional message';
+  
+  if (!customerName || !customerEmail || !eventDate) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+  
+  // Show loading state
+  button.textContent = 'Sending...';
+  button.disabled = true;
+  
+  // Calculate total
+  const participants = parseInt(teamSize) || 10;
+  const total = participants * hawaiiBasePrice;
+  
+  // Prepare email data (you'll need to integrate with your email service)
+  const bookingData = {
+    eventTitle: '{{ product.title | escape }}',
+    customerName: customerName,
+    customerEmail: customerEmail,
+    teamSize: participants,
+    eventDate: eventDate,
+    eventTime: eventTime,
+    totalAmount: total,
+    message: message,
+    eventUrl: window.location.href
+  };
+  
+  // Simulate API call (replace with your actual email service)
+  setTimeout(() => {
+    // Show success message
+    const successMessage = document.getElementById('hawaii-success-message');
+    if (successMessage) {
+      successMessage.style.display = 'flex';
+    }
+    
+    // Reset form
+    document.getElementById('hawaii-customer-name').value = '';
+    document.getElementById('hawaii-customer-email').value = '';
+    document.getElementById('hawaii-message').value = '';
+    
+    button.textContent = 'Get Quote';
+    button.disabled = false;
+    
+    console.log('Hawaii Booking Data:', bookingData);
+  }, 2000);
+}
+</script>
+
+{% schema %}
+{
+  "name": "Hawaii Booking Form",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Section Width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "Page Width"
+        },
+        {
+          "value": "full-width",
+          "label": "Full Width"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "range",
+      "id": "header_gap",
+      "label": "Header Gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Product Display"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_title",
+      "label": "Show Product Title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quantity_selector",
+      "label": "Show Quantity Selector",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_private_booking",
+      "label": "Show Private Booking Option",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "event_handle",
+      "label": "Event Handle",
+      "info": "Enter the handle of the event Metaobject"
+    },
+    {
+      "type": "header",
+      "content": "Card Styling"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card Padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "border_style",
+      "label": "Border Style",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "solid",
+          "label": "Solid"
+        }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border Width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1,
+      "visible_if": "{{ section.settings.border_style != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_opacity",
+      "label": "Border Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 20,
+      "visible_if": "{{ section.settings.border_style != 'none' }}"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hawaii Booking Form"
+    }
+  ]
+}
+{% endschema %}
