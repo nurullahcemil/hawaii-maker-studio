@@ -724,14 +724,6 @@
         "padding-block-end": 32
       }
     },
-    "event_content_section": {
-      "type": "event-content",
-      "name": "Event Content",
-      "settings": {
-        "container_size": "medium",
-        "color_scheme": "scheme-1"
-      }
-    },
     "dynamic_image_gallery_qjRkhk": {
       "type": "dynamic-image-gallery",
       "name": "Dynamic Image Gallery",
@@ -881,7 +873,6 @@
   },
   "order": [
     "main",
-    "event_content_section",
     "dynamic_image_gallery_qjRkhk",
     "section_BHeC9b"
   ]
