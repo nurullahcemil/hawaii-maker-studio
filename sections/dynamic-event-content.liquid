@@ -57,11 +57,11 @@
     <ul style="margin: 10px 0; padding-left: 20px;">
       <li>description: {% if event.description != blank %}✅ "{{ event.description | truncate: 50 }}"{% else %}❌ Blank{% endif %}</li>
       <li>skill_level: {% if event.skill_level != blank %}✅ "{{ event.skill_level }}"{% else %}❌ Blank{% endif %}</li>
-      <li>target_audience: {% if event.target_audience != blank %}✅ "{{ event.target_audience }}"{% else %}❌ Blank{% endif %}</li>
+      <li>target_audience: {% if event.audience != blank %}✅ "{{ event.audience }}"{% else %}❌ Blank{% endif %}</li>
       <li>duration: {% if event.duration != blank %}✅ "{{ event.duration }}"{% else %}❌ Blank{% endif %}</li>
       <li>what_to_expect: {% if event.what_to_expect != blank %}✅ "{{ event.what_to_expect | truncate: 50 }}"{% else %}❌ Blank{% endif %}</li>
       <li>inspirational_quote: {% if event.inspirational_quote != blank %}✅ "{{ event.inspirational_quote | truncate: 50 }}"{% else %}❌ Blank{% endif %}</li>
-      <li>instructor_bio: {% if event.instructor_bio != blank %}✅ "{{ event.instructor_bio | truncate: 50 }}"{% else %}❌ Blank{% endif %}</li>
+      <li>instructor_bio: {% if event.host_bio != blank %}✅ "{{ event.host_bio | truncate: 50 }}"{% else %}❌ Blank{% endif %}</li>
     </ul>
   {% endif %}
   
@@ -113,12 +113,12 @@
           {%- endif -%}
           
           <!-- Target Audience -->
-          {%- if event.target_audience != blank -%}
+          {%- if event.audience != blank -%}
             <div class="event-detail-card">
               <div class="event-detail-icon">👤</div>
               <div class="event-detail-content">
                 <h3 class="event-detail-title">{{ section.settings.audience_title | default: 'Who is it for?' }}</h3>
-                <p class="event-detail-value">{{ event.target_audience }}</p>
+                <p class="event-detail-value">{{ event.audience }}</p>
               </div>
             </div>
           {%- endif -%}
@@ -159,13 +159,13 @@
       {%- endif -%}
       
       <!-- Host Section -->
-      {%- if section.settings.show_host and event.instructor_bio != blank -%}
+      {%- if section.settings.show_host and event.host_bio != blank -%}
         <div class="event-host-section">
           <div class="event-section-header">
             <h2 class="event-section-title">{{ section.settings.host_title | default: 'Host' }}</h2>
           </div>
           <div class="event-host-content">
-            {{ event.instructor_bio }}
+            {{ event.host_bio }}
           </div>
         </div>
       {%- endif -%}

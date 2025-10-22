@@ -910,6 +910,32 @@
         "padding-block-end": 32
       }
     },
+    "dynamic_image_gallery_qjRkhk": {
+      "type": "dynamic-image-gallery",
+      "name": "Dynamic Image Gallery",
+      "settings": {
+        "show_title": true,
+        "gallery_title": "What Can You Make with xTool P2S",
+        "heading_tag": "h2",
+        "heading_style": "h3",
+        "title_spacing": 32,
+        "gallery_layout": "grid-4",
+        "max_images": 20,
+        "columns_mobile": 1,
+        "columns_tablet": 3,
+        "columns_desktop": 3,
+        "image_radius": 8,
+        "show_captions": false,
+        "enable_zoom": true,
+        "show_dots": true,
+        "autoplay": false,
+        "autoplay_speed": 5,
+        "section_width": "page-width",
+        "color_scheme": "",
+        "padding-block-start": 36,
+        "padding-block-end": 36
+      }
+    },
     "section_BHeC9b": {
       "type": "section",
       "blocks": {
@@ -1033,6 +1059,7 @@
   },
   "order": [
     "main",
+    "dynamic_image_gallery_qjRkhk",
     "section_BHeC9b"
   ]
 }

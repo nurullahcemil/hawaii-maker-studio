@@ -1,13 +1,4 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
- {
+{
     "sections": {
       "main": {
       "type": "product-information",
@@ -92,6 +83,31 @@
               },
               "blocks": {}
           },
+          "debug_info": {
+            "type": "text",
+            "settings": {
+              "text": "<div style=\"background: #f0f0f0; padding: 20px; margin: 20px 0; border: 2px solid #ccc;\"><h3>DEBUG INFO</h3><p><strong>Product ID:</strong> {{ product.id }}</p><p><strong>Event Handle Metafield:</strong> {% if product.metafields.custom.event_handle != blank %}✅ Found: \"{{ product.metafields.custom.event_handle.value }}\"{% else %}❌ Missing{% endif %}</p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event %}<p><strong>Event Found:</strong> ✅ {{ event.title | default: 'No title' }}</p><p><strong>Event Fields:</strong></p><ul><li>title: {{ event.title | default: 'EMPTY' }}</li><li>description: {{ event.description | default: 'EMPTY' }}</li><li>skill_level: {{ event.skill_level | default: 'EMPTY' }}</li><li>audience: {{ event.audience | default: 'EMPTY' }}</li><li>duration: {{ event.duration | default: 'EMPTY' }}</li><li>what_to_expect: {{ event.what_to_expect | default: 'EMPTY' }}</li><li>host_name: {{ event.host_name | default: 'EMPTY' }}</li><li>host_bio: {{ event.host_bio | default: 'EMPTY' }}</li><li>location: {{ event.location | default: 'EMPTY' }}</li></ul>{% else %}<p><strong>Event Found:</strong> ❌ No event found with handle: \"{{ product.metafields.custom.event_handle.value }}\"</p>{% endif %}{% endif %}</div>",
+              "width": "100%",
+              "max_width": "normal",
+              "alignment": "left",
+              "type_preset": "custom",
+              "font": "var(--font-body--family)",
+              "font_size": "1rem",
+              "line_height": "normal",
+              "letter_spacing": "normal",
+              "case": "none",
+              "wrap": "pretty",
+              "color": "var(--color-foreground)",
+              "background": false,
+              "background_color": "#00000026",
+              "corner_radius": 0,
+              "padding-block-start": 0,
+              "padding-block-end": 0,
+              "padding-inline-start": 0,
+              "padding-inline-end": 0
+            },
+            "blocks": {}
+          },
           "price": {
             "type": "price",
             "settings": {
@@ -165,6 +181,7 @@
           },
           "block_order": [
             "product_title",
+            "debug_info",
             "price",
             "variant_picker",
             "buy_buttons"
@@ -182,23 +199,91 @@
         "padding-block-end": 32
       }
     },
-    "dynamic_event_content": {
-      "type": "dynamic-event-content",
-      "name": "Dynamic Event Content",
+    "event_description_section": {
+      "type": "section",
+      "blocks": {
+        "description_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.title != blank %}{{ event.title }}{% else %}About This Event{% endif %}{% else %}About This Event{% endif %}</h2>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "description_content": {
+          "type": "text",
+          "settings": {
+            "text": "<div>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.description != blank %}{{ event.description }}{% else %}<p>Join us for an exciting hands-on experience where creativity meets technology. This event is designed to inspire and educate participants through interactive activities and expert guidance.</p>{% endif %}{% else %}<p>Join us for an exciting hands-on experience where creativity meets technology. This event is designed to inspire and educate participants through interactive activities and expert guidance.</p>{% endif %}</div>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.25rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "description_heading",
+        "description_content"
+      ],
+      "name": "Event Description",
       "settings": {
-        "show_description": true,
-        "description_title": "Description",
-        "show_details": true,
-        "skill_title": "Skill Level",
-        "audience_title": "Who is it for?",
-        "duration_title": "Duration",
-        "show_expectations": true,
-        "expectations_title": "What to Expect",
-        "show_quote": true,
-        "show_host": true,
-        "host_title": "Host",
-        "container_size": "medium",
-        "color_scheme": "default"
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 40,
+        "padding-block-end": 40
       }
     },
     "section_KWkeq3": {
@@ -295,7 +380,7 @@
                 "text_rW4qGR": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Skill Level</h2>",
+                    "text": "<h2>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.skill_level != blank %}Skill Level{% else %}Skill Level{% endif %}{% else %}Skill Level{% endif %}</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -320,7 +405,7 @@
                 "text_8FpK4Q": {
                   "type": "text",
             "settings": {
-                    "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.skill_level.value != blank %}{{ event.skill_level.value }}{% else %}Everything we do starts with why{% endif %}{% else %}Everything we do starts with why{% endif %}</p>",
+                    "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.skill_level != blank %}{{ event.skill_level }}{% else %}Everything we do starts with why{% endif %}{% else %}Everything we do starts with why{% endif %}</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -445,7 +530,7 @@
                 "text_wjeKab": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Who is it for?</h2>",
+                    "text": "<h2>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.audience != blank %}Who is it for?{% else %}Who is it for?{% endif %}{% else %}Who is it for?{% endif %}</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -470,7 +555,7 @@
                 "text_aDfm9Y": {
                   "type": "text",
             "settings": {
-                    "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.target_audience.value != blank %}{{ event.target_audience.value }}{% else %}Adults, Creatives, Makers, Designers{% endif %}{% else %}Adults, Creatives, Makers, Designers{% endif %}</p>",
+                    "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.audience != blank %}{{ event.audience }}{% else %}Adults, Creatives, Makers, Designers{% endif %}{% else %}Adults, Creatives, Makers, Designers{% endif %}</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -595,7 +680,7 @@
                 "text_XFxdem": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Duration</h2>",
+                    "text": "<h2>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.duration != blank %}Duration{% else %}Duration{% endif %}{% else %}Duration{% endif %}</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -619,8 +704,8 @@
                 },
                 "text_c7FPgR": {
                   "type": "text",
-                  "settings": {
-                    "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.duration.value != blank %}{{ event.duration.value }}{% else %}2 hours{% endif %}{% else %}2 hours{% endif %}</p>",
+            "settings": {
+                    "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.duration != blank %}{{ event.duration }}{% else %}2 hours{% endif %}{% else %}2 hours{% endif %}</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -655,10 +740,162 @@
           ]
           }
         },
-        "block_order": [
+        "group_location": {
+          "type": "group",
+          "settings": {
+            "link": "",
+            "open_in_new_tab": false,
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 16,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "placeholder": "",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "icon_location": {
+              "type": "icon",
+              "settings": {
+                "icon": "location",
+                "width": 32,
+                "link": "",
+                "open_in_new_tab": false
+              },
+              "blocks": {}
+            },
+            "group_location_content": {
+              "type": "group",
+              "settings": {
+                "link": "",
+                "open_in_new_tab": false,
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 4,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "placeholder": "",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_location_title": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h2>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.location != blank %}Location{% else %}Location{% endif %}{% else %}Location{% endif %}</h2>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "center",
+                    "type_preset": "h3",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "text_location_value": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.location != blank %}{{ event.location }}{% else %}Hawaii Maker Studio{% endif %}{% else %}Hawaii Maker Studio{% endif %}</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "center",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1.25rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_location_title",
+                "text_location_value"
+              ]
+            }
+          },
+          "block_order": [
+            "icon_location",
+            "group_location_content"
+          ]
+        }
+      },
+      "block_order": [
         "group_eW9yHA",
         "group_FK6AQN",
-        "group_N3MN3p"
+        "group_N3MN3p",
+        "group_location"
       ],
       "name": "t:names.icons_with_text",
       "settings": {
@@ -735,7 +972,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>What to Expect</h2>",
+                "text": "<h2>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.what_to_expect != blank %}What to Expect{% else %}What to Expect{% endif %}{% else %}What to Expect{% endif %}</h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -760,7 +997,7 @@
             "text_GMTgjB": {
               "type": "text",
               "settings": {
-                "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.what_to_expect.value != blank %}{{ event.what_to_expect.value }}{% else %}We'll start with a brief introduction to laser-cutting technology, safety, and design preparation. Then you'll move into the fun part — cutting your design! Each participant will have guided access to the machine, time to experiment, and plenty of creative freedom. All materials are included, and you'll leave with your completed project and new maker confidence.{% endif %}{% else %}We'll start with a brief introduction to laser-cutting technology, safety, and design preparation. Then you'll move into the fun part — cutting your design! Each participant will have guided access to the machine, time to experiment, and plenty of creative freedom. All materials are included, and you'll leave with your completed project and new maker confidence.{% endif %}</p>",
+                "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.what_to_expect != blank %}{{ event.what_to_expect }}{% else %}We'll start with a brief introduction to laser-cutting technology, safety, and design preparation. Then you'll move into the fun part — cutting your design! Each participant will have guided access to the machine, time to experiment, and plenty of creative freedom. All materials are included, and you'll leave with your completed project and new maker confidence.{% endif %}{% else %}We'll start with a brief introduction to laser-cutting technology, safety, and design preparation. Then you'll move into the fun part — cutting your design! Each participant will have guided access to the machine, time to experiment, and plenty of creative freedom. All materials are included, and you'll leave with your completed project and new maker confidence.{% endif %}</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -844,67 +1081,6 @@
         "padding-block-end": 40
       }
     },
-    "section_yxtJ7w": {
-      "type": "section",
-      "blocks": {
-        "text_p3LknH": {
-          "type": "text",
-        "settings": {
-            "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.inspirational_quote.value != blank %}{{ event.inspirational_quote.value }}{% else %}The moment you see your idea take shape from a beam of light, you realize creativity has no limits.{% endif %}{% else %}The moment you see your idea take shape from a beam of light, you realize creativity has no limits.{% endif %}</p>",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_p3LknH"
-      ],
-      "name": "t:names.pull_quote",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 64,
-        "padding-block-end": 64
-      }
-    },
     "section_ANeefH": {
       "type": "section",
       "blocks": {
@@ -973,7 +1149,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>Host</h2>",
+                "text": "<h2>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.host_name != blank %}{{ event.host_name }}{% else %}Host{% endif %}{% else %}Host{% endif %}</h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -998,7 +1174,7 @@
             "text_bLE3m3": {
               "type": "text",
         "settings": {
-                "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.instructor_bio.value != blank %}{{ event.instructor_bio.value }}{% else %}Nurullah is a designer, maker, and founder of KraftStories Maker Studio. He has years of experience combining technology with art, from 3D printing to laser cutting and handcraft design. His mission is to help others explore creativity through hands-on experiences that blend innovation with craftsmanship.{% endif %}{% else %}Nurullah is a designer, maker, and founder of KraftStories Maker Studio. He has years of experience combining technology with art, from 3D printing to laser cutting and handcraft design. His mission is to help others explore creativity through hands-on experiences that blend innovation with craftsmanship.{% endif %}</p>",
+                "text": "<p>{% if product.metafields.custom.event_handle != blank %}{% assign event = shop.metaobjects.event[product.metafields.custom.event_handle.value] %}{% if event.host_bio != blank %}{{ event.host_bio }}{% else %}Nurullah is a designer, maker, and founder of KraftStories Maker Studio. He has years of experience combining technology with art, from 3D printing to laser cutting and handcraft design. His mission is to help others explore creativity through hands-on experiences that blend innovation with craftsmanship.{% endif %}{% else %}Nurullah is a designer, maker, and founder of KraftStories Maker Studio. He has years of experience combining technology with art, from 3D printing to laser cutting and handcraft design. His mission is to help others explore creativity through hands-on experiences that blend innovation with craftsmanship.{% endif %}</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1267,39 +1443,19 @@
         "padding-block-end": 32
       }
     },
-    "media_gallery_with_product_M8aKtE": {
-      "type": "media-gallery-with-product",
-      "disabled": true,
-      "name": "Gallery with Product",
-        "settings": {
-        "container_size": "medium",
-          "add_side_paddings": true,
-        "mobile_side_padding": 20,
-        "top_padding": 20,
-        "bottom_padding": 20,
-        "image_orientation": "auto",
-        "desktop_columns": 4,
-        "mobile_columns": 2,
-        "product": "",
-        "show_product_title": true,
-        "show_quantity_selector": true
-      }
-    },
     "17513163403e1ce268": {
       "type": "apps",
       "settings": {}
-      }
     },
-  "order": [
-    "main",
-    "dynamic_event_content",
+    "order": [
+      "main",
+    "event_description_section",
+    "section_KWkeq3",
     "section_8bYLHh",
-    "section_yxtJ7w",
     "section_ANeefH",
     "section_L6Mkym",
     "section_8WzJaD",
-    "media_gallery_with_product_M8aKtE",
-    "17513163403e1ce268"
-  ]
+      "17513163403e1ce268"
+    ]
   }
   
