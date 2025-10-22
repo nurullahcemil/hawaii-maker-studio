@@ -936,6 +936,11 @@
         "padding-block-end": 36
       }
     },
+    "test_section": {
+      "type": "test-section",
+      "name": "Test Section",
+      "settings": {}
+    },
     "dynamic_event_content": {
       "type": "dynamic-event-content",
       "name": "Dynamic Event Content",
@@ -1078,6 +1083,7 @@
   },
   "order": [
     "main",
+    "test_section",
     "dynamic_event_content",
     "dynamic_image_gallery_qjRkhk",
     "section_BHeC9b"
