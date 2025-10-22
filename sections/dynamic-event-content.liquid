@@ -11,9 +11,70 @@
   {% assign event = shop.metaobjects.event[event_handle] %}
 {% endif %}
 
-<div class="section-background color-{{ section.settings.color_scheme }}"></div>
-<div class="dynamic-event-content section section--{{ section.settings.container_size }} spacing-style color-{{ section.settings.color_scheme }}">
-  <div class="section-content-wrapper">
+<!-- DEBUG INFORMATION -->
+<div style="background: #f0f0f0; padding: 20px; margin: 20px 0; border: 2px solid #333; font-family: monospace;">
+  <h3 style="color: #333; margin-top: 0;">🔍 DEBUG INFORMATION</h3>
+  
+  <p><strong>Product ID:</strong> {{ product.id }}</p>
+  <p><strong>Product Title:</strong> {{ product.title }}</p>
+  
+  <p><strong>Event Handle Metafield:</strong> 
+    {% if product.metafields.custom.event_handle != blank %}
+      ✅ Found: "{{ product.metafields.custom.event_handle }}"
+    {% else %}
+      ❌ Missing or blank
+    {% endif %}
+  </p>
+  
+  <p><strong>Event Handle Value:</strong> 
+    {% if product.metafields.custom.event_handle != blank %}
+      "{{ product.metafields.custom.event_handle.value }}"
+    {% else %}
+      No value
+    {% endif %}
+  </p>
+  
+  <p><strong>Event Object:</strong>
+    {% if event_handle != blank %}
+      {% assign event = shop.metaobjects.event[event_handle] %}
+      {% if event %}
+        ✅ Event found: {{ event.title | default: 'No title' }}
+      {% else %}
+        ❌ No event found with handle: "{{ event_handle }}"
+      {% endif %}
+    {% else %}
+      ❌ No event handle to lookup
+    {% endif %}
+  </p>
+  
+  {% if event %}
+    <p><strong>Event Fields Available:</strong></p>
+    <ul style="margin: 10px 0; padding-left: 20px;">
+      <li>description: {% if event.description != blank %}✅ "{{ event.description | truncate: 50 }}"{% else %}❌ Blank{% endif %}</li>
+      <li>skill_level: {% if event.skill_level != blank %}✅ "{{ event.skill_level }}"{% else %}❌ Blank{% endif %}</li>
+      <li>target_audience: {% if event.target_audience != blank %}✅ "{{ event.target_audience }}"{% else %}❌ Blank{% endif %}</li>
+      <li>duration: {% if event.duration != blank %}✅ "{{ event.duration }}"{% else %}❌ Blank{% endif %}</li>
+      <li>what_to_expect: {% if event.what_to_expect != blank %}✅ "{{ event.what_to_expect | truncate: 50 }}"{% else %}❌ Blank{% endif %}</li>
+      <li>inspirational_quote: {% if event.inspirational_quote != blank %}✅ "{{ event.inspirational_quote | truncate: 50 }}"{% else %}❌ Blank{% endif %}</li>
+      <li>instructor_bio: {% if event.instructor_bio != blank %}✅ "{{ event.instructor_bio | truncate: 50 }}"{% else %}❌ Blank{% endif %}</li>
+    </ul>
+  {% endif %}
+  
+  <p><strong>All Product Metafields:</strong></p>
+  <ul style="margin: 10px 0; padding-left: 20px;">
+    {% for metafield in product.metafields %}
+      <li>{{ metafield.namespace }}.{{ metafield.key }}: {{ metafield.value }}</li>
+    {% endfor %}
+  </ul>
+  
+  <p><strong>Available Metaobject Definitions:</strong></p>
+  <ul style="margin: 10px 0; padding-left: 20px;">
+    {% for metaobject_definition in shop.metaobject_definitions %}
+      <li>{{ metaobject_definition.name }} ({{ metaobject_definition.type }})</li>
+    {% endfor %}
+  </ul>
+</div>
+<!-- END DEBUG -->
     
     {%- if event -%}
       
