@@ -1,6 +1,6 @@
 {% comment %}
   Dynamic Booking Form Section
-  Uses theme template sections and blocks for consistent design
+  Uses theme template sections and snippets for consistent design
 {% endcomment %}
 
 {%- liquid
@@ -25,36 +25,36 @@
     
     <!-- Event Location Badge -->
     {%- if event and event.location.value != blank -%}
-      {%- liquid
+            {%- liquid
         assign event_location_val = event.location.value | downcase
-        assign bg_color = '#4caf50'
+              assign bg_color = '#4caf50'
         assign location_icon = '📍'
         
         if event_location_val contains 'virtual'
-          assign bg_color = '#4caf50'
+                assign bg_color = '#4caf50'
           assign location_icon = '💻'
         elsif event_location_val contains 'new york' or event_location_val contains 'nyc'
-          assign bg_color = '#f44336'
+                assign bg_color = '#f44336'
           assign location_icon = '🗽'
         elsif event_location_val contains 'honolulu'
-          assign bg_color = 'linear-gradient(45deg, #FF6B35, #F7931E, #FFD23F, #06FFA5, #00D4FF)'
+                assign bg_color = 'linear-gradient(45deg, #FF6B35, #F7931E, #FFD23F, #06FFA5, #00D4FF)'
           assign location_icon = '🌺'
         elsif event_location_val contains 'san francisco'
-          assign bg_color = '#FFA500'
+                assign bg_color = '#FFA500'
           assign location_icon = '🌉'
         elsif event_location_val contains 'irvine'
           assign bg_color = '#2196F3'
           assign location_icon = '🏖️'
-        endif
-      -%}
+              endif
+            -%}
       <div class="event-location-badge">
         <div class="event-type" data-bg-color="{{ bg_color }}" style="background: {{ bg_color }};">
           <span style="margin-right: 6px;">{{ location_icon }}</span>
           <span>{{ event.location.value }}</span>
-        </div>
-      </div>
-    {%- endif -%}
-
+              </div>
+            </div>
+          {%- endif -%}
+          
     <!-- Product Information Grid -->
     <div class="product-information__grid product-information--media-left">
       
@@ -62,10 +62,12 @@
       <div class="product-details">
         
         <!-- Product Title -->
-        {% render 'product-title', product: product, heading_size: 'h2' %}
+        <h1 class="product-title">
+          {{ product.title }}
+        </h1>
         
         <!-- Price -->
-        {% render 'price', product: product, price_size: 'lg', show_tax_status: false %}
+        {% render 'price', product: product %}
         
         <!-- Event Description -->
         {%- if event and event.description.value != blank -%}
@@ -73,8 +75,8 @@
             <h3 class="event-description-title">About This Event</h3>
             <div class="event-description-content">
               {{ event.description.value }}
-            </div>
-          </div>
+              </div>
+              </div>
         {%- endif -%}
         
         <!-- Event Details -->
@@ -85,42 +87,87 @@
                 <span class="event-detail-icon">⏱️</span>
                 <span class="event-detail-label">Duration:</span>
                 <span class="event-detail-value">{{ event.duration.value }}</span>
-              </div>
-            {%- endif -%}
-            
+          </div>
+                    {%- endif -%}
+                    
             {%- if event.location.value != blank -%}
               <div class="event-detail-item">
                 <span class="event-detail-icon">📍</span>
                 <span class="event-detail-label">Location:</span>
                 <span class="event-detail-value">{{ event.location.value }}</span>
               </div>
-            {%- endif -%}
+                    {%- endif -%}
           </div>
+                {%- endif -%}
+
+        <!-- Product Form -->
+        <product-form class="product-form" data-section-id="{{ section.id }}">
+          <div class="product-form__error-message-wrapper" role="alert" hidden>
+            <span class="product-form__error-message"></span>
+                </div>
+          
+          {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+            
+            <!-- Variant Picker -->
+            {% unless product.has_only_default_variant %}
+              {% render 'variant-main-picker', product_resource: product %}
+                      {% endunless %}
+            
+            <!-- Quantity Selector -->
+              <div class="quantity-selector">
+              <label for="Quantity-{{ section.id }}" class="quantity-label">
+                {{ 'products.product.quantity.label' | t }}
+              </label>
+              {% render 'quantity-selector', product: product, section: section %}
+                </div>
+            
+            <!-- Add to Cart Button -->
+            <div class="product-form__buttons">
+            <button
+              type="submit"
+              name="add"
+                class="product-form__cart-submit button button--primary button--full-width"
+                {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+              >
+                <span>
+                  {%- if product.selected_or_first_available_variant.available -%}
+                    {{ 'products.product.add_to_cart' | t }}
+        {%- else -%}
+                    {{ 'products.product.sold_out' | t }}
         {%- endif -%}
-        
-        <!-- Variant Picker -->
-        {% render 'variant-picker', product: product, option_type: 'button-outline', show_swatches: true %}
-        
-        <!-- Quantity Selector -->
-        {% render 'quantity', product: product %}
-        
-        <!-- Buy Buttons -->
-        {% render 'buy-buttons', product: product, show_dynamic_checkout: false %}
+          </span>
+                <div class="loading-overlay__spinner hidden">
+                  <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                  </svg>
+                </div>
+                </button>
+                  </div>
+              
+          {%- endform -%}
+        </product-form>
         
         <!-- Product Description -->
-        {% render 'product-description', product: product %}
+        {%- if product.description != blank -%}
+          <div class="product-description">
+            <h3 class="product-description-title">Product Details</h3>
+            <div class="product-description-content">
+              {{ product.description }}
+              </div>
+              </div>
+        {%- endif -%}
         
-      </div>
-      
+            </div>
+            
       <!-- Product Media -->
       <div class="product-media">
-        {% render 'product-media-gallery', product: product %}
-      </div>
-      
-    </div>
-    
-  </div>
-</div>
+        {% render 'product-media', product: product %}
+            </div>
+            
+            </div>
+            
+          </div>
+        </div>
 
 {% stylesheet %}
   .dynamic-booking-form {
@@ -148,6 +195,16 @@
     gap: 6px;
     letter-spacing: 0.05em;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .product-title {
+    font-family: var(--font-heading--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--color-foreground);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
   
   .event-description {
@@ -220,6 +277,46 @@
     top: var(--spacing-lg);
   }
   
+  .quantity-selector {
+    margin: var(--spacing-md) 0;
+  }
+  
+  .quantity-label {
+    display: block;
+    font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-foreground);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .product-form__buttons {
+    margin-top: var(--spacing-md);
+  }
+  
+  .product-description {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: var(--color-background-secondary, #f8f9fa);
+    border-radius: var(--border-radius-md, 8px);
+  }
+  
+  .product-description-title {
+    font-family: var(--font-heading--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--color-foreground);
+  }
+  
+  .product-description-content {
+    font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    line-height: 1.6;
+    color: var(--color-foreground);
+  }
+  
   @media (max-width: 768px) {
     .product-information__grid {
       grid-template-columns: 1fr;
@@ -233,6 +330,10 @@
     .event-details {
       flex-direction: column;
       align-items: flex-start;
+    }
+    
+    .product-title {
+      font-size: 2rem;
     }
   }
 {% endstylesheet %}
@@ -320,4 +421,4 @@
     }
   ]
 }
-{% endschema %}
+{% endschema %} 
