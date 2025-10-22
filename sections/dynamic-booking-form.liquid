@@ -843,9 +843,13 @@ h3.section-title {
 
 .quantity-selector label {
   display: block;
+  font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
   font-size: 14px;
-  color: #555;
+  font-weight: 600;
+  color: var(--color-foreground, #555);
   margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .schedule-data-hidden {
@@ -1720,11 +1724,13 @@ h3.section-title {
 }
 
 .product-purchase-bar .product-title {
+  font-family: var(--font-heading--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
   font-size: 2.6rem;
-  font-weight: 600;
+  font-weight: 700;
   margin: 0;
-  color: #212529;
+  color: var(--color-foreground, #212529);
   line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .product-purchase-bar .event-type {
@@ -1732,8 +1738,9 @@ h3.section-title {
   align-items: center;
   background-color: #4caf50;
   color: white;
+  font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
   font-size: 0.875em;
-  font-weight: bold;
+  font-weight: 600;
   padding: 5px 10px;
   border-radius: 20px;
   text-transform: uppercase;
@@ -1741,6 +1748,7 @@ h3.section-title {
   height: fit-content;
   line-height: 1;
   gap: 6px;
+  letter-spacing: 0.05em;
 }
 
 .product-purchase-bar .custom-icon {
@@ -1863,6 +1871,7 @@ h3.section-title {
 .product-purchase-bar .add-to-cart-btn {
   padding: 15px 50px;
   border-radius: 30px;
+  font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
   font-size: 1.3rem;
   font-weight: 600;
   cursor: pointer;
@@ -1872,6 +1881,8 @@ h3.section-title {
   color: white;
   width: max-content;
   margin-left: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .product-purchase-bar .add-to-cart-btn:hover {

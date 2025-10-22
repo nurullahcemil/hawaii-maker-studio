@@ -323,14 +323,17 @@
     padding: 9px 12px;
     border-radius: 25px;
     text-decoration: none;
-    color: #253230;
+    font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    color: var(--color-foreground, #253230);
     font-size: 14px;
     font-weight: 500;
     transition: background-color 0.3s ease;
     box-sizing: border-box;
     position: relative;
-    border: 1px solid #253230;
+    border: 1px solid var(--color-foreground, #253230);
     background-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .back-to-collection-btn:hover {
@@ -347,15 +350,37 @@
     transform: translateX(-2px);
   }
 
-  @media (max-width: 600px) {
-    .back-to-collection-container {
-      margin-bottom: 15px;
-    }
-    
-    .back-to-collection-btn {
-      padding: 9px 10px;
-      font-size: 13px;
-    }
+  .discover-workshops-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    color: var(--color-foreground, #253230);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    border: 1px solid var(--color-foreground, #253230);
+    background-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .discover-workshops-btn:hover {
+    background-color: var(--color-foreground, #253230);
+    color: white;
+    transform: translateX(2px);
+  }
+
+  .discover-workshops-btn svg {
+    transition: transform 0.3s ease;
+  }
+
+  .discover-workshops-btn:hover svg {
+    transform: translateX(3px);
   }
 
   .media-gallery-with-product-wrapper {
@@ -386,18 +411,23 @@
   }
 
   .product-title {
+    font-family: var(--font-heading--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
     font-size: 2.5em;
-    font-weight: bold;
-    color: #333;
+    font-weight: 700;
+    color: var(--color-foreground, #333);
     margin: 0 0 15px 0;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
 
 
   .price {
+    font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
     font-size: 1.5em;
-    font-weight: bold;
-    color: #333;
+    font-weight: 600;
+    color: var(--color-foreground, #333);
+    line-height: 1.3;
   }
 
   .compare-price {
@@ -420,8 +450,12 @@
   .quantity-selector label {
     display: block;
     margin-bottom: 8px;
+    font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
     font-weight: 600;
-    color: #333;
+    color: var(--color-foreground, #333);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
   }
 
   .quantity-controls {
@@ -470,11 +504,14 @@
     padding: 15px 20px;
     border: none;
     border-radius: 12px;
+    font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .add-to-cart-btn {
@@ -619,6 +656,7 @@
 
   .product-info-inline .add-to-cart-btn {
     padding: 14px 28px;
+    font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
     font-size: 15px;
     border-radius: 10px;
     border: none;
@@ -628,6 +666,8 @@
     background-color: #FFD814;
     color: #0F1111;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .product-info-inline .add-to-cart-btn:hover {
