@@ -1,0 +1,437 @@
+{% comment %}
+  Event Information Display Section
+  Displays event details from Shopify Metaobjects
+{% endcomment %}
+
+<!-- Get event handle from product metafield or section settings -->
+{% assign event_handle = product.metafields.custom.event_handle | default: section.settings.event_handle %}
+
+<!-- Load event data from metaobject -->
+{% if event_handle != blank %}
+  {% assign event = shop.metaobjects.event[event_handle] %}
+{% endif %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="event-info-section section section--{{ section.settings.container_size }} spacing-style color-{{ section.settings.color_scheme }}">
+  <div class="section-content-wrapper">
+    
+    {%- if event -%}
+      
+      <!-- Event Header -->
+      <div class="event-header">
+        <!-- Event Location Badge -->
+        {%- if event.location.value != blank -%}
+          {%- liquid
+            assign event_location_val = event.location.value | downcase
+            assign bg_color = '#4caf50'
+            assign location_icon = '📍'
+            
+            if event_location_val contains 'virtual'
+              assign bg_color = '#4caf50'
+              assign location_icon = '💻'
+            elsif event_location_val contains 'new york' or event_location_val contains 'nyc'
+              assign bg_color = '#f44336'
+              assign location_icon = '🗽'
+            elsif event_location_val contains 'honolulu'
+              assign bg_color = 'linear-gradient(45deg, #FF6B35, #F7931E, #FFD23F, #06FFA5, #00D4FF)'
+              assign location_icon = '🌺'
+            elsif event_location_val contains 'san francisco'
+              assign bg_color = '#FFA500'
+              assign location_icon = '🌉'
+            elsif event_location_val contains 'irvine'
+              assign bg_color = '#2196F3'
+              assign location_icon = '🏖️'
+            endif
+          -%}
+          <div class="event-location-badge">
+            <div class="event-type" data-bg-color="{{ bg_color }}" style="background: {{ bg_color }};">
+              <span style="margin-right: 6px;">{{ location_icon }}</span>
+              <span>{{ event.location.value }}</span>
+            </div>
+          </div>
+        {%- endif -%}
+        
+        <!-- Event Title -->
+        <h2 class="event-title">{{ product.title }}</h2>
+      </div>
+      
+      <!-- Event Details Grid -->
+      <div class="event-details-grid">
+        
+        <!-- Event Description -->
+        {%- if event.description.value != blank -%}
+          <div class="event-detail-card event-description-card">
+            <div class="event-detail-header">
+              <span class="event-detail-icon">📝</span>
+              <h3 class="event-detail-title">About This Event</h3>
+            </div>
+            <div class="event-detail-content">
+              {{ event.description.value }}
+            </div>
+          </div>
+        {%- endif -%}
+        
+        <!-- Event Duration -->
+        {%- if event.duration.value != blank -%}
+          <div class="event-detail-card event-duration-card">
+            <div class="event-detail-header">
+              <span class="event-detail-icon">⏱️</span>
+              <h3 class="event-detail-title">Duration</h3>
+            </div>
+            <div class="event-detail-content">
+              <span class="event-detail-value">{{ event.duration.value }}</span>
+            </div>
+          </div>
+        {%- endif -%}
+        
+        <!-- Event Location -->
+        {%- if event.location.value != blank -%}
+          <div class="event-detail-card event-location-card">
+            <div class="event-detail-header">
+              <span class="event-detail-icon">📍</span>
+              <h3 class="event-detail-title">Location</h3>
+            </div>
+            <div class="event-detail-content">
+              <span class="event-detail-value">{{ event.location.value }}</span>
+            </div>
+          </div>
+        {%- endif -%}
+        
+        <!-- Event Capacity -->
+        {%- if event.capacity.value != blank -%}
+          <div class="event-detail-card event-capacity-card">
+            <div class="event-detail-header">
+              <span class="event-detail-icon">👥</span>
+              <h3 class="event-detail-title">Capacity</h3>
+            </div>
+            <div class="event-detail-content">
+              <span class="event-detail-value">{{ event.capacity.value }}</span>
+            </div>
+          </div>
+        {%- endif -%}
+        
+        <!-- Event Skill Level -->
+        {%- if event.skill_level.value != blank -%}
+          <div class="event-detail-card event-skill-card">
+            <div class="event-detail-header">
+              <span class="event-detail-icon">🎯</span>
+              <h3 class="event-detail-title">Skill Level</h3>
+            </div>
+            <div class="event-detail-content">
+              <span class="event-detail-value">{{ event.skill_level.value }}</span>
+            </div>
+          </div>
+        {%- endif -%}
+        
+        <!-- Event Materials -->
+        {%- if event.materials.value != blank -%}
+          <div class="event-detail-card event-materials-card">
+            <div class="event-detail-header">
+              <span class="event-detail-icon">🛠️</span>
+              <h3 class="event-detail-title">Materials Included</h3>
+            </div>
+            <div class="event-detail-content">
+              <span class="event-detail-value">{{ event.materials.value }}</span>
+            </div>
+          </div>
+        {%- endif -%}
+        
+        <!-- Event Requirements -->
+        {%- if event.requirements.value != blank -%}
+          <div class="event-detail-card event-requirements-card">
+            <div class="event-detail-header">
+              <span class="event-detail-icon">📋</span>
+              <h3 class="event-detail-title">Requirements</h3>
+            </div>
+            <div class="event-detail-content">
+              <span class="event-detail-value">{{ event.requirements.value }}</span>
+            </div>
+          </div>
+        {%- endif -%}
+        
+        <!-- Event Schedule -->
+        {%- if event.schedule.value != blank -%}
+          <div class="event-detail-card event-schedule-card">
+            <div class="event-detail-header">
+              <span class="event-detail-icon">📅</span>
+              <h3 class="event-detail-title">Schedule</h3>
+            </div>
+            <div class="event-detail-content">
+              <span class="event-detail-value">{{ event.schedule.value }}</span>
+            </div>
+          </div>
+        {%- endif -%}
+        
+      </div>
+      
+    {%- else -%}
+      
+      <!-- No Event Data -->
+      <div class="no-event-data">
+        <div class="no-event-icon">📅</div>
+        <h3 class="no-event-title">Event Information Not Available</h3>
+        <p class="no-event-message">
+          {% if section.settings.event_handle == blank %}
+            Please set an event handle in the section settings or add an event_handle metafield to this product.
+          {% else %}
+            No event found with handle: {{ section.settings.event_handle }}
+          {% endif %}
+        </p>
+      </div>
+      
+    {%- endif -%}
+    
+  </div>
+</div>
+
+{% stylesheet %}
+  .event-info-section {
+    padding: var(--spacing-xl) 0;
+  }
+  
+  .event-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .event-location-badge {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .event-type {
+    display: inline-flex;
+    align-items: center;
+    color: white;
+    font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    font-size: 0.875em;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 25px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    height: fit-content;
+    line-height: 1;
+    gap: 6px;
+    letter-spacing: 0.05em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .event-title {
+    font-family: var(--font-heading--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--color-foreground);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  
+  .event-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .event-detail-card {
+    background: var(--color-background-secondary, #f8f9fa);
+    border-radius: var(--border-radius-lg, 12px);
+    padding: var(--spacing-lg);
+    border: 1px solid var(--color-border, #e9ecef);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .event-detail-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .event-detail-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .event-detail-icon {
+    font-size: 1.5em;
+    flex-shrink: 0;
+  }
+  
+  .event-detail-title {
+    font-family: var(--font-heading--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-foreground);
+  }
+  
+  .event-detail-content {
+    font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    line-height: 1.6;
+    color: var(--color-foreground);
+  }
+  
+  .event-detail-value {
+    font-weight: 500;
+    font-size: 1.1em;
+  }
+  
+  .event-description-card {
+    grid-column: 1 / -1;
+  }
+  
+  .event-description-card .event-detail-content {
+    font-size: 1.1em;
+    line-height: 1.7;
+  }
+  
+  .no-event-data {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: var(--color-background-secondary, #f8f9fa);
+    border-radius: var(--border-radius-lg, 12px);
+    border: 1px solid var(--color-border, #e9ecef);
+  }
+  
+  .no-event-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .no-event-title {
+    font-family: var(--font-heading--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--color-foreground);
+  }
+  
+  .no-event-message {
+    font-family: var(--font-body--family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    color: var(--color-foreground);
+    margin: 0;
+    opacity: 0.8;
+  }
+  
+  @media (max-width: 768px) {
+    .event-details-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+    
+    .event-title {
+      font-size: 2rem;
+    }
+    
+    .event-detail-card {
+      padding: var(--spacing-md);
+    }
+    
+    .event-description-card {
+      grid-column: 1;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .event-title {
+      font-size: 1.75rem;
+    }
+    
+    .event-detail-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-xs);
+    }
+    
+    .event-detail-icon {
+      font-size: 1.25em;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Event Information",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Event Settings"
+    },
+    {
+      "type": "text",
+      "id": "event_handle",
+      "label": "Event Handle",
+      "info": "Leave blank to use product metafield"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "container_size",
+      "label": "Container Size",
+      "options": [
+        {
+          "value": "full-width",
+          "label": "Full Width"
+        },
+        {
+          "value": "page-width",
+          "label": "Page Width"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        }
+      ],
+      "default": "default"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Event Information"
+    }
+  ]
+}
+{% endschema %}
