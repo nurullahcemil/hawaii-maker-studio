@@ -12,8 +12,8 @@
 {% endif %}
 
 <!-- DEBUG INFORMATION -->
-<div style="background: #f0f0f0; padding: 20px; margin: 20px 0; border: 2px solid #333; font-family: monospace;">
-  <h3 style="color: #333; margin-top: 0;">🔍 DEBUG INFORMATION</h3>
+<div style="position: fixed; top: 0; left: 0; width: 100%; background: #ff0000; color: white; padding: 20px; margin: 0; border: 5px solid #ffff00; font-family: monospace; font-size: 16px; z-index: 9999; box-shadow: 0 0 20px rgba(255,0,0,0.8);">
+  <h3 style="color: white; margin-top: 0; font-size: 24px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">🚨 DEBUG INFORMATION - DYNAMIC EVENT CONTENT 🚨</h3>
   
   <p><strong>Product ID:</strong> {{ product.id }}</p>
   <p><strong>Product Title:</strong> {{ product.title }}</p>
@@ -73,6 +73,8 @@
       <li>{{ metaobject_definition.name }} ({{ metaobject_definition.type }})</li>
     {% endfor %}
   </ul>
+  
+  <p style="background: yellow; color: black; padding: 10px; margin: 10px 0; font-weight: bold;">IF YOU CAN SEE THIS RED BOX, THE SECTION IS WORKING!</p>
 </div>
 <!-- END DEBUG -->
     
