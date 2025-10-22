@@ -1,0 +1,60 @@
+{% comment %}
+  Product Event Schema - Enhanced structured data for event products
+{% endcomment %}
+
+{% if product.metafields.custom.event_data %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "{{ product.title | escape }}",
+    "description": "{{ product.description | strip_html | escape }}",
+    "url": "{{ shop.url }}{{ product.url }}",
+    "image": [
+      {% for media in product.media limit: 5 %}
+        "{{ media | image_url: width: 1200 }}"{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ],
+    "startDate": "{{ product.metafields.custom.event_data.start_date }}",
+    "endDate": "{{ product.metafields.custom.event_data.end_date }}",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "{% if product.metafields.custom.event_data.location_type == 'virtual' %}https://schema.org/OnlineEventAttendanceMode{% else %}https://schema.org/OfflineEventAttendanceMode{% endif %}",
+    "location": {% if product.metafields.custom.event_data.location_type == 'virtual' %}
+      {
+        "@type": "VirtualLocation",
+        "url": "{{ product.metafields.custom.event_data.virtual_link }}"
+      }
+    {% else %}
+      {
+        "@type": "Place",
+        "name": "{{ product.metafields.custom.event_data.location_name }}",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "{{ product.metafields.custom.event_data.address }}",
+          "addressLocality": "{{ product.metafields.custom.event_data.city }}",
+          "addressRegion": "{{ product.metafields.custom.event_data.state }}",
+          "postalCode": "{{ product.metafields.custom.event_data.zip }}",
+          "addressCountry": "{{ product.metafields.custom.event_data.country }}"
+        }
+      }
+    {% endif %},
+    "organizer": {
+      "@type": "Organization",
+      "name": "{{ shop.name }}",
+      "url": "{{ shop.url }}"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "{{ shop.url }}{{ product.url }}",
+      "price": "{{ product.price | money_without_currency }}",
+      "priceCurrency": "{{ cart.currency.iso_code }}",
+      "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+      "validFrom": "{{ 'now' | date: '%Y-%m-%d' }}"
+    },
+    "performer": {
+      "@type": "Organization",
+      "name": "{{ shop.name }}"
+    }
+  }
+  </script>
+{% endif %}
