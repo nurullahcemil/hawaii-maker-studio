@@ -1446,16 +1446,16 @@
     "17513163403e1ce268": {
       "type": "apps",
       "settings": {}
-    },
-    "order": [
-      "main",
+    }
+  },
+  "order": [
+    "main",
     "event_description_section",
     "section_KWkeq3",
     "section_8bYLHh",
     "section_ANeefH",
     "section_L6Mkym",
     "section_8WzJaD",
-      "17513163403e1ce268"
-    ]
-  }
-  
+    "17513163403e1ce268"
+  ]
+}
