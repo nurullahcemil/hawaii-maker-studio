@@ -2539,27 +2539,7 @@ h3.section-title {
       {% if section.settings.show_product_title != false %}
                 <div class="title-with-tag-column">
           <!-- Event Tag on Top -->
-          {%- if event and event.event_type.value != blank -%}
-            {%- liquid
-              assign event_type_val = event.event_type.value | downcase
-              assign bg_color = '#4caf50'
-              if event_type_val contains 'virtual'
-                assign bg_color = '#4caf50'
-              elsif event_type_val contains 'new york'
-                assign bg_color = '#f44336'
-              elsif event_type_val contains 'honolulu'
-                assign bg_color = 'linear-gradient(45deg, #FF6B35, #F7931E, #FFD23F, #06FFA5, #00D4FF)'
-              elsif event_type_val contains 'san francisco'
-                assign bg_color = '#FFA500'
-              endif
-            -%}
-            <div class="event-tag-top">
-              <div class="event-type" data-bg-color="{{ bg_color }}">
-                {%- render 'event-icons', event_type: event.event_type.value -%}
-                <span>{{ event.event_type.value }}</span>
-              </div>
-            </div>
-          {%- endif -%}
+          {% comment %} Event type tag removed - event-icons snippet deleted {% endcomment %}
           
           <!-- Title and Rating Row -->
           <div class="title-rating-row">
@@ -2768,8 +2748,8 @@ h3.section-title {
 
         
         <!-- Event Description (using the simplified and correct rendering method) -->
-        {% if event.event_description %}
-          <div class="rte">{{ event.event_description }}</div>
+        {% if event.description %}
+          <div class="rte">{{ event.description | metafield_tag }}</div>
         {% endif %}
 
         <!-- Workshop Steps - What you'll do -->
@@ -2861,10 +2841,10 @@ h3.section-title {
 
         <!-- Event Highlights -->
         <div class="details-container">
-          {% if event.event_duration.value != blank %}
+          {% if event.duration.value != blank %}
             <div class="detail-box">
               <div class="detail-label">Duration</div>
-              <div class="detail-value">{{ event.event_duration.value }} mins</div>
+              <div class="detail-value">{{ event.duration.value }} mins</div>
             </div>
           {% endif %}
           {% if event.group_size.value != blank %}
@@ -3102,7 +3082,6 @@ h3.section-title {
 
         <!-- Google Reviews Widget for NYC In-Person Events Only -->
         {% comment %} Check if this is an NYC in-person event {% endcomment %}
-        {% assign event_type = event.event_type.value | default: '' | downcase %}
         {% assign event_location = event.location.value | default: '' | downcase %}
         {% assign event_address = event.location_address.value | default: '' | downcase %}
         {% assign page_handle = page.handle | default: '' | downcase %}
@@ -3110,13 +3089,13 @@ h3.section-title {
         {% assign event_title = event.title.value | default: '' | downcase %}
         {% assign event_description = event.description.value | default: '' | downcase %}
         
-        {% assign event_location = '' %}
+        {% assign detected_location = '' %}
         
         {% comment %} Determine event location {% endcomment %}
-        {% if event_type == 'new york' %}
-          {% assign event_location = 'nyc' %}
-        {% elsif event_type == 'honolulu' or event_location contains 'honolulu' or event_address contains 'honolulu' %}
-          {% assign event_location = 'honolulu' %}
+        {% if event_location contains 'new york' or event_location contains 'nyc' %}
+          {% assign detected_location = 'nyc' %}
+        {% elsif event_location contains 'honolulu' or event_address contains 'honolulu' %}
+          {% assign detected_location = 'honolulu' %}
         {% endif %}
         
 

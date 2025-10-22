@@ -159,25 +159,25 @@
     assign event = shop.metaobjects.event[event_handle]
     
     echo "<!-- MEDIA DEBUG: Event found: " | append: event.id | append: " -->"
-    echo "<!-- MEDIA DEBUG: Event type: " | append: event.event_type.value | append: " -->"
+    echo "<!-- MEDIA DEBUG: Event location: " | append: event.location.value | append: " -->"
     
-    if event and event.event_type.value != blank
-      assign event_type_val = event.event_type.value | downcase
-      echo "<!-- MEDIA DEBUG: Event type lowercased: " | append: event_type_val | append: " -->"
+    if event and event.location.value != blank
+      assign event_location_val = event.location.value | downcase
+      echo "<!-- MEDIA DEBUG: Event location lowercased: " | append: event_location_val | append: " -->"
       
-      if event_type_val contains 'honolulu'
+      if event_location_val contains 'honolulu'
         assign collection_url = '/collections/honolulu'
         assign collection_text = 'All Honolulu Classes'
-      elsif event_type_val contains 'new york' or event_type_val contains 'nyc'
+      elsif event_location_val contains 'new york' or event_location_val contains 'nyc'
         assign collection_url = '/pages/team-building-events-nyc'
         assign collection_text = 'All NYC Classes'
-      elsif event_type_val contains 'irvine'
+      elsif event_location_val contains 'irvine'
         assign collection_url = '/collections/irvine'
         assign collection_text = 'All Irvine Classes'
-      elsif event_type_val contains 'san francisco' or event_type_val contains 'sf'
+      elsif event_location_val contains 'san francisco' or event_location_val contains 'sf'
         assign collection_url = '/collections/san-francisco'
         assign collection_text = 'All San Francisco Classes'
-      elsif event_type_val contains 'virtual'
+      elsif event_location_val contains 'virtual'
         assign collection_url = '/collections/virtual'
         assign collection_text = 'All Virtual Classes'
       else
@@ -229,11 +229,7 @@
         {{ collection_text }}
       </a>
       
-      {% if event and event != blank %}
-        <div class="discover-workshops-btn-wrapper">
-          {% render 'discover-workshops-button', event_metaobject: event, collection_url: collection_url, product: product %}
-        </div>
-      {% endif %}
+      {% comment %} Discover workshops button removed - snippet deleted {% endcomment %}
     </div>
   {% endif %}
   
