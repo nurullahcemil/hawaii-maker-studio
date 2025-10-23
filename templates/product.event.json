@@ -1258,7 +1258,32 @@
             "text_KP3enr": {
               "type": "text",
               "settings": {
-                "text": "<p>Nurullah Gokdogan<br/><br/>Nurullah is a designer, maker, and founder of KraftStories Maker Studio. He has years of experience combining technology with art, from 3D printing to laser cutting and handcraft design. His mission is to help others explore creativity through hands-on experiences that blend innovation with craftsmanship.</p>",
+                "text": "<p>Nurullah Gokdogan</p>",
+                "width": "fit-content",
+                "max_width": "narrow",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1.25rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_JbV3E3": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Nurullah is a designer, maker, and founder of KraftStories Maker Studio. He has years of experience combining technology with art, from 3D printing to laser cutting and handcraft design. His mission is to help others explore creativity through hands-on experiences that blend innovation with craftsmanship.</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1299,6 +1324,7 @@
           "block_order": [
             "text_V8tdif",
             "text_KP3enr",
+            "text_JbV3E3",
             "button_zGAnHw"
           ]
         }
