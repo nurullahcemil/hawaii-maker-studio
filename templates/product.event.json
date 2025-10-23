@@ -916,7 +916,7 @@
             "text_YpA8NU": {
               "type": "text",
               "settings": {
-                "text": "<p>Discover the exciting world of laser cutting in this hands-on beginner workshop. You’ll learn how to design, prepare, and cut materials like wood and acrylic using our professional-grade laser machines. By the end of the class, you’ll understand how to safely operate a laser cutter and create your first personalized project — such as a custom keychain, name tag, or ornament.</p>",
+                "text": "{{ metaobjects.event[\"introductory-hand-press-workshop\"].description | metafield_tag }}<p></p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1065,7 +1065,7 @@
             "text_BrFEXm": {
               "type": "text",
               "settings": {
-                "text": "<p>We’ll start with a brief introduction to laser-cutting technology, safety, and design preparation. Then you’ll move into the fun part — cutting your design! Each participant will have guided access to the machine, time to experiment, and plenty of creative freedom. All materials are included, and you’ll leave with your completed project and new maker confidence.</p>",
+                "text": "<p></p>{{ metaobjects.event[\"introductory-hand-press-workshop\"].what_to_expect | metafield_tag }}",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1430,23 +1430,8 @@
       }
     }
   },
-  "dynamic_event_content": {
-    "type": "dynamic-event-content",
-    "settings": {
-      "show_description": true,
-      "description_title": "About This Event",
-      "show_details": true,
-      "show_expectations": true,
-      "expectations_title": "What to Expect",
-      "show_host": true,
-      "host_title": "Meet Your Host",
-      "container_size": "page-width",
-      "color_scheme": "default"
-    }
-  },
   "order": [
     "main",
-    "dynamic_event_content",
     "section_3H3eth",
     "section_fDGEkx",
     "section_QeEJAt",
