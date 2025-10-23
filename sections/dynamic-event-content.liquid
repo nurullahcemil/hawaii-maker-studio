@@ -4,10 +4,11 @@
 {% endcomment %}
 
 <!-- Get event handle from product metafield -->
-{% assign event_handle = product.metafields.custom.event_handle %}
+{% assign event_handle_raw = product.metafields.custom.event_handle %}
 
-<!-- Load event data from custom metaobject -->
-{% if event_handle != blank %}
+<!-- Normalize event handle to lowercase and replace spaces with hyphens -->
+{% if event_handle_raw != blank %}
+  {% assign event_handle = event_handle_raw | downcase | replace: ' ', '-' | replace: '_', '-' %}
   {% assign event = shop.metaobjects.event[event_handle] %}
 {% endif %}
 
@@ -124,10 +125,12 @@
         <div class="no-event-icon">📅</div>
         <h3 class="no-event-title">Event Information Not Available</h3>
         <p class="no-event-message">
-          {% if event_handle == blank %}
+          {% if event_handle_raw == blank %}
             Please add an event_handle metafield to this product.
           {% else %}
-            No event found with handle: {{ event_handle }}
+            No event found with handle: <strong>{{ event_handle }}</strong><br>
+            Original input: <em>{{ event_handle_raw }}</em><br>
+            <small>Make sure the metaobject handle exactly matches: {{ event_handle }}</small>
           {% endif %}
         </p>
       </div>
