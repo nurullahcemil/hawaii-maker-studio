@@ -916,7 +916,7 @@
             "text_YpA8NU": {
               "type": "text",
               "settings": {
-                "text": "<p></p><p></p>",
+                "text": "<p>Discover the art of manual printing and stamping in this hands-on introduction to the hand press — a classic tool for creating bold, tactile designs on fabric, paper, and more. You’ll learn how pressure, ink, and material come together to form crisp, beautiful impressions that bring your design ideas to life.</p><p>Perfect for artists, small business owners, or anyone curious about crafting custom merchandise like tote bags, coasters, or cards, this workshop blends timeless technique with modern creativity.</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1065,7 +1065,7 @@
             "text_BrFEXm": {
               "type": "text",
               "settings": {
-                "text": "<p></p>{{ metaobjects.event[\"introductory-hand-press-workshop\"].what_to_expect | metafield_tag }}",
+                "text": "<p>We’ll start by exploring the basics of press printing — how to prepare your artwork, choose inks and materials, and set up the hand press for even, consistent results. You’ll learn how different textures and surfaces affect the outcome, and how to adjust pressure for clean, detailed prints.</p><p>Then, you’ll jump in to press your own custom designs using provided templates or your own artwork. Expect to experiment, create, and get a little inky along the way!<br/><br/>You’ll finish the session with a set of your own printed creations and the skills to keep making at home or in your studio.</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1430,23 +1430,8 @@
       }
     }
   },
-  "dynamic_event_content": {
-    "type": "dynamic-event-content",
-    "settings": {
-      "show_description": true,
-      "description_title": "About This Event",
-      "show_details": true,
-      "show_expectations": true,
-      "expectations_title": "What to Expect",
-      "show_host": true,
-      "host_title": "Meet Your Host",
-      "container_size": "page-width",
-      "color_scheme": "default"
-    }
-  },
   "order": [
     "main",
-    "dynamic_event_content",
     "section_3H3eth",
     "section_fDGEkx",
     "section_QeEJAt",
