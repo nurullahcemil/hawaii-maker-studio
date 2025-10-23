@@ -302,7 +302,7 @@
                 "text_qfBhKK": {
                   "type": "text",
                   "settings": {
-                    "text": "{% assign event_handle_raw = product.metafields.custom.event_handle %}{% if event_handle_raw != blank %}{% assign event_handle = event_handle_raw | downcase | replace: ' ', '-' | replace: '_', '-' %}{% assign event = null %}{% for event_item in shop.metaobjects.event %}{% if event_item.event_handle == event_handle %}{% assign event = event_item %}{% break %}{% endif %}{% endfor %}{% unless event %}{% assign event = shop.metaobjects.event[event_handle] %}{% endunless %}{% endif %}<h2>{{ event.skill_level | default: 'Beginner Friendly' }}</h2>",
+                    "text": "{% assign event_handle_raw = product.metafields.custom.event_handle %}{% if event_handle_raw != blank %}{% assign event_handle = event_handle_raw | downcase | replace: ' ', '-' | replace: '_', '-' %}{% assign event = null %}{% for event_item in shop.metaobjects.event %}{% if event_item.event_handle == event_handle %}{% assign event = event_item %}{% break %}{% endif %}{% endfor %}{% unless event %}{% assign event = shop.metaobjects.event[event_handle] %}{% endunless %}{% endif %}<h2>{{ event.skill_level | default: \"Beginner Friendly\" }}</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -426,7 +426,7 @@
                 "text_hmEALy": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>{{ event.audience | default: 'Adults & Kids 8+' }}</h2>",
+                    "text": "<h2>{{ event.audience | default: \"Adults & Kids 8+\" }}</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -576,7 +576,7 @@
                 "text_XKJcwi": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>{{ event.duration | default: '2 Hours' }}</h2>",
+                    "text": "<h2>{{ event.duration | default: \"2 Hours\" }}</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -727,7 +727,7 @@
                 "text_WnYNzL": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>{{ event.group_size | default: 'Up to 8 People' }}</h2>",
+                    "text": "<h2>{{ event.group_size | default: \"Up to 8 People\" }}</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -916,7 +916,7 @@
             "text_YpA8NU": {
               "type": "text",
               "settings": {
-                "text": "{{ event.description | default: 'Discover the art of manual printing and stamping in this hands-on introduction to the hand press — a classic tool for creating bold, tactile designs on fabric, paper, and more.' }}",
+                "text": "{{ event.description | default: \"Discover the art of manual printing and stamping in this hands-on introduction to the hand press — a classic tool for creating bold, tactile designs on fabric, paper, and more.\" }}",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1065,7 +1065,7 @@
             "text_BrFEXm": {
               "type": "text",
               "settings": {
-                "text": "{{ event.what_to_expect | default: 'We\\'ll start by exploring the basics of press printing — how to prepare your artwork, choose inks and materials, and set up the hand press for even, consistent results.' }}",
+                "text": "{{ event.what_to_expect | default: \"We'll start by exploring the basics of press printing — how to prepare your artwork, choose inks and materials, and set up the hand press for even, consistent results.\" }}",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1258,7 +1258,7 @@
             "text_KP3enr": {
               "type": "text",
               "settings": {
-                "text": "<p>{{ event.host_name | default: 'Nurullah Gokdogan' }}</p>",
+                "text": "<p>{{ event.host_name | default: \"Nurullah Gokdogan\" }}</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1283,7 +1283,7 @@
             "text_JbV3E3": {
               "type": "text",
               "settings": {
-                "text": "{{ event.host_bio | default: '<p>Nurullah is a designer, maker, and founder of KraftStories Maker Studio. He has years of experience combining technology with art, from 3D printing to laser cutting and handcraft design. His mission is to help others explore creativity through hands-on experiences that blend innovation with craftsmanship.</p>' }}",
+                "text": "{{ event.host_bio | default: \"<p>Nurullah is a designer, maker, and founder of KraftStories Maker Studio. He has years of experience combining technology with art, from 3D printing to laser cutting and handcraft design. His mission is to help others explore creativity through hands-on experiences that blend innovation with craftsmanship.</p>\" }}",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
