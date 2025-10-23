@@ -1430,8 +1430,23 @@
       }
     }
   },
+  "dynamic_event_content": {
+    "type": "dynamic-event-content",
+    "settings": {
+      "show_description": true,
+      "description_title": "About This Event",
+      "show_details": true,
+      "show_expectations": true,
+      "expectations_title": "What to Expect",
+      "show_host": true,
+      "host_title": "Meet Your Host",
+      "container_size": "page-width",
+      "color_scheme": "default"
+    }
+  },
   "order": [
     "main",
+    "dynamic_event_content",
     "section_3H3eth",
     "section_fDGEkx",
     "section_QeEJAt",
