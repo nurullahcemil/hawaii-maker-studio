@@ -3,11 +3,6 @@
   Connects product event_handle metafield to event metaobject and displays content
 {% endcomment %}
 
-<!-- SIMPLE TEST - THIS SHOULD ALWAYS APPEAR -->
-<div style="position: fixed; top: 0; left: 0; width: 100%; background: #00ff00; color: black; padding: 10px; font-size: 20px; font-weight: bold; z-index: 9999; text-align: center;">
-  🟢 SECTION IS LOADING! Product: {{ product.title }} - ID: {{ product.id }}
-</div>
-
 <!-- Get event handle from product metafield -->
 {% assign event_handle = product.metafields.custom.event_handle %}
 
@@ -16,76 +11,10 @@
   {% assign event = shop.metaobjects.event[event_handle] %}
 {% endif %}
 
-<!-- DEBUG INFORMATION -->
-<div style="position: fixed; top: 0; left: 0; width: 100%; background: #ff0000; color: white; padding: 20px; margin: 0; border: 5px solid #ffff00; font-family: monospace; font-size: 16px; z-index: 9999; box-shadow: 0 0 20px rgba(255,0,0,0.8);">
-  <h3 style="color: white; margin-top: 0; font-size: 24px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">🚨 DEBUG INFORMATION - DYNAMIC EVENT CONTENT 🚨</h3>
-  
-  <p><strong>Product ID:</strong> {{ product.id }}</p>
-  <p><strong>Product Title:</strong> {{ product.title }}</p>
-  
-  <p><strong>Event Handle Metafield:</strong> 
-    {% if product.metafields.custom.event_handle != blank %}
-      ✅ Found: "{{ product.metafields.custom.event_handle }}"
-    {% else %}
-      ❌ Missing or blank
-    {% endif %}
-  </p>
-  
-  <p><strong>Event Handle Value:</strong> 
-    {% if product.metafields.custom.event_handle != blank %}
-      "{{ product.metafields.custom.event_handle.value }}"
-    {% else %}
-      No value
-    {% endif %}
-  </p>
-  
-  <p><strong>Event Object:</strong>
-    {% if event_handle != blank %}
-      {% assign event = shop.metaobjects.event[event_handle] %}
-      {% if event %}
-        ✅ Event found: {{ event.title | default: 'No title' }}
-      {% else %}
-        ❌ No event found with handle: "{{ event_handle }}"
-      {% endif %}
-    {% else %}
-      ❌ No event handle to lookup
-    {% endif %}
-  </p>
-  
-  {% if event %}
-    <p><strong>Event Fields Available:</strong></p>
-    <ul style="margin: 10px 0; padding-left: 20px;">
-      <li>description: {% if event.description != blank %}✅ "{{ event.description | truncate: 50 }}"{% else %}❌ Blank{% endif %}</li>
-      <li>skill_level: {% if event.skill_level != blank %}✅ "{{ event.skill_level }}"{% else %}❌ Blank{% endif %}</li>
-      <li>target_audience: {% if event.audience != blank %}✅ "{{ event.audience }}"{% else %}❌ Blank{% endif %}</li>
-      <li>duration: {% if event.duration != blank %}✅ "{{ event.duration }}"{% else %}❌ Blank{% endif %}</li>
-      <li>what_to_expect: {% if event.what_to_expect != blank %}✅ "{{ event.what_to_expect | truncate: 50 }}"{% else %}❌ Blank{% endif %}</li>
-      <li>inspirational_quote: {% if event.inspirational_quote != blank %}✅ "{{ event.inspirational_quote | truncate: 50 }}"{% else %}❌ Blank{% endif %}</li>
-      <li>instructor_bio: {% if event.host_bio != blank %}✅ "{{ event.host_bio | truncate: 50 }}"{% else %}❌ Blank{% endif %}</li>
-    </ul>
-  {% endif %}
-  
-  <p><strong>All Product Metafields:</strong></p>
-  <ul style="margin: 10px 0; padding-left: 20px;">
-    {% for metafield in product.metafields %}
-      <li>{{ metafield.namespace }}.{{ metafield.key }}: {{ metafield.value }}</li>
-    {% endfor %}
-  </ul>
-  
-  <p><strong>Available Metaobject Definitions:</strong></p>
-  <ul style="margin: 10px 0; padding-left: 20px;">
-    {% for metaobject_definition in shop.metaobject_definitions %}
-      <li>{{ metaobject_definition.name }} ({{ metaobject_definition.type }})</li>
-    {% endfor %}
-  </ul>
-  
-  <p style="background: yellow; color: black; padding: 10px; margin: 10px 0; font-weight: bold;">IF YOU CAN SEE THIS RED BOX, THE SECTION IS WORKING!</p>
-</div>
-<!-- END DEBUG -->
+<div class="dynamic-event-content section section--{{ section.settings.container_size }} spacing-style color-{{ section.settings.color_scheme }}">
+  <div class="section-content-wrapper">
     
     {%- if event -%}
-      
-      <!-- Event Description Section -->
       {%- if section.settings.show_description and event.description != blank -%}
         <div class="event-description-section">
           <div class="event-section-header">
@@ -126,10 +55,32 @@
           <!-- Duration -->
           {%- if event.duration != blank -%}
             <div class="event-detail-card">
-              <div class="event-detail-icon">❓</div>
+              <div class="event-detail-icon">⏱️</div>
               <div class="event-detail-content">
                 <h3 class="event-detail-title">{{ section.settings.duration_title | default: 'Duration' }}</h3>
                 <p class="event-detail-value">{{ event.duration }}</p>
+              </div>
+            </div>
+          {%- endif -%}
+          
+          <!-- Group Size -->
+          {%- if event.group_size != blank -%}
+            <div class="event-detail-card">
+              <div class="event-detail-icon">👥</div>
+              <div class="event-detail-content">
+                <h3 class="event-detail-title">{{ section.settings.group_size_title | default: 'Group Size' }}</h3>
+                <p class="event-detail-value">{{ event.group_size }}</p>
+              </div>
+            </div>
+          {%- endif -%}
+          
+          <!-- Location -->
+          {%- if event.location != blank -%}
+            <div class="event-detail-card">
+              <div class="event-detail-icon">📍</div>
+              <div class="event-detail-content">
+                <h3 class="event-detail-title">{{ section.settings.location_title | default: 'Location' }}</h3>
+                <p class="event-detail-value">{{ event.location }}</p>
               </div>
             </div>
           {%- endif -%}
@@ -149,23 +100,19 @@
         </div>
       {%- endif -%}
       
-      <!-- Inspirational Quote -->
-      {%- if section.settings.show_quote and event.inspirational_quote != blank -%}
-        <div class="event-quote-section">
-          <div class="event-quote-content">
-            <p class="event-quote-text">{{ event.inspirational_quote }}</p>
-          </div>
-        </div>
-      {%- endif -%}
-      
       <!-- Host Section -->
-      {%- if section.settings.show_host and event.host_bio != blank -%}
+      {%- if section.settings.show_host and (event.host_name != blank or event.host_bio != blank) -%}
         <div class="event-host-section">
           <div class="event-section-header">
-            <h2 class="event-section-title">{{ section.settings.host_title | default: 'Host' }}</h2>
+            <h2 class="event-section-title">{{ section.settings.host_title | default: 'Meet Your Host' }}</h2>
           </div>
           <div class="event-host-content">
-            {{ event.host_bio }}
+            {%- if event.host_name != blank -%}
+              <h3 class="event-host-name">{{ event.host_name }}</h3>
+            {%- endif -%}
+            {%- if event.host_bio != blank -%}
+              <div class="event-host-bio">{{ event.host_bio }}</div>
+            {%- endif -%}
           </div>
         </div>
       {%- endif -%}
