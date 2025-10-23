@@ -9,7 +9,20 @@
 <!-- Normalize event handle to lowercase and replace spaces with hyphens -->
 {% if event_handle_raw != blank %}
   {% assign event_handle = event_handle_raw | downcase | replace: ' ', '-' | replace: '_', '-' %}
-  {% assign event = shop.metaobjects.event[event_handle] %}
+  
+  <!-- Try to find event by matching the event_handle field within metaobjects -->
+  {% assign event = null %}
+  {% for event_item in shop.metaobjects.event %}
+    {% if event_item.event_handle == event_handle %}
+      {% assign event = event_item %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+  
+  <!-- Fallback: try direct lookup by metaobject handle if no match found -->
+  {% unless event %}
+    {% assign event = shop.metaobjects.event[event_handle] %}
+  {% endunless %}
 {% endif %}
 
 <div class="dynamic-event-content section section--{{ section.settings.container_size }} spacing-style color-{{ section.settings.color_scheme }}">
