@@ -302,7 +302,7 @@
                 "text_qfBhKK": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Beginner Friendly</h2>",
+                    "text": "{% assign event_handle_raw = product.metafields.custom.event_handle %}{% if event_handle_raw != blank %}{% assign event_handle = event_handle_raw | downcase | replace: ' ', '-' | replace: '_', '-' %}{% assign event = null %}{% for event_item in shop.metaobjects.event %}{% if event_item.event_handle == event_handle %}{% assign event = event_item %}{% break %}{% endif %}{% endfor %}{% unless event %}{% assign event = shop.metaobjects.event[event_handle] %}{% endunless %}{% endif %}<h2>{{ event.skill_level | default: 'Beginner Friendly' }}</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -426,7 +426,7 @@
                 "text_hmEALy": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Adults & Kids 8+</h2>",
+                    "text": "<h2>{{ event.audience | default: 'Adults & Kids 8+' }}</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -576,7 +576,7 @@
                 "text_XKJcwi": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>2 Hours</h2>",
+                    "text": "<h2>{{ event.duration | default: '2 Hours' }}</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -727,7 +727,7 @@
                 "text_WnYNzL": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Up to 8 People</h2>",
+                    "text": "<h2>{{ event.group_size | default: 'Up to 8 People' }}</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -916,7 +916,7 @@
             "text_YpA8NU": {
               "type": "text",
               "settings": {
-                "text": "<p>Discover the art of manual printing and stamping in this hands-on introduction to the hand press — a classic tool for creating bold, tactile designs on fabric, paper, and more. You’ll learn how pressure, ink, and material come together to form crisp, beautiful impressions that bring your design ideas to life.</p><p>Perfect for artists, small business owners, or anyone curious about crafting custom merchandise like tote bags, coasters, or cards, this workshop blends timeless technique with modern creativity.</p>",
+                "text": "{{ event.description | default: 'Discover the art of manual printing and stamping in this hands-on introduction to the hand press — a classic tool for creating bold, tactile designs on fabric, paper, and more.' }}",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1065,7 +1065,7 @@
             "text_BrFEXm": {
               "type": "text",
               "settings": {
-                "text": "<p>We’ll start by exploring the basics of press printing — how to prepare your artwork, choose inks and materials, and set up the hand press for even, consistent results. You’ll learn how different textures and surfaces affect the outcome, and how to adjust pressure for clean, detailed prints.</p><p>Then, you’ll jump in to press your own custom designs using provided templates or your own artwork. Expect to experiment, create, and get a little inky along the way!<br/><br/>You’ll finish the session with a set of your own printed creations and the skills to keep making at home or in your studio.</p>",
+                "text": "{{ event.what_to_expect | default: 'We\\'ll start by exploring the basics of press printing — how to prepare your artwork, choose inks and materials, and set up the hand press for even, consistent results.' }}",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1258,7 +1258,7 @@
             "text_KP3enr": {
               "type": "text",
               "settings": {
-                "text": "<p>Nurullah Gokdogan</p>",
+                "text": "<p>{{ event.host_name | default: 'Nurullah Gokdogan' }}</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1283,7 +1283,7 @@
             "text_JbV3E3": {
               "type": "text",
               "settings": {
-                "text": "<p>Nurullah is a designer, maker, and founder of KraftStories Maker Studio. He has years of experience combining technology with art, from 3D printing to laser cutting and handcraft design. His mission is to help others explore creativity through hands-on experiences that blend innovation with craftsmanship.</p>",
+                "text": "{{ event.host_bio | default: '<p>Nurullah is a designer, maker, and founder of KraftStories Maker Studio. He has years of experience combining technology with art, from 3D printing to laser cutting and handcraft design. His mission is to help others explore creativity through hands-on experiences that blend innovation with craftsmanship.</p>' }}",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
