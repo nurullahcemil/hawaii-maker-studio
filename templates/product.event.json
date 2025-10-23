@@ -916,7 +916,7 @@
             "text_YpA8NU": {
               "type": "text",
               "settings": {
-                "text": "{{ metaobjects.event[\"introductory-hand-press-workshop\"].description | metafield_tag }}<p></p>",
+                "text": "<p></p><p></p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
