@@ -302,7 +302,7 @@
                 "text_qfBhKK": {
                   "type": "text",
                   "settings": {
-                    "text": "{% assign event_handle_raw = product.metafields.custom.event_handle %}{% if event_handle_raw != blank %}{% assign event_handle = event_handle_raw | downcase | replace: ' ', '-' | replace: '_', '-' %}{% assign event = null %}{% for event_item in shop.metaobjects.event %}{% if event_item.event_handle == event_handle %}{% assign event = event_item %}{% break %}{% endif %}{% endfor %}{% unless event %}{% assign event = shop.metaobjects.event[event_handle] %}{% endunless %}{% endif %}<h2>{{ event.skill_level }}</h2>",
+                    "text": "<h2>{{ product.metafields.custom.event_handle.value | metaobject: 'skill_level' }}</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -426,7 +426,7 @@
                 "text_hmEALy": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>{{ event.audience }}</h2>",
+                    "text": "<h2>{{ product.metafields.custom.event_handle.value | metaobject: 'audience' }}</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -576,7 +576,7 @@
                 "text_XKJcwi": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>{{ event.duration }}</h2>",
+                    "text": "<h2>{{ product.metafields.custom.event_handle.value | metaobject: 'duration' }}</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -727,7 +727,7 @@
                 "text_WnYNzL": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>{{ event.group_size }}</h2>",
+                    "text": "<h2>{{ product.metafields.custom.event_handle.value | metaobject: 'group_size' }}</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -916,7 +916,7 @@
             "text_YpA8NU": {
               "type": "text",
               "settings": {
-                "text": "{{ event.description }}",
+                "text": "{{ product.metafields.custom.event_handle.value | metaobject: 'description' }}",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1065,7 +1065,7 @@
             "text_BrFEXm": {
               "type": "text",
               "settings": {
-                "text": "{{ event.what_to_expect }}",
+                "text": "{{ product.metafields.custom.event_handle.value | metaobject: 'what_to_expect' }}",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1258,7 +1258,7 @@
             "text_KP3enr": {
               "type": "text",
               "settings": {
-                "text": "<p>{{ event.host_name }}</p>",
+                "text": "<p>{{ product.metafields.custom.event_handle.value | metaobject: 'host_name' }}</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1283,7 +1283,7 @@
             "text_JbV3E3": {
               "type": "text",
               "settings": {
-                "text": "{{ event.host_bio }}",
+                "text": "{{ product.metafields.custom.event_handle.value | metaobject: 'host_bio' }}",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
