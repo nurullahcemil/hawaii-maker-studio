@@ -71,7 +71,8 @@
     
     # Build same styling as text snippet
     assign block_settings = block.settings
-    assign text_width = block_settings.width
+    assign text_width = block_settings.width | default: 'fit-content'
+    assign text_max_width = block_settings.max_width | default: 'normal'
     
     if block_settings.font_size contains 'heading-lg' or block_settings.font_size contains 'heading-xl'
       assign type = 'display'
@@ -89,7 +90,7 @@
     capture text_block_classes
       if text_width == '100%'
         echo 'text-block--align-' | append: block_settings.alignment
-        if block_settings.max_width == 'none'
+        if text_max_width == 'none'
           echo ' text-block--full-width '
         endif
       endif
@@ -123,9 +124,9 @@
       {% render 'spacing-padding', settings: block_settings %}
       {% render 'typography-style', settings: block_settings %}
       --width: {{ text_width }};
-      --max-width: var(--max-width--{{ type }}-{{ block_settings.max_width }});
+      --max-width: var(--max-width--{{ type }}-{{ text_max_width }});
       {% if text_width == '100%' %}
-        --text-align: {{ block_settings.alignment }};
+        --text-align: {{ block_settings.alignment | default: 'left' }};
       {% endif %}
       {% if block_settings.background %}
         --text-background-color: {{ block_settings.background_color | default: 'rgb(255 255 255 / 1.0)' }};
