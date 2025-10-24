@@ -137,7 +137,7 @@
     {% if render_mode == 'richtext' %}
       {{ mo_field | metafield_tag }}
     {% else %}
-      {{ mo_field.value }}
+      <div>{{ mo_field.value }}</div>
     {% endif %}
   </{{ element }}>
   
