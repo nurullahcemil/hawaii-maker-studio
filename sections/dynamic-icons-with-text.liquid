@@ -32,10 +32,16 @@
           assign event_drop = mo
           break
         endif
-        if mo.title == raw_handle or mo.title | handleize == handle
+        {% comment %}compare title or handleized title{% endcomment %}
+        {% assign mo_title_handle = mo.title | handleize %}
+        {% if mo.title == raw_handle %}
           assign event_drop = mo
           break
-        endif
+        {% endif %}
+        {% if mo_title_handle == handle %}
+          assign event_drop = mo
+          break
+        {% endif %}
       endfor
     endif
   endif
