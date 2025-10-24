@@ -303,7 +303,7 @@
                 "text_mNpXyh": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Skill Level</h2>",
+                    "text": "",
                     "source_field_key": "skill_level",
                     "render_as": "auto",
                     "fallback_text": "",
