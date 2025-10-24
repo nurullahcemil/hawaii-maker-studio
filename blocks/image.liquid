@@ -1,16 +1,29 @@
 {% liquid
   assign block_settings = block.settings
   
+  # Resolve metaobject directly in block
+  assign block_event_drop = nil
+  if block_settings.image_field_key != blank and product
+    if event_drop
+      assign block_event_drop = event_drop
+    else
+      assign event_handle = product.metafields.custom.event_handle
+      if event_handle != blank
+        assign block_event_drop = shop.metaobjects.event[event_handle]
+      endif
+    endif
+  endif
+  
   assign mo_img = nil
   assign mo_caption = nil
-  if event_drop and block_settings.image_field_key != blank
-    assign mo_img_field = event_drop[block_settings.image_field_key]
+  if block_event_drop and block_settings.image_field_key != blank
+    assign mo_img_field = block_event_drop[block_settings.image_field_key]
     if mo_img_field and mo_img_field.value
       assign mo_img = mo_img_field.value
     endif
   endif
-  if event_drop and block_settings.caption_field_key != blank
-    assign mo_cap_field = event_drop[block_settings.caption_field_key]
+  if block_event_drop and block_settings.caption_field_key != blank
+    assign mo_cap_field = block_event_drop[block_settings.caption_field_key]
     if mo_cap_field and mo_cap_field.value
       assign mo_caption = mo_cap_field.value
     endif

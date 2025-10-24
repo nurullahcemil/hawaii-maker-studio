@@ -2,9 +2,22 @@
   assign block_settings = block.settings
   assign icon_block_class = 'icon-block__media icon-block-' | append: block.id
   
+  # Resolve metaobject directly in block
+  assign block_event_drop = nil
+  if block_settings.icon_field_key != blank and product
+    if event_drop
+      assign block_event_drop = event_drop
+    else
+      assign event_handle = product.metafields.custom.event_handle
+      if event_handle != blank
+        assign block_event_drop = shop.metaobjects.event[event_handle]
+      endif
+    endif
+  endif
+  
   assign mo_icon = nil
-  if event_drop and block_settings.icon_field_key != blank
-    assign icon_field = event_drop[block.settings.icon_field_key]
+  if block_event_drop and block_settings.icon_field_key != blank
+    assign icon_field = block_event_drop[block.settings.icon_field_key]
     if icon_field and icon_field.value
       assign mo_icon = icon_field.value
     endif

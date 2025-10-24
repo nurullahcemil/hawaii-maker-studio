@@ -1,13 +1,38 @@
+{% comment %} Resolve metaobject directly in the block since parent scope doesn't pass through {% endcomment %}
+{% liquid
+  assign block_event_drop = nil
+  assign block_mo_enabled = false
+  
+  # Check if we should try to get metaobject (simplified - just check if field key is set)
+  if block.settings.source_field_key != blank and product
+    # Try to get from parent scope first
+    if event_drop
+      assign block_event_drop = event_drop
+      assign block_mo_enabled = true
+    else
+      # Resolve metaobject ourselves
+      assign event_handle = product.metafields.custom.event_handle
+      if event_handle != blank
+        assign block_event_drop = shop.metaobjects.event[event_handle]
+        if block_event_drop
+          assign block_mo_enabled = true
+        endif
+      endif
+    endif
+  endif
+%}
+
 {% if block.settings.debug_text_block %}
   <div style="background: #fff3cd; padding: 10px; margin: 10px 0; border: 2px solid #856404; font-family: monospace; font-size: 11px;">
     <strong>🔍 TEXT BLOCK DEBUG</strong><br>
-    <strong>Event Drop Available:</strong> {% if event_drop %}YES{% else %}NO{% endif %}<br>
+    <strong>Product Available:</strong> {% if product %}YES{% else %}NO{% endif %}<br>
+    <strong>Event Handle from Product:</strong> "{{ product.metafields.custom.event_handle }}"<br>
+    <strong>Block Event Drop:</strong> {% if block_event_drop %}YES{% else %}NO{% endif %}<br>
     <strong>Field Key Setting:</strong> "{{ block.settings.source_field_key }}"<br>
-    <strong>Field Key Blank:</strong> {% if block.settings.source_field_key == blank %}YES{% else %}NO{% endif %}<br>
-    {% if event_drop %}
-      <strong>Event Title:</strong> {{ event_drop.title }}<br>
+    {% if block_event_drop %}
+      <strong>Event Title:</strong> {{ block_event_drop.title }}<br>
       {% if block.settings.source_field_key != blank %}
-        {% assign test_field = event_drop[block.settings.source_field_key] %}
+        {% assign test_field = block_event_drop[block.settings.source_field_key] %}
         <strong>Field Found:</strong> {% if test_field %}YES{% else %}NO{% endif %}<br>
         {% if test_field %}
           <strong>Field Type:</strong> {{ test_field.type }}<br>
@@ -24,9 +49,9 @@
   assign mo_field = nil
   assign trying_mo = false
   
-  if event_drop and block.settings.source_field_key != blank
+  if block_event_drop and block.settings.source_field_key != blank
     assign trying_mo = true
-    assign mo_field = event_drop[block.settings.source_field_key]
+    assign mo_field = block_event_drop[block.settings.source_field_key]
     if mo_field
       assign from_mo = true
     endif
