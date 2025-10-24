@@ -69,11 +69,10 @@
   </div>
 {% endif %}
 
-{% comment %} Make event_drop available in block scope by assigning before blocks render {% endcomment %}
-{% assign section_event_drop = event_drop %}
+{% comment %} event_drop is already available in section scope for blocks to use {% endcomment %}
 
 {% capture children %}
-  {% content_for 'blocks', event_drop: section_event_drop %}
+  {% content_for 'blocks' %}
 {% endcapture %}
 
 {% render 'section', section: section, children: children, event_drop: event_drop %}

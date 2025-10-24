@@ -1,17 +1,16 @@
 {% liquid
   assign block_settings = block.settings
-  assign event_drop_actual = event_drop | default: section_event_drop
   
   assign mo_img = nil
   assign mo_caption = nil
-  if event_drop_actual and block_settings.image_field_key != blank
-    assign mo_img_field = event_drop_actual[block_settings.image_field_key]
+  if event_drop and block_settings.image_field_key != blank
+    assign mo_img_field = event_drop[block_settings.image_field_key]
     if mo_img_field and mo_img_field.value
       assign mo_img = mo_img_field.value
     endif
   endif
-  if event_drop_actual and block_settings.caption_field_key != blank
-    assign mo_cap_field = event_drop_actual[block_settings.caption_field_key]
+  if event_drop and block_settings.caption_field_key != blank
+    assign mo_cap_field = event_drop[block_settings.caption_field_key]
     if mo_cap_field and mo_cap_field.value
       assign mo_caption = mo_cap_field.value
     endif
