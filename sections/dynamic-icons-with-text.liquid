@@ -60,7 +60,7 @@
     <strong>Metafield Key:</strong> {{ section.settings.handle_mf_key | default: "custom.event_handle" }}<br>
     <strong>Metafield Raw Value:</strong> "{{ product.metafields.custom.event_handle }}"<br>
     <strong>Metafield Type:</strong> {{ product.metafields.custom.event_handle.type }}<br>
-    <strong>Event Drop Found:</strong> {{ event_drop != nil }}<br>
+    <strong>Event Drop Found:</strong> {% if event_drop %}YES{% else %}NO{% endif %}<br>
     {% if event_drop %}
       <strong>Event Drop Title:</strong> {{ event_drop.title }}<br>
       <strong>Event Drop Handle:</strong> {{ event_drop.system.handle | default: event_drop.handle }}<br>
