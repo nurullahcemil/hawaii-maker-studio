@@ -308,7 +308,7 @@
                     "render_as": "auto",
                     "fallback_text": "",
                     "debug_text_block": false,
-                    "width": "fit-content",
+                    "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
                     "type_preset": "h3",
