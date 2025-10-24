@@ -1,8 +1,25 @@
+{% liquid
+  assign event_drop = nil
+  if section.settings.enable_metaobject
+    assign mo_type = section.settings.mo_type | default: 'event'
+    assign h_ns = section.settings.handle_mf_key | default: 'custom.event_handle' | split: '.' | first
+    assign h_key = section.settings.handle_mf_key | default: 'custom.event_handle' | split: '.' | last
+    assign raw_handle = product.metafields[h_ns][h_key] | default: ''
+    assign handle = raw_handle | handleize
+    if handle != blank
+      assign event_drop = metaobjects[mo_type][handle]
+      if event_drop == nil
+        assign event_drop = shop.metaobjects[mo_type][handle]
+      endif
+    endif
+  endif
+%}
+
 {% capture children %}
   {% content_for 'blocks' %}
 {% endcapture %}
 
-{% render 'section', section: section, children: children %}
+{% render 'section', section: section, children: children, event_drop: event_drop %}
 
 {% schema %}
 {
@@ -20,6 +37,31 @@
     }
   ],
   "settings": [
+    {
+      "type": "header",
+      "content": "Dynamic Content (Metaobjects)"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_metaobject",
+      "label": "Enable metaobject sourcing",
+      "default": false,
+      "info": "When enabled, blocks can pull content from a linked metaobject instead of manual inputs"
+    },
+    {
+      "type": "text",
+      "id": "mo_type",
+      "label": "Metaobject type",
+      "default": "event",
+      "info": "The metaobject definition handle (e.g., 'event')"
+    },
+    {
+      "type": "text",
+      "id": "handle_mf_key",
+      "label": "Product metafield key",
+      "default": "custom.event_handle",
+      "info": "Product metafield that stores the metaobject handle (namespace.key format)"
+    },
     {
       "type": "header",
       "content": "t:content.layout"

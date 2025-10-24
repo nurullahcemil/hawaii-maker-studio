@@ -1,6 +1,38 @@
+{% liquid
+  assign from_mo = false
+  assign mo_field = nil
+  if event_drop and block.settings.source_field_key != blank
+    assign mo_field = event_drop[block.settings.source_field_key]
+    if mo_field
+      assign from_mo = true
+    endif
+  endif
+%}
 
-
-{% render 'text', block: block %}
+{% if from_mo %}
+  {% liquid
+    assign render_mode = block.settings.render_as | default: 'auto'
+    if render_mode == 'auto'
+      if mo_field.type == 'rich_text_field'
+        assign render_mode = 'richtext'
+      else
+        assign render_mode = 'plain'
+      endif
+    endif
+  %}
+  
+  {% if render_mode == 'richtext' %}
+    <div {{ block.shopify_attributes }} class="rte metaobject-text">
+      {{ mo_field | metafield_tag }}
+    </div>
+  {% else %}
+    <div {{ block.shopify_attributes }} class="metaobject-text">
+      {{ mo_field.value }}
+    </div>
+  {% endif %}
+{% else %}
+  {% render 'text', block: block %}
+{% endif %}
 
 {% schema %}
 {
@@ -11,6 +43,43 @@
       "type": "richtext",
       "id": "text",
       "label": "t:settings.text"
+    },
+    {
+      "type": "header",
+      "content": "Metaobject Source"
+    },
+    {
+      "type": "text",
+      "id": "source_field_key",
+      "label": "Metaobject field key",
+      "info": "Optional: Pull content from metaobject field (e.g., 'description', 'audience'). Leave blank to use manual text above."
+    },
+    {
+      "type": "select",
+      "id": "render_as",
+      "label": "Render as",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto-detect"
+        },
+        {
+          "value": "plain",
+          "label": "Plain text"
+        },
+        {
+          "value": "richtext",
+          "label": "Rich text"
+        }
+      ],
+      "default": "auto",
+      "info": "How to render metaobject content"
+    },
+    {
+      "type": "text",
+      "id": "fallback_text",
+      "label": "Fallback text",
+      "info": "Text to show if metaobject field is empty"
     },
     {
       "type": "header",

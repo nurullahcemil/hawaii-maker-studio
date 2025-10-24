@@ -1,7 +1,29 @@
-
-
 {% liquid
   assign block_settings = block.settings
+  
+  assign mo_img = nil
+  assign mo_caption = nil
+  if event_drop and block_settings.image_field_key != blank
+    assign mo_img_field = event_drop[block_settings.image_field_key]
+    if mo_img_field and mo_img_field.value
+      assign mo_img = mo_img_field.value
+    endif
+  endif
+  if event_drop and block_settings.caption_field_key != blank
+    assign mo_cap_field = event_drop[block_settings.caption_field_key]
+    if mo_cap_field and mo_cap_field.value
+      assign mo_caption = mo_cap_field.value
+    endif
+  endif
+  
+  assign use_mo_image = false
+  if mo_img
+    assign use_mo_image = true
+    assign working_image = mo_img
+  else
+    assign working_image = block_settings.image
+  endif
+  
   assign ratio = 1
 
   case block_settings.image_ratio
@@ -10,7 +32,11 @@
     when 'portrait'
       assign ratio = '4 / 5'
     when 'adapt'
-      assign ratio = block_settings.image.aspect_ratio
+      if use_mo_image
+        assign ratio = working_image.aspect_ratio
+      else
+        assign ratio = block_settings.image.aspect_ratio
+      endif
   endcase
 
   if ratio == 0 or ratio == null
@@ -41,7 +67,21 @@
 %}
 
 {% capture image %}
-  {%- if block_settings.image -%}
+  {%- if use_mo_image -%}
+    {% assign img_width = block_settings.img_width | default: 1200 %}
+    <figure class="metaobject-image">
+      <img 
+        src="{{ mo_img | image_url: width: img_width }}"
+        alt="{{ mo_caption | default: mo_img.alt | escape }}"
+        loading="lazy"
+        class="image-block__image border-style"
+        style="{{ image_border_style }}"
+      >
+      {% if mo_caption %}
+        <figcaption class="metaobject-caption">{{ mo_caption }}</figcaption>
+      {% endif %}
+    </figure>
+  {%- elsif block_settings.image -%}
     {{
       block_settings.image
       | image_url: width: 3840
@@ -114,6 +154,36 @@
   "name": "t:names.image",
   "tag": null,
   "settings": [
+    {
+      "type": "header",
+      "content": "Metaobject Source"
+    },
+    {
+      "type": "text",
+      "id": "image_field_key",
+      "label": "Image field key",
+      "info": "Optional: Pull image from metaobject field (e.g., 'banner', 'photo'). Leave blank to use manual image below."
+    },
+    {
+      "type": "text",
+      "id": "caption_field_key",
+      "label": "Caption field key",
+      "info": "Optional: Pull caption from metaobject field"
+    },
+    {
+      "type": "range",
+      "id": "img_width",
+      "label": "Image width (for metaobject images)",
+      "min": 200,
+      "max": 2400,
+      "step": 100,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Manual Image"
+    },
     {
       "type": "image_picker",
       "id": "image",

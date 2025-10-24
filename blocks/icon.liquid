@@ -1,31 +1,58 @@
+{% liquid
+  assign block_settings = block.settings
+  assign icon_block_class = 'icon-block__media icon-block-' | append: block.id
+  
+  assign mo_icon = nil
+  if event_drop and block_settings.icon_field_key != blank
+    assign icon_field = event_drop[block_settings.icon_field_key]
+    if icon_field and icon_field.value
+      assign mo_icon = icon_field.value
+    endif
+  endif
+%}
 
+{% if mo_icon %}
+  {%- if block_settings.link != blank -%}
+    <a
+      href="{{ block_settings.link }}"
+      class="text-inherit icon-block"
+      {% if block_settings.open_in_new_tab %}
+        target="_blank" rel="noopener"
+      {% endif %}
+      {{ block.shopify_attributes }}
+    >
+      <img src="{{ mo_icon | image_url: width: 128 }}" alt="" loading="lazy" class="{{ icon_block_class }}">
+    </a>
+  {%- else -%}
+    <div class="icon-block" {{ block.shopify_attributes }}>
+      <img src="{{ mo_icon | image_url: width: 128 }}" alt="" loading="lazy" class="{{ icon_block_class }}">
+    </div>
+  {%- endif -%}
+{% else %}
+  {% capture icon %}
+    {% render 'icon-or-image',
+      icon: block_settings.icon,
+      image_upload: block_settings.image_upload,
+      width: block_settings.width,
+      class_name: icon_block_class,
+      attributes: block.shopify_attributes
+    %}
+  {% endcapture %}
 
-{% assign block_settings = block.settings %}
-{% assign icon_block_class = 'icon-block__media icon-block-' | append: block.id %}
-
-{% capture icon %}
-  {% render 'icon-or-image',
-    icon: block_settings.icon,
-    image_upload: block_settings.image_upload,
-    width: block_settings.width,
-    class_name: icon_block_class,
-    attributes: block.shopify_attributes
-  %}
-{% endcapture %}
-
-{%- if block_settings.link != blank -%}
-  <a
-    href="{{ block_settings.link }}"
-    class="text-inherit"
-    {% if block_settings.open_in_new_tab %}
-      target="_blank" rel="noopener"
-    {% endif %}
-  >
+  {%- if block_settings.link != blank -%}
+    <a
+      href="{{ block_settings.link }}"
+      class="text-inherit"
+      {% if block_settings.open_in_new_tab %}
+        target="_blank" rel="noopener"
+      {% endif %}
+    >
+      {{ icon }}
+    </a>
+  {%- else -%}
     {{ icon }}
-  </a>
-{%- else -%}
-  {{ icon }}
-{%- endif -%}
+  {%- endif -%}
+{% endif %}
 
 {% stylesheet %}
   .icon-block {
@@ -44,6 +71,20 @@
   "name": "t:names.icon",
   "class": "icon-block",
   "settings": [
+    {
+      "type": "header",
+      "content": "Metaobject Source"
+    },
+    {
+      "type": "text",
+      "id": "icon_field_key",
+      "label": "Icon field key",
+      "info": "Optional: Pull icon image from metaobject field. Leave blank to use manual icon below."
+    },
+    {
+      "type": "header",
+      "content": "Manual Icon"
+    },
     {
       "type": "select",
       "id": "icon",
