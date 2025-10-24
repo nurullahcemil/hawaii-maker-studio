@@ -860,7 +860,7 @@
                 "render_as": "auto",
                 "fallback_text": "",
                 "debug_text_block": false,
-                "width": "fit-content",
+                "width": "100%",
                 "max_width": "narrow",
                 "alignment": "left",
                 "type_preset": "custom",
@@ -1190,7 +1190,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>Description</h2>",
+                "text": "<h2>Host</h2>",
                 "source_field_key": "",
                 "render_as": "auto",
                 "fallback_text": "",
