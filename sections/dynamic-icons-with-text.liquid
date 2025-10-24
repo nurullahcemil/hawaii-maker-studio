@@ -4,16 +4,70 @@
     assign mo_type = section.settings.mo_type | default: 'event'
     assign h_ns = section.settings.handle_mf_key | default: 'custom.event_handle' | split: '.' | first
     assign h_key = section.settings.handle_mf_key | default: 'custom.event_handle' | split: '.' | last
-    assign raw_handle = product.metafields[h_ns][h_key] | default: ''
-    assign handle = raw_handle | handleize
-    if handle != blank
-      assign event_drop = metaobjects[mo_type][handle]
-      if event_drop == nil
-        assign event_drop = shop.metaobjects[mo_type][handle]
+    
+    # Read the product metafield (could be string or metaobject reference)
+    assign raw_mf = product.metafields[h_ns][h_key]
+    
+    # Check if it's a metaobject reference (direct link)
+    if raw_mf.type == 'metaobject_reference'
+      assign event_drop = raw_mf.value
+    elsif raw_mf != blank
+      # It's a string value - try multiple lookup strategies
+      assign raw_handle = raw_mf.value | default: raw_mf | default: ''
+      assign handle = raw_handle | handleize
+      
+      # Strategy 1: Direct lookup by system handle
+      if handle != blank
+        assign event_drop = metaobjects[mo_type][handle]
+        if event_drop == nil
+          assign event_drop = shop.metaobjects[mo_type][handle]
+        endif
+      endif
+      
+      # Strategy 2: If direct lookup failed, search by field value
+      if event_drop == nil and raw_handle != blank
+        for mo in shop.metaobjects[mo_type]
+          # Check if metaobject has event_handle field that matches
+          assign mo_event_handle_value = mo.event_handle.value | default: mo.event_handle
+          if mo_event_handle_value == raw_handle or mo_event_handle_value == handle
+            assign event_drop = mo
+            break
+          endif
+          # Also check handleized version
+          assign mo_event_handle_handleized = mo_event_handle_value | handleize
+          if mo_event_handle_handleized == handle
+            assign event_drop = mo
+            break
+          endif
+          # Also check system handle match
+          assign mo_sys_handle = mo.system.handle | default: mo.handle
+          if mo_sys_handle == handle
+            assign event_drop = mo
+            break
+          endif
+        endfor
       endif
     endif
   endif
 %}
+
+{% if section.settings.debug_mode %}
+  <div style="background: #f0f0f0; padding: 20px; margin: 20px; border: 2px solid #333; font-family: monospace; font-size: 12px;">
+    <strong>🔍 DEBUG MODE (Dynamic Icons with Text)</strong><br>
+    <strong>Metaobject Enabled:</strong> {{ section.settings.enable_metaobject }}<br>
+    <strong>Product:</strong> {{ product.title | default: "No product available" }}<br>
+    <strong>Product Handle:</strong> {{ product.handle | default: "N/A" }}<br>
+    <strong>Metafield Key:</strong> {{ section.settings.handle_mf_key | default: "custom.event_handle" }}<br>
+    <strong>Metafield Raw Value:</strong> "{{ product.metafields.custom.event_handle }}"<br>
+    <strong>Metafield Type:</strong> {{ product.metafields.custom.event_handle.type }}<br>
+    <strong>Event Drop Found:</strong> {{ event_drop != nil }}<br>
+    {% if event_drop %}
+      <strong>Event Drop Title:</strong> {{ event_drop.title }}<br>
+      <strong>Event Drop Handle:</strong> {{ event_drop.system.handle | default: event_drop.handle }}<br>
+      <strong>Event Handle Field:</strong> {{ event_drop.event_handle }}<br>
+    {% endif %}
+  </div>
+{% endif %}
 
 {% capture children %}
   {% content_for 'blocks' %}
@@ -61,6 +115,13 @@
       "label": "Product metafield key",
       "default": "custom.event_handle",
       "info": "Product metafield that stores the metaobject handle (namespace.key format)"
+    },
+    {
+      "type": "checkbox",
+      "id": "debug_mode",
+      "label": "🔍 Debug Mode",
+      "default": false,
+      "info": "Show debug information at the top of the section to troubleshoot metaobject connection"
     },
     {
       "type": "header",
