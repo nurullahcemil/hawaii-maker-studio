@@ -734,7 +734,7 @@
       "settings": {
         "enable_metaobject": true,
         "mo_type": "event",
-        "handle_mf_key": "custom.event_handle",
+        "handle_mf_key": "custom.event_handlecustom.event_handle",
         "content_direction": "row",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
