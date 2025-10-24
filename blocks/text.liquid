@@ -1,7 +1,10 @@
 {% liquid
   assign from_mo = false
   assign mo_field = nil
+  assign trying_mo = false
+  
   if event_drop and block.settings.source_field_key != blank
+    assign trying_mo = true
     assign mo_field = event_drop[block.settings.source_field_key]
     if mo_field
       assign from_mo = true
@@ -30,6 +33,8 @@
       {{ mo_field.value }}
     </div>
   {% endif %}
+{% elsif trying_mo and block.settings.fallback_text != blank %}
+  {% render 'text', block: block, fallback_text: block.settings.fallback_text %}
 {% else %}
   {% render 'text', block: block %}
 {% endif %}

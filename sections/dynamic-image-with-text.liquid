@@ -4,44 +4,13 @@
     assign mo_type = section.settings.mo_type | default: 'event'
     assign h_ns = section.settings.handle_mf_key | default: 'custom.event_handle' | split: '.' | first
     assign h_key = section.settings.handle_mf_key | default: 'custom.event_handle' | split: '.' | last
-
-    # read product metafield safely (may be a Metafield object)
-    assign raw_mf = product.metafields[h_ns][h_key]
-    if raw_mf == nil
-      assign raw_handle = ''
-    else
-      assign raw_handle = raw_mf.value | default: raw_mf | default: ''
-    endif
-
+    assign raw_handle = product.metafields[h_ns][h_key] | default: ''
     assign handle = raw_handle | handleize
-
-    # Try direct lookup by handle
     if handle != blank
       assign event_drop = metaobjects[mo_type][handle]
       if event_drop == nil
         assign event_drop = shop.metaobjects[mo_type][handle]
       endif
-    endif
-
-    # Fallback: search entries for matching field values (event_handle, title)
-    if event_drop == nil and raw_handle != blank
-      assign normalized_raw = raw_handle | downcase | replace: ' ', '-' | replace: '_', '-'
-      for mo in shop.metaobjects[mo_type]
-        if mo.event_handle == raw_handle or mo.event_handle == handle or mo.event_handle == normalized_raw
-          assign event_drop = mo
-          break
-        endif
-        # compare title or handleized title
-        assign mo_title_handle = mo.title | handleize
-        if mo.title == raw_handle
-          assign event_drop = mo
-          break
-        endif
-        if mo_title_handle == handle
-          assign event_drop = mo
-          break
-        endif
-      endfor
     endif
   endif
 %}
