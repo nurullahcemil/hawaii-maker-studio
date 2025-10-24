@@ -253,6 +253,7 @@
             "icon_hHmwN6": {
               "type": "icon",
               "settings": {
+                "icon_field_key": "",
                 "icon": "eye",
                 "width": 32,
                 "link": "",
@@ -303,6 +304,9 @@
                   "type": "text",
                   "settings": {
                     "text": "<h2>Skill Level</h2>",
+                    "source_field_key": "",
+                    "render_as": "auto",
+                    "fallback_text": "",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "center",
@@ -377,6 +381,7 @@
             "icon_XBH8jh": {
               "type": "icon",
               "settings": {
+                "icon_field_key": "",
                 "icon": "heart",
                 "width": 32,
                 "link": "",
@@ -427,6 +432,9 @@
                   "type": "text",
                   "settings": {
                     "text": "<h2>Audience</h2>",
+                    "source_field_key": "",
+                    "render_as": "auto",
+                    "fallback_text": "",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "center",
@@ -501,6 +509,7 @@
             "icon_h7ThtK": {
               "type": "icon",
               "settings": {
+                "icon_field_key": "",
                 "icon": "stopwatch",
                 "width": 32,
                 "link": "",
@@ -551,6 +560,9 @@
                   "type": "text",
                   "settings": {
                     "text": "<h2>Duration</h2>",
+                    "source_field_key": "",
+                    "render_as": "auto",
+                    "fallback_text": "",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "center",
@@ -625,6 +637,7 @@
             "icon_yEMepU": {
               "type": "icon",
               "settings": {
+                "icon_field_key": "",
                 "icon": "silhouette",
                 "width": 32,
                 "link": "",
@@ -675,6 +688,9 @@
                   "type": "text",
                   "settings": {
                     "text": "<h2>Group Size</h2>",
+                    "source_field_key": "",
+                    "render_as": "auto",
+                    "fallback_text": "",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "center",
@@ -716,6 +732,9 @@
       ],
       "name": "Dynamic Icons with Text",
       "settings": {
+        "enable_metaobject": false,
+        "mo_type": "event",
+        "handle_mf_key": "custom.event_handle",
         "content_direction": "row",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -776,6 +795,7 @@
             "icon_4fUUCD": {
               "type": "icon",
               "settings": {
+                "icon_field_key": "",
                 "icon": "eye",
                 "width": 32,
                 "link": "",
@@ -826,6 +846,9 @@
                   "type": "text",
                   "settings": {
                     "text": "<h2>Beginner Friendly</h2>",
+                    "source_field_key": "",
+                    "render_as": "auto",
+                    "fallback_text": "",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -900,6 +923,7 @@
             "icon_ndpbXH": {
               "type": "icon",
               "settings": {
+                "icon_field_key": "",
                 "icon": "heart",
                 "width": 32,
                 "link": "",
@@ -950,6 +974,9 @@
                   "type": "text",
                   "settings": {
                     "text": "<h2>Adults & Kids 8+</h2>",
+                    "source_field_key": "",
+                    "render_as": "auto",
+                    "fallback_text": "",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -975,6 +1002,9 @@
                   "type": "text",
                   "settings": {
                     "text": "",
+                    "source_field_key": "",
+                    "render_as": "auto",
+                    "fallback_text": "",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1050,6 +1080,7 @@
             "icon_mr3mpa": {
               "type": "icon",
               "settings": {
+                "icon_field_key": "",
                 "icon": "stopwatch",
                 "width": 32,
                 "link": "",
@@ -1100,6 +1131,9 @@
                   "type": "text",
                   "settings": {
                     "text": "<h2>2 Hours</h2>",
+                    "source_field_key": "",
+                    "render_as": "auto",
+                    "fallback_text": "",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1126,6 +1160,9 @@
                   "disabled": true,
                   "settings": {
                     "text": "<p>Real people making great products</p>",
+                    "source_field_key": "",
+                    "render_as": "auto",
+                    "fallback_text": "",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1201,6 +1238,7 @@
             "icon_nhmALD": {
               "type": "icon",
               "settings": {
+                "icon_field_key": "",
                 "icon": "silhouette",
                 "width": 32,
                 "link": "",
@@ -1251,6 +1289,9 @@
                   "type": "text",
                   "settings": {
                     "text": "<h2>Up to 8 People</h2>",
+                    "source_field_key": "",
+                    "render_as": "auto",
+                    "fallback_text": "",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1277,6 +1318,9 @@
                   "disabled": true,
                   "settings": {
                     "text": "<p>Real people making great products</p>",
+                    "source_field_key": "",
+                    "render_as": "auto",
+                    "fallback_text": "",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1352,6 +1396,9 @@
         "image_aqtmwg": {
           "type": "image",
           "settings": {
+            "image_field_key": "",
+            "caption_field_key": "",
+            "img_width": 1200,
             "link": "",
             "image_ratio": "square",
             "width": "fill",
@@ -1414,6 +1461,9 @@
               "name": "t:names.heading",
               "settings": {
                 "text": "<h2>Event Title</h2>",
+                "source_field_key": "",
+                "render_as": "auto",
+                "fallback_text": "",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1439,6 +1489,9 @@
               "type": "text",
               "settings": {
                 "text": "<p>Event description goes here.</p>",
+                "source_field_key": "description",
+                "render_as": "auto",
+                "fallback_text": "",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1473,6 +1526,9 @@
       ],
       "name": "Dynamic Image with Text",
       "settings": {
+        "enable_metaobject": false,
+        "mo_type": "event",
+        "handle_mf_key": "custom.event_handle",
         "content_direction": "row",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -1494,6 +1550,9 @@
         "image_yJree6": {
           "type": "image",
           "settings": {
+            "image_field_key": "",
+            "caption_field_key": "",
+            "img_width": 1200,
             "image": "shopify://shop_images/wood_waze.jpg",
             "link": "",
             "image_ratio": "square",
@@ -1557,6 +1616,9 @@
               "name": "t:names.heading",
               "settings": {
                 "text": "<h2>Description</h2>",
+                "source_field_key": "",
+                "render_as": "auto",
+                "fallback_text": "",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1582,6 +1644,9 @@
               "type": "text",
               "settings": {
                 "text": "<p>Discover the art of manual printing and stamping in this hands-on introduction to the hand press — a classic tool for creating bold, tactile designs on fabric, paper, and more. You'll learn how pressure, ink, and material come together to form crisp, beautiful impressions that bring your design ideas to life.</p><p>Perfect for artists, small business owners, or anyone curious about crafting custom merchandise like tote bags, coasters, or cards, this workshop blends timeless technique with modern creativity.</p>",
+                "source_field_key": "",
+                "render_as": "auto",
+                "fallback_text": "",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1706,6 +1771,9 @@
               "name": "t:names.heading",
               "settings": {
                 "text": "<h2>What to Expect</h2>",
+                "source_field_key": "",
+                "render_as": "auto",
+                "fallback_text": "",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1731,6 +1799,9 @@
               "type": "text",
               "settings": {
                 "text": "<p>We'll start by exploring the basics of press printing — how to prepare your artwork, choose inks and materials, and set up the hand press for even, consistent results. You'll learn how different textures and surfaces affect the outcome, and how to adjust pressure for clean, detailed prints.</p><p>Then, you'll jump in to press your own custom designs using provided templates or your own artwork. Expect to experiment, create, and get a little inky along the way!<br/><br/>You'll finish the session with a set of your own printed creations and the skills to keep making at home or in your studio.</p>",
+                "source_field_key": "",
+                "render_as": "auto",
+                "fallback_text": "",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1777,6 +1848,9 @@
         "image_kzRNMj": {
           "type": "image",
           "settings": {
+            "image_field_key": "",
+            "caption_field_key": "",
+            "img_width": 1200,
             "image": "shopify://shop_images/sign-laser-cut.jpg",
             "link": "",
             "image_ratio": "square",
@@ -1836,6 +1910,9 @@
         "image_cigjXf": {
           "type": "image",
           "settings": {
+            "image_field_key": "",
+            "caption_field_key": "",
+            "img_width": 1200,
             "image": "shopify://shop_images/Nurullah_Portrait-6.jpg",
             "link": "",
             "image_ratio": "square",
@@ -1899,6 +1976,9 @@
               "name": "t:names.heading",
               "settings": {
                 "text": "<h2>Description</h2>",
+                "source_field_key": "",
+                "render_as": "auto",
+                "fallback_text": "",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1924,6 +2004,9 @@
               "type": "text",
               "settings": {
                 "text": "<p>Nurullah Gokdogan</p>",
+                "source_field_key": "",
+                "render_as": "auto",
+                "fallback_text": "",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1949,6 +2032,9 @@
               "type": "text",
               "settings": {
                 "text": "<p>Nurullah is a designer, maker, and founder of KraftStories Maker Studio. He has years of experience combining technology with art, from 3D printing to laser cutting and handcraft design. His mission is to help others explore creativity through hands-on experiences that blend innovation with craftsmanship.</p>",
+                "source_field_key": "",
+                "render_as": "auto",
+                "fallback_text": "",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -2034,6 +2120,9 @@
           "type": "text",
           "settings": {
             "text": "<h2>Contact us</h2>",
+            "source_field_key": "",
+            "render_as": "auto",
+            "fallback_text": "",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
