@@ -29,15 +29,17 @@
   <div class="section-content-wrapper">
     
     {%- if event -%}
-      {%- if section.settings.show_description and event.description != blank -%}
-        <div class="event-description-section">
-          <div class="event-section-header">
-            <h2 class="event-section-title">{{ section.settings.description_title | default: 'Description' }}</h2>
+      {%- if section.settings.show_description -%}
+        {%- if event.description != blank -%}
+          <div class="event-description-section">
+            <div class="event-section-header">
+              <h2 class="event-section-title">{{ section.settings.description_title | default: 'Description' }}</h2>
+            </div>
+            <div class="event-description-content">
+              {{ event.description }}
+            </div>
           </div>
-          <div class="event-description-content">
-            {{ event.description }}
-          </div>
-        </div>
+        {%- endif -%}
       {%- endif -%}
       
       <!-- Event Details Grid -->
@@ -103,15 +105,17 @@
       {%- endif -%}
       
       <!-- What to Expect Section -->
-      {%- if section.settings.show_expectations and event.what_to_expect != blank -%}
-        <div class="event-expectations-section">
-          <div class="event-section-header">
-            <h2 class="event-section-title">{{ section.settings.expectations_title | default: 'What to Expect' }}</h2>
+      {%- if section.settings.show_expectations -%}
+        {%- if event.what_to_expect != blank -%}
+          <div class="event-expectations-section">
+            <div class="event-section-header">
+              <h2 class="event-section-title">{{ section.settings.expectations_title | default: 'What to Expect' }}</h2>
+            </div>
+            <div class="event-expectations-content">
+              {{ event.what_to_expect }}
+            </div>
           </div>
-          <div class="event-expectations-content">
-            {{ event.what_to_expect }}
-          </div>
-        </div>
+        {%- endif -%}
       {%- endif -%}
       
       <!-- Host Section -->
