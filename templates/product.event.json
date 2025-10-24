@@ -739,7 +739,7 @@
         "enable_metaobject": true,
         "mo_type": "event",
         "handle_mf_key": "custom.event_handle",
-        "debug_mode": false,
+        "debug_mode": true,
         "content_direction": "row",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
