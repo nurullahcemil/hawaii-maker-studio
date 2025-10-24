@@ -68,17 +68,78 @@
         assign render_mode = 'plain'
       endif
     endif
+    
+    # Build same styling as text snippet
+    assign block_settings = block.settings
+    assign text_width = block_settings.width
+    
+    if block_settings.font_size contains 'heading-lg' or block_settings.font_size contains 'heading-xl'
+      assign type = 'display'
+    elsif block_settings.font_size contains 'heading'
+      assign type = 'heading'
+    else
+      assign type = 'body'
+    endif
+    
+    assign is_rte = false
+    if block_settings.type_preset == 'rte' or block_settings.type_preset == 'paragraph' or render_mode == 'richtext'
+      assign is_rte = true
+    endif
+    
+    capture text_block_classes
+      if text_width == '100%'
+        echo 'text-block--align-' | append: block_settings.alignment
+        if block_settings.max_width == 'none'
+          echo ' text-block--full-width '
+        endif
+      endif
+      if block_settings.type_preset == 'custom'
+        echo ' custom-typography '
+        if block_settings.font_size != ''
+          echo ' custom-font-size '
+        endif
+        if block_settings.color != ''
+          echo ' custom-color '
+        endif
+      endif
+      if block_settings.background
+        echo ' text-block--background '
+      endif
+      if is_rte
+        echo ' rte '
+      endif
+    endcapture
+    
+    assign element = 'div'
+    if is_rte
+      assign element = 'rte-formatter'
+    endif
   %}
   
-  {% if render_mode == 'richtext' %}
-    <div {{ block.shopify_attributes }} class="rte metaobject-text">
+  <{{ element }}
+    {{ block.shopify_attributes }}
+    class="spacing-style text-block text-block--{{ block.id }} {{ block_settings.type_preset }} {{ text_block_classes }}"
+    style="
+      {% render 'spacing-padding', settings: block_settings %}
+      {% render 'typography-style', settings: block_settings %}
+      --width: {{ text_width }};
+      --max-width: var(--max-width--{{ type }}-{{ block_settings.max_width }});
+      {% if text_width == '100%' %}
+        --text-align: {{ block_settings.alignment }};
+      {% endif %}
+      {% if block_settings.background %}
+        --text-background-color: {{ block_settings.background_color | default: 'rgb(255 255 255 / 1.0)' }};
+        --text-corner-radius: {{ block_settings.corner_radius }}px;
+        --text-padding: max(var(--padding-2xs), calc((var(--text-corner-radius) + var(--padding-xs)) * (1 - cos(45deg))));
+      {% endif %}
+    ">
+    {% if render_mode == 'richtext' %}
       {{ mo_field | metafield_tag }}
-    </div>
-  {% else %}
-    <div {{ block.shopify_attributes }} class="metaobject-text">
+    {% else %}
       {{ mo_field.value }}
-    </div>
-  {% endif %}
+    {% endif %}
+  </{{ element }}>
+  
 {% elsif trying_mo and block.settings.fallback_text != blank %}
   {% render 'text', block: block, fallback_text: block.settings.fallback_text %}
 {% else %}
