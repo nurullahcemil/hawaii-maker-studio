@@ -1,10 +1,11 @@
 {% liquid
   assign block_settings = block.settings
+  assign event_drop_actual = event_drop | default: section_event_drop
   assign icon_block_class = 'icon-block__media icon-block-' | append: block.id
   
   assign mo_icon = nil
-  if event_drop and block_settings.icon_field_key != blank
-    assign icon_field = event_drop[block_settings.icon_field_key]
+  if event_drop_actual and block_settings.icon_field_key != blank
+    assign icon_field = event_drop_actual[block_settings.icon_field_key]
     if icon_field and icon_field.value
       assign mo_icon = icon_field.value
     endif

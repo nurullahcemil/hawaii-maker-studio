@@ -1,13 +1,18 @@
+{% comment %} Try to get event_drop from content_for parameter or fallback to direct variable {% endcomment %}
+{% liquid
+  assign event_drop_actual = event_drop | default: section_event_drop
+%}
+
 {% if block.settings.debug_text_block %}
   <div style="background: #fff3cd; padding: 10px; margin: 10px 0; border: 2px solid #856404; font-family: monospace; font-size: 11px;">
     <strong>🔍 TEXT BLOCK DEBUG</strong><br>
-    <strong>Event Drop Available:</strong> {% if event_drop %}YES{% else %}NO{% endif %}<br>
+    <strong>Event Drop Available:</strong> {% if event_drop_actual %}YES{% else %}NO{% endif %}<br>
     <strong>Field Key Setting:</strong> "{{ block.settings.source_field_key }}"<br>
     <strong>Field Key Blank:</strong> {% if block.settings.source_field_key == blank %}YES{% else %}NO{% endif %}<br>
-    {% if event_drop %}
-      <strong>Event Title:</strong> {{ event_drop.title }}<br>
+    {% if event_drop_actual %}
+      <strong>Event Title:</strong> {{ event_drop_actual.title }}<br>
       {% if block.settings.source_field_key != blank %}
-        {% assign test_field = event_drop[block.settings.source_field_key] %}
+        {% assign test_field = event_drop_actual[block.settings.source_field_key] %}
         <strong>Field Found:</strong> {% if test_field %}YES{% else %}NO{% endif %}<br>
         {% if test_field %}
           <strong>Field Type:</strong> {{ test_field.type }}<br>
@@ -24,9 +29,9 @@
   assign mo_field = nil
   assign trying_mo = false
   
-  if event_drop and block.settings.source_field_key != blank
+  if event_drop_actual and block.settings.source_field_key != blank
     assign trying_mo = true
-    assign mo_field = event_drop[block.settings.source_field_key]
+    assign mo_field = event_drop_actual[block.settings.source_field_key]
     if mo_field
       assign from_mo = true
     endif
