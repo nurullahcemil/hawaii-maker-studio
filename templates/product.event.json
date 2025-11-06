@@ -1063,7 +1063,7 @@
         "image_kzRNMj": {
           "type": "image",
           "settings": {
-            "image_field_key": "",
+            "image_field_key": "what_to_expect_image",
             "caption_field_key": "",
             "img_width": 1200,
             "image": "shopify://shop_images/sign-laser-cut.jpg",
