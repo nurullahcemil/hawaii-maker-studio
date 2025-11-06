@@ -761,7 +761,7 @@
         "image_yJree6": {
           "type": "image",
           "settings": {
-            "image_field_key": "",
+            "image_field_key": "description_image",
             "caption_field_key": "",
             "img_width": 1200,
             "image": "shopify://shop_images/wood_waze.jpg",
