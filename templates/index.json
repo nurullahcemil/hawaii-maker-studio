@@ -1136,7 +1136,7 @@
                   "type": "button",
                   "settings": {
                     "label": "Book Classes",
-                    "link": "shopify://collections/workshops",
+                    "link": "shopify://products/intro-to-laser-cutting-with-xtool-p2s",
                     "open_in_new_tab": false,
                     "style_class": "button-secondary",
                     "width": "fit-content",
@@ -1469,7 +1469,7 @@
                   "type": "button",
                   "settings": {
                     "label": "Book Classes",
-                    "link": "shopify://collections/workshops",
+                    "link": "shopify://products/laserpecker-l5-engraving-cutting-basics",
                     "open_in_new_tab": false,
                     "style_class": "button-secondary",
                     "width": "fit-content",
@@ -1484,7 +1484,7 @@
                   "name": "t:names.button",
                   "settings": {
                     "label": "Rent xTool LP 5",
-                    "link": "shopify://products/laserpecker-l5-engraving-cutting-basics",
+                    "link": "shopify://products/rent-laserpecker-lp5-honolulu",
                     "open_in_new_tab": false,
                     "style_class": "button",
                     "width": "fit-content",
@@ -1711,7 +1711,7 @@
                   "type": "button",
                   "settings": {
                     "label": "Book Classes",
-                    "link": "shopify://collections/workshops",
+                    "link": "shopify://products/introductory-3d-printing-class",
                     "open_in_new_tab": false,
                     "style_class": "button-secondary",
                     "width": "fit-content",
@@ -1954,7 +1954,7 @@
                   "name": "t:names.button",
                   "settings": {
                     "label": "Book Class",
-                    "link": "shopify://collections/all",
+                    "link": "shopify://products/introduction-to-uv-printing",
                     "open_in_new_tab": false,
                     "style_class": "button-secondary",
                     "width": "fit-content",
@@ -1968,7 +1968,7 @@
                   "type": "button",
                   "settings": {
                     "label": "Rent UV Printer",
-                    "link": "shopify://collections/all",
+                    "link": "shopify://products/rent-uv-printer-honolulu",
                     "open_in_new_tab": false,
                     "style_class": "button",
                     "width": "fit-content",
@@ -2195,7 +2195,7 @@
                   "type": "button",
                   "settings": {
                     "label": "Book Class",
-                    "link": "shopify://collections/all",
+                    "link": "shopify://products/beginner-s-machine-embroidery-class",
                     "open_in_new_tab": false,
                     "style_class": "button-secondary",
                     "width": "fit-content",
@@ -2210,7 +2210,7 @@
                   "name": "t:names.button",
                   "settings": {
                     "label": "Rent Brother PE900",
-                    "link": "shopify://collections/all",
+                    "link": "shopify://products/rent-brother-pe900-embroidery-machine-honolulu",
                     "open_in_new_tab": false,
                     "style_class": "button",
                     "width": "fit-content",
