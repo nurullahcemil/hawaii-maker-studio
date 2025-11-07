@@ -199,18 +199,19 @@
     "hero_8GVh8z": {
       "type": "hero",
       "blocks": {
-        "text_3AjV8Q": {
+        "text_Lm3mc6": {
           "type": "text",
+          "name": "t:names.text",
           "settings": {
-            "text": "<h1>Maker Kids</h1>",
+            "text": "<h1>MAKER KIDS</h1>",
             "source_field_key": "",
             "render_as": "auto",
             "fallback_text": "",
             "debug_text_block": false,
             "width": "fit-content",
-            "max_width": "narrow",
+            "max_width": "normal",
             "alignment": "left",
-            "type_preset": "h1",
+            "type_preset": "rte",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
             "line_height": "normal",
@@ -231,7 +232,7 @@
         "text_jmY8iV": {
           "type": "text",
           "settings": {
-            "text": "<h5>Made with care and unconditionally loved by our customers.</h5>",
+            "text": "<h6>Made with care and unconditionally loved by our customers.</h6>",
             "source_field_key": "",
             "render_as": "auto",
             "fallback_text": "",
@@ -274,7 +275,7 @@
         }
       },
       "block_order": [
-        "text_3AjV8Q",
+        "text_Lm3mc6",
         "text_jmY8iV",
         "button_JGNzap"
       ],
