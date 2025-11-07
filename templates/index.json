@@ -1726,7 +1726,7 @@
                   "name": "t:names.button",
                   "settings": {
                     "label": "Rent Bambu Printer",
-                    "link": "shopify://products/introductory-3d-printing-class",
+                    "link": "shopify://products/rent-bambu-lab-x1e-3d-printer",
                     "open_in_new_tab": false,
                     "style_class": "button",
                     "width": "fit-content",
