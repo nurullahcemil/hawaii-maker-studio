@@ -257,27 +257,11 @@
             "padding-inline-end": 0
           },
           "blocks": {}
-        },
-        "button_JGNzap": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "Shop Now",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
         }
       },
       "block_order": [
         "text_Lm3mc6",
-        "text_jmY8iV",
-        "button_JGNzap"
+        "text_jmY8iV"
       ],
       "name": "t:names.hero",
       "settings": {
@@ -299,11 +283,11 @@
         "section_height_custom": 50,
         "color_scheme": "scheme-5",
         "toggle_overlay": true,
-        "overlay_color": "#00000026",
-        "overlay_style": "gradient",
+        "overlay_color": "#00000040",
+        "overlay_style": "solid",
         "gradient_direction": "to top",
         "blurred_reflection": false,
-        "reflection_opacity": 75,
+        "reflection_opacity": 0,
         "padding-block-start": 40,
         "padding-block-end": 40
       }
