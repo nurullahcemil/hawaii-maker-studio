@@ -339,7 +339,7 @@
               "type": "text",
               "name": "Heading",
               "settings": {
-                "text": "<h2>Inspire the Next Generation of Creators</h2>",
+                "text": "<h2><strong>Inspire the Next Generation of Creators</strong></h2>",
                 "source_field_key": "",
                 "render_as": "auto",
                 "fallback_text": "",
@@ -445,7 +445,7 @@
               "type": "text",
               "name": "Heading",
               "settings": {
-                "text": "<h2>Quality first</h2>",
+                "text": "<h2><strong>More than Class - It's A Mindset</strong></h2>",
                 "source_field_key": "",
                 "render_as": "auto",
                 "fallback_text": "",
@@ -475,7 +475,7 @@
               "type": "text",
               "name": "Description",
               "settings": {
-                "text": "<p>We obsess over the details and strive to deliver the best products at the best prices, every time.</p>",
+                "text": "<p>We teach kids how to think like inventors, work like designers, and dream<br/>like artists. Every session builds the habits of curiosity, resilience, and imagination —<br/>skills that last a lifetime.</p>",
                 "source_field_key": "",
                 "render_as": "auto",
                 "fallback_text": "",
@@ -551,7 +551,7 @@
               "type": "text",
               "name": "Heading",
               "settings": {
-                "text": "<h2>Customer care</h2>",
+                "text": "<p><strong>A Creative Community</strong></p>",
                 "source_field_key": "",
                 "render_as": "auto",
                 "fallback_text": "",
@@ -581,7 +581,7 @@
               "type": "text",
               "name": "Description",
               "settings": {
-                "text": "<p>We're always on your side: keeping our loyal customers happy is our top priority and number one goal.</p>",
+                "text": "<p>We believe learning is more fun together. Our workshops connect kids, parents, and mentors in a supportive community built on creativity, curiosity, and kindness.</p>",
                 "source_field_key": "",
                 "render_as": "auto",
                 "fallback_text": "",
