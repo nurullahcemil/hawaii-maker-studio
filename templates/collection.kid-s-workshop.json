@@ -369,7 +369,7 @@
               "type": "text",
               "name": "Description",
               "settings": {
-                "text": "<p>Give your child the tools to build it. Our hands-on classes fill fast —<br/>reserve their spot today and let them explore 3D printing, laser cutting,<br/>robotics, and design thinking in a fun, creative environment.</p>",
+                "text": "<p>Give your child the tools to build it. Our hands-on classes fill fast reserve their spot today and let them explore 3D printing, laser cutting, robotics, and design thinking in a fun, creative environment.</p>",
                 "source_field_key": "",
                 "render_as": "auto",
                 "fallback_text": "",
