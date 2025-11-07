@@ -1711,7 +1711,7 @@
                   "type": "button",
                   "settings": {
                     "label": "Book Classes",
-                    "link": "shopify://collections/all",
+                    "link": "shopify://collections/workshops",
                     "open_in_new_tab": false,
                     "style_class": "button-secondary",
                     "width": "fit-content",
@@ -1726,7 +1726,7 @@
                   "name": "t:names.button",
                   "settings": {
                     "label": "Rent Bambu Printer",
-                    "link": "shopify://collections/all",
+                    "link": "shopify://products/introductory-3d-printing-class",
                     "open_in_new_tab": false,
                     "style_class": "button",
                     "width": "fit-content",
