@@ -1469,7 +1469,7 @@
                   "type": "button",
                   "settings": {
                     "label": "Book Classes",
-                    "link": "shopify://collections/all",
+                    "link": "shopify://collections/workshops",
                     "open_in_new_tab": false,
                     "style_class": "button-secondary",
                     "width": "fit-content",
@@ -1484,7 +1484,7 @@
                   "name": "t:names.button",
                   "settings": {
                     "label": "Rent xTool LP 5",
-                    "link": "shopify://collections/all",
+                    "link": "shopify://products/laserpecker-l5-engraving-cutting-basics",
                     "open_in_new_tab": false,
                     "style_class": "button",
                     "width": "fit-content",
