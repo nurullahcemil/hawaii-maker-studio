@@ -2580,7 +2580,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p>Adult's Workshop</p>",
+                "text": "<p>Kid's Workshop</p>",
                 "source_field_key": "",
                 "render_as": "auto",
                 "fallback_text": "",
@@ -2679,7 +2679,7 @@
                   "type": "button",
                   "settings": {
                     "label": "Book Class",
-                    "link": "shopify://collections/all",
+                    "link": "shopify://collections/kids",
                     "open_in_new_tab": false,
                     "style_class": "button-secondary",
                     "width": "fit-content",
