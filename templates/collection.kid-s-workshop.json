@@ -232,13 +232,13 @@
         "text_jmY8iV": {
           "type": "text",
           "settings": {
-            "text": "<h6>Made with care and unconditionally loved by our customers.</h6>",
+            "text": "<h6>Explore hands-on craft classes inspired by nature, tradition, and the<br/>joy of creating together — in the heart of Chinatown.</h6>",
             "source_field_key": "",
             "render_as": "auto",
             "fallback_text": "",
             "debug_text_block": false,
             "width": "fit-content",
-            "max_width": "narrow",
+            "max_width": "normal",
             "alignment": "left",
             "type_preset": "rte",
             "font": "var(--font-body--family)",
@@ -339,7 +339,7 @@
               "type": "text",
               "name": "Heading",
               "settings": {
-                "text": "<h2>Intentional design</h2>",
+                "text": "<h2>Inspire the Next Generation of Creators</h2>",
                 "source_field_key": "",
                 "render_as": "auto",
                 "fallback_text": "",
@@ -369,7 +369,7 @@
               "type": "text",
               "name": "Description",
               "settings": {
-                "text": "<p>We create with intention. Our products solve real problems with clean design and honest materials.</p>",
+                "text": "<p>Give your child the tools to build it. Our hands-on classes fill fast —<br/>reserve their spot today and let them explore 3D printing, laser cutting,<br/>robotics, and design thinking in a fun, creative environment.</p>",
                 "source_field_key": "",
                 "render_as": "auto",
                 "fallback_text": "",
@@ -741,7 +741,7 @@
       "settings": {
         "product": "3d-printing-workshop",
         "layout": "media-left",
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-1",
         "padding-block-start": 0,
         "padding-block-end": 0
       }
@@ -839,7 +839,7 @@
       "settings": {
         "product": "build-a-solar-powered-vehicle-with-laser-cutting",
         "layout": "media-right",
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-1",
         "padding-block-start": 0,
         "padding-block-end": 0
       }
