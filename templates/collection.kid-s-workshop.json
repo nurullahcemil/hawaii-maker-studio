@@ -648,100 +648,6 @@
         "padding-block-end": 48
       }
     },
-    "section_NYYUFk": {
-      "type": "section",
-      "blocks": {
-        "image_PUHYqB": {
-          "type": "image",
-          "name": "t:names.image",
-          "settings": {
-            "image_field_key": "",
-            "caption_field_key": "",
-            "img_width": 1200,
-            "image": "shopify://shop_images/Untitled_design_21.png",
-            "link": "",
-            "image_ratio": "adapt",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fill",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "text_MnxKtM": {
-          "type": "text",
-          "name": "t:names.text",
-          "settings": {
-            "text": "<h4><strong>The future belongs to the makers.</strong><br/><br/>Give your child the tools to build it. Our hands-on<br/>classes fill fast — reserve their spot today and let them<br/>explore 3D printing, laser cutting, robotics, and design<br/>thinking in a fun, creative environment.<br/><br/></h4>",
-            "source_field_key": "",
-            "render_as": "auto",
-            "fallback_text": "",
-            "debug_text_block": false,
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "image_PUHYqB",
-        "text_MnxKtM"
-      ],
-      "disabled": true,
-      "name": "t:names.custom_section",
-      "settings": {
-        "content_direction": "row",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "full-width",
-        "section_height": "small",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-1",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
-    },
     "media_with_content_GygU7g": {
       "type": "media-with-content",
       "blocks": {
@@ -750,7 +656,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/Untitled_design_21.png",
+            "image": "shopify://shop_images/WhatsApp_Image_2025-11-07_at_16.10.26_ded741b9.jpg",
             "link": "",
             "video_loop": true,
             "video_autoplay": false,
@@ -949,8 +855,8 @@
         "section_width": "full-width",
         "extend_media": true,
         "color_scheme": "scheme-1",
-        "padding-block-start": 100,
-        "padding-block-end": 100
+        "padding-block-start": 50,
+        "padding-block-end": 50
       }
     },
     "featured_product_y3JzRF": {
@@ -1006,7 +912,6 @@
             "featured-product-price": {
               "type": "_featured-product-price",
               "name": "t:names.price",
-              "disabled": true,
               "static": true,
               "settings": {
                 "show_sale_price_first": true,
@@ -1049,7 +954,301 @@
         "layout": "media-left",
         "color_scheme": "scheme-1",
         "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-end": 50
+      }
+    },
+    "featured_product_gjj7z7": {
+      "type": "featured-product",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "name": "t:names.product_media",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/image_2025-11-05_133134452.png",
+            "link": "",
+            "video_loop": true,
+            "video_autoplay": false,
+            "image_position": "cover",
+            "video_position": "cover"
+          },
+          "blocks": {}
+        },
+        "featured-product": {
+          "type": "_featured-product",
+          "name": "t:names.product",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "featured-product-title": {
+              "type": "product-title",
+              "name": "t:names.title",
+              "static": true,
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h5",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "featured-product-price": {
+              "type": "_featured-product-price",
+              "name": "t:names.price",
+              "static": true,
+              "settings": {
+                "show_sale_price_first": true,
+                "type_preset": ""
+              },
+              "blocks": {}
+            },
+            "featured-product-gallery": {
+              "type": "_featured-product-gallery",
+              "name": "t:names.image",
+              "static": true,
+              "settings": {
+                "image_ratio": "adapt",
+                "constrain_to_viewport": "contain"
+              },
+              "blocks": {}
+            },
+            "featured-product-swatches": {
+              "type": "swatches",
+              "name": "t:names.swatches",
+              "static": true,
+              "settings": {
+                "product_swatches_alignment": "flex-start",
+                "product_swatches_alignment_mobile": "flex-start",
+                "hide_padding": true,
+                "product_swatches_padding_top": 4,
+                "product_swatches_padding_bottom": 0,
+                "product_swatches_padding_left": 0,
+                "product_swatches_padding_right": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        }
+      },
+      "name": "t:names.featured_product",
+      "settings": {
+        "product": "build-a-solar-powered-vehicle-with-laser-cutting",
+        "layout": "media-right",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 0,
+        "padding-block-end": 50
+      }
+    },
+    "featured_product_DGq9NX": {
+      "type": "featured-product",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "name": "t:names.product_media",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/image_2025-11-05_130825509.png",
+            "link": "",
+            "video_loop": true,
+            "video_autoplay": false,
+            "image_position": "cover",
+            "video_position": "cover"
+          },
+          "blocks": {}
+        },
+        "featured-product": {
+          "type": "_featured-product",
+          "name": "t:names.product",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "featured-product-title": {
+              "type": "product-title",
+              "name": "t:names.title",
+              "static": true,
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h5",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "featured-product-price": {
+              "type": "_featured-product-price",
+              "name": "t:names.price",
+              "static": true,
+              "settings": {
+                "show_sale_price_first": true,
+                "type_preset": ""
+              },
+              "blocks": {}
+            },
+            "featured-product-gallery": {
+              "type": "_featured-product-gallery",
+              "name": "t:names.image",
+              "static": true,
+              "settings": {
+                "image_ratio": "adapt",
+                "constrain_to_viewport": "contain"
+              },
+              "blocks": {}
+            },
+            "featured-product-swatches": {
+              "type": "swatches",
+              "name": "t:names.swatches",
+              "static": true,
+              "settings": {
+                "product_swatches_alignment": "flex-start",
+                "product_swatches_alignment_mobile": "flex-start",
+                "hide_padding": true,
+                "product_swatches_padding_top": 4,
+                "product_swatches_padding_bottom": 0,
+                "product_swatches_padding_left": 0,
+                "product_swatches_padding_right": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        }
+      },
+      "name": "t:names.featured_product",
+      "settings": {
+        "product": "catapult-launcher-engineering-lab",
+        "layout": "media-left",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 0,
+        "padding-block-end": 50
+      }
+    },
+    "featured_product_iiLHYK": {
+      "type": "featured-product",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "name": "t:names.product_media",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/image_2025-11-05_140625633.png",
+            "link": "",
+            "video_loop": true,
+            "video_autoplay": false,
+            "image_position": "cover",
+            "video_position": "cover"
+          },
+          "blocks": {}
+        },
+        "featured-product": {
+          "type": "_featured-product",
+          "name": "t:names.product",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "featured-product-title": {
+              "type": "product-title",
+              "name": "t:names.title",
+              "static": true,
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h5",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "featured-product-price": {
+              "type": "_featured-product-price",
+              "name": "t:names.price",
+              "static": true,
+              "settings": {
+                "show_sale_price_first": true,
+                "type_preset": ""
+              },
+              "blocks": {}
+            },
+            "featured-product-gallery": {
+              "type": "_featured-product-gallery",
+              "name": "t:names.image",
+              "static": true,
+              "settings": {
+                "image_ratio": "adapt",
+                "constrain_to_viewport": "contain"
+              },
+              "blocks": {}
+            },
+            "featured-product-swatches": {
+              "type": "swatches",
+              "name": "t:names.swatches",
+              "static": true,
+              "settings": {
+                "product_swatches_alignment": "flex-start",
+                "product_swatches_alignment_mobile": "flex-start",
+                "hide_padding": true,
+                "product_swatches_padding_top": 4,
+                "product_swatches_padding_bottom": 0,
+                "product_swatches_padding_left": 0,
+                "product_swatches_padding_right": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        }
+      },
+      "name": "t:names.featured_product",
+      "settings": {
+        "product": "hydraulic-platform-stem-project",
+        "layout": "media-left",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 0,
+        "padding-block-end": 50
       }
     }
   },
@@ -1057,8 +1256,10 @@
     "main",
     "hero_8GVh8z",
     "section_GMwBti",
-    "section_NYYUFk",
     "media_with_content_GygU7g",
-    "featured_product_y3JzRF"
+    "featured_product_y3JzRF",
+    "featured_product_gjj7z7",
+    "featured_product_DGq9NX",
+    "featured_product_iiLHYK"
   ]
 }
