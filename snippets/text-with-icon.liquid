@@ -10,7 +10,7 @@
 {% liquid
   assign block_settings = block.settings
   
-  comment 'Determine icon size'
+  # Determine icon size
   assign icon_size_value = block_settings.icon_size | append: 'px'
 %}
 
