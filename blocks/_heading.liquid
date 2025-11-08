@@ -1,12 +1,78 @@
 
 
 {%- doc -%}
-  Renders a heading block.
+  Renders a heading block with optional icon.
 
   @param {string} text
 {%- enddoc -%}
 
-{% render 'text', width: '100%', block: block, fallback_text: text %}
+{% liquid
+  assign block_settings = block.settings
+  
+  comment 'Determine icon size based on unit'
+  if block_settings.icon_size_unit == 'px'
+    assign icon_size_value = block_settings.icon_size_px | append: 'px'
+  else
+    assign icon_size_value = block_settings.icon_size_percent | append: '%'
+  endif
+%}
+
+{% comment %} Wrapper for heading with icon {% endcomment %}
+<div class="heading-with-icon heading-icon-position-{{ block_settings.icon_position | default: 'left' }}">
+  {% if block_settings.show_icon and block_settings.icon_type != 'none' and block_settings.icon_position == 'left' %}
+    {% if block_settings.icon_type == 'custom' and block_settings.custom_icon != blank %}
+      <img src="{{ block_settings.custom_icon | image_url }}" alt="" class="heading-icon custom-icon" style="width: {{ icon_size_value }}; height: {{ icon_size_value }};">
+    {% elsif block_settings.icon_type != 'custom' %}
+      <svg class="heading-icon svg-icon" style="width: {{ icon_size_value }}; height: {{ icon_size_value }};" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        {% render 'icon', icon: block_settings.icon_type %}
+      </svg>
+    {% endif %}
+  {% endif %}
+  
+  {% render 'text', width: '100%', block: block, fallback_text: text %}
+  
+  {% if block_settings.show_icon and block_settings.icon_type != 'none' and block_settings.icon_position == 'right' %}
+    {% if block_settings.icon_type == 'custom' and block_settings.custom_icon != blank %}
+      <img src="{{ block_settings.custom_icon | image_url }}" alt="" class="heading-icon custom-icon" style="width: {{ icon_size_value }}; height: {{ icon_size_value }};">
+    {% elsif block_settings.icon_type != 'custom' %}
+      <svg class="heading-icon svg-icon" style="width: {{ icon_size_value }}; height: {{ icon_size_value }};" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        {% render 'icon', icon: block_settings.icon_type %}
+      </svg>
+    {% endif %}
+  {% endif %}
+</div>
+
+<style>
+  .heading-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .heading-with-icon.heading-icon-position-right {
+    flex-direction: row-reverse;
+  }
+  
+  .heading-icon {
+    flex-shrink: 0;
+    display: inline-block;
+  }
+  
+  .heading-icon.custom-icon {
+    object-fit: contain;
+  }
+  
+  .heading-icon.svg-icon {
+    fill: currentColor;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .heading-with-icon {
+      gap: 0.25rem;
+    }
+  }
+</style>
 
 {% # theme-check-disable %}
 {% schema %}
@@ -287,6 +353,356 @@
       "label": "t:settings.show_alignment",
       "default": true,
       "visible_if": "{{ false }}"
+    },
+    {
+      "type": "header",
+      "content": "Icon Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "Show icon",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "icon_type",
+      "label": "Icon type",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "apple",
+          "label": "Apple"
+        },
+        {
+          "value": "banana",
+          "label": "Banana"
+        },
+        {
+          "value": "bottle",
+          "label": "Bottle"
+        },
+        {
+          "value": "bluesky",
+          "label": "Bluesky"
+        },
+        {
+          "value": "box",
+          "label": "Box"
+        },
+        {
+          "value": "caret",
+          "label": "Caret"
+        },
+        {
+          "value": "carrot",
+          "label": "Carrot"
+        },
+        {
+          "value": "chat_bubble",
+          "label": "Chat Bubble"
+        },
+        {
+          "value": "check_box",
+          "label": "Check Box"
+        },
+        {
+          "value": "clipboard",
+          "label": "Clipboard"
+        },
+        {
+          "value": "dairy",
+          "label": "Dairy"
+        },
+        {
+          "value": "dairy_free",
+          "label": "Dairy Free"
+        },
+        {
+          "value": "discord",
+          "label": "Discord"
+        },
+        {
+          "value": "dryer",
+          "label": "Dryer"
+        },
+        {
+          "value": "error",
+          "label": "Error"
+        },
+        {
+          "value": "eye",
+          "label": "Eye"
+        },
+        {
+          "value": "fire",
+          "label": "Fire"
+        },
+        {
+          "value": "gluten_free",
+          "label": "Gluten Free"
+        },
+        {
+          "value": "heart",
+          "label": "Heart"
+        },
+        {
+          "value": "iron",
+          "label": "Iron"
+        },
+        {
+          "value": "leaf",
+          "label": "Leaf"
+        },
+        {
+          "value": "leather",
+          "label": "Leather"
+        },
+        {
+          "value": "lightning_bolt",
+          "label": "Lightning Bolt"
+        },
+        {
+          "value": "linkedin",
+          "label": "LinkedIn"
+        },
+        {
+          "value": "lipstick",
+          "label": "Lipstick"
+        },
+        {
+          "value": "lock",
+          "label": "Lock"
+        },
+        {
+          "value": "map_pin",
+          "label": "Map Pin"
+        },
+        {
+          "value": "nut_free",
+          "label": "Nut Free"
+        },
+        {
+          "value": "pants",
+          "label": "Pants"
+        },
+        {
+          "value": "paw_print",
+          "label": "Paw Print"
+        },
+        {
+          "value": "pepper",
+          "label": "Pepper"
+        },
+        {
+          "value": "perfume",
+          "label": "Perfume"
+        },
+        {
+          "value": "plane",
+          "label": "Plane"
+        },
+        {
+          "value": "plant",
+          "label": "Plant"
+        },
+        {
+          "value": "price_tag",
+          "label": "Price Tag"
+        },
+        {
+          "value": "question_mark",
+          "label": "Question Mark"
+        },
+        {
+          "value": "recycle",
+          "label": "Recycle"
+        },
+        {
+          "value": "return",
+          "label": "Return"
+        },
+        {
+          "value": "ruler",
+          "label": "Ruler"
+        },
+        {
+          "value": "serving_dish",
+          "label": "Serving Dish"
+        },
+        {
+          "value": "shirt",
+          "label": "Shirt"
+        },
+        {
+          "value": "shoe",
+          "label": "Shoe"
+        },
+        {
+          "value": "silhouette",
+          "label": "Silhouette"
+        },
+        {
+          "value": "snowflake",
+          "label": "Snowflake"
+        },
+        {
+          "value": "star",
+          "label": "Star"
+        },
+        {
+          "value": "stopwatch",
+          "label": "Stopwatch"
+        },
+        {
+          "value": "truck",
+          "label": "Truck"
+        },
+        {
+          "value": "washing",
+          "label": "Washing"
+        },
+        {
+          "value": "arrow",
+          "label": "Arrow"
+        },
+        {
+          "value": "tiktok",
+          "label": "TikTok"
+        },
+        {
+          "value": "youtube",
+          "label": "YouTube"
+        },
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "x",
+          "label": "X (Twitter)"
+        },
+        {
+          "value": "facebook",
+          "label": "Facebook"
+        },
+        {
+          "value": "pinterest",
+          "label": "Pinterest"
+        },
+        {
+          "value": "tumblr",
+          "label": "Tumblr"
+        },
+        {
+          "value": "vimeo",
+          "label": "Vimeo"
+        },
+        {
+          "value": "snapchat",
+          "label": "Snapchat"
+        },
+        {
+          "value": "spotify",
+          "label": "Spotify"
+        },
+        {
+          "value": "threads",
+          "label": "Threads"
+        },
+        {
+          "value": "whatsapp",
+          "label": "WhatsApp"
+        },
+        {
+          "value": "mastodon",
+          "label": "Mastodon"
+        },
+        {
+          "value": "reddit",
+          "label": "Reddit"
+        },
+        {
+          "value": "telegram",
+          "label": "Telegram"
+        },
+        {
+          "value": "twitch",
+          "label": "Twitch"
+        },
+        {
+          "value": "custom",
+          "label": "Custom Icon"
+        }
+      ],
+      "default": "none",
+      "visible_if": "{{ block.settings.show_icon }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_icon",
+      "label": "Upload custom icon",
+      "info": "Upload your own icon image (SVG, PNG, or JPG)",
+      "visible_if": "{{ block.settings.show_icon and block.settings.icon_type == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "icon_position",
+      "label": "Icon position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left of text"
+        },
+        {
+          "value": "right",
+          "label": "Right of text"
+        }
+      ],
+      "default": "left",
+      "visible_if": "{{ block.settings.show_icon and block.settings.icon_type != 'none' }}"
+    },
+    {
+      "type": "select",
+      "id": "icon_size_unit",
+      "label": "Icon size unit",
+      "options": [
+        {
+          "value": "px",
+          "label": "Pixels (px)"
+        },
+        {
+          "value": "percent",
+          "label": "Percentage (%)"
+        }
+      ],
+      "default": "px",
+      "visible_if": "{{ block.settings.show_icon and block.settings.icon_type != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "icon_size_px",
+      "label": "Icon size (px)",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20,
+      "visible_if": "{{ block.settings.show_icon and block.settings.icon_type != 'none' and block.settings.icon_size_unit == 'px' }}"
+    },
+    {
+      "type": "range",
+      "id": "icon_size_percent",
+      "label": "Icon size (%)",
+      "min": 50,
+      "max": 200,
+      "step": 5,
+      "unit": "%",
+      "default": 100,
+      "visible_if": "{{ block.settings.show_icon and block.settings.icon_type != 'none' and block.settings.icon_size_unit == 'percent' }}"
     },
     {
       "type": "header",
