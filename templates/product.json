@@ -173,36 +173,6 @@
               },
               "block_order": []
             },
-            "button_gggbYx": {
-              "type": "button",
-              "name": "t:names.button",
-              "settings": {
-                "label": "Take Classes",
-                "link": "shopify://collections/all",
-                "open_in_new_tab": false,
-                "style_class": "button",
-                "width": "custom",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            },
-            "button_MAjGdT": {
-              "type": "button",
-              "name": "t:names.button",
-              "settings": {
-                "label": "Custom Commission Request",
-                "link": "shopify://collections/all",
-                "open_in_new_tab": false,
-                "style_class": "button-secondary",
-                "width": "custom",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            },
             "product_description_LfDYCg": {
               "type": "product-description",
               "name": "t:names.product_description",
@@ -353,6 +323,7 @@
                           "type": "icon",
                           "name": "t:names.icon",
                           "settings": {
+                            "icon_field_key": "",
                             "icon": "heart",
                             "width": 24,
                             "link": "",
@@ -365,6 +336,10 @@
                           "name": "Heading",
                           "settings": {
                             "text": "<p>For Individuals</p>",
+                            "source_field_key": "",
+                            "render_as": "auto",
+                            "fallback_text": "",
+                            "debug_text_block": false,
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -436,6 +411,7 @@
                           "type": "icon",
                           "name": "t:names.icon",
                           "settings": {
+                            "icon_field_key": "",
                             "icon": "silhouette",
                             "width": 24,
                             "link": "",
@@ -448,6 +424,10 @@
                           "name": "Heading",
                           "settings": {
                             "text": "<p>For Corporates</p>",
+                            "source_field_key": "",
+                            "render_as": "auto",
+                            "fallback_text": "",
+                            "debug_text_block": false,
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -565,6 +545,7 @@
                           "type": "icon",
                           "name": "t:names.icon",
                           "settings": {
+                            "icon_field_key": "",
                             "icon": "star",
                             "width": 24,
                             "link": "",
@@ -577,6 +558,10 @@
                           "name": "Heading",
                           "settings": {
                             "text": "<p>Creative People</p>",
+                            "source_field_key": "",
+                            "render_as": "auto",
+                            "fallback_text": "",
+                            "debug_text_block": false,
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -648,6 +633,7 @@
                           "type": "icon",
                           "name": "t:names.icon",
                           "settings": {
+                            "icon_field_key": "",
                             "icon": "banana",
                             "width": 24,
                             "link": "",
@@ -660,6 +646,10 @@
                           "name": "Heading",
                           "settings": {
                             "text": "<p>Artists</p>",
+                            "source_field_key": "",
+                            "render_as": "auto",
+                            "fallback_text": "",
+                            "debug_text_block": false,
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -731,6 +721,10 @@
                       "type": "text",
                       "settings": {
                         "text": "<p>Rentals are available by the hour with flexible scheduling. A brief safety and usage orientation is required before your first booking (must be scheduled separately). Rentals include workspace, ventilation, and access to basic hand tools if needed. Staff may not be present at all times during your rental, but we will meet you in person to set up and go over logistics. Design help or file prep is not included during rental time. Perfect for artists, makers, and small business projects.</p>",
+                        "source_field_key": "",
+                        "render_as": "auto",
+                        "fallback_text": "",
+                        "debug_text_block": false,
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -771,6 +765,10 @@
                       "type": "text",
                       "settings": {
                         "text": "<p>Equipment rentals are available to <strong>approved members</strong> and <strong>individuals who have completed a 1-on-1 introductory session</strong>. First-time users must schedule a private training session before booking rental time.</p><p>All rentals require a minimum of 1 hour, with additional time billed in 30-minute increments. Cancellations are free up to 24 hours in advance. Cancellations within 24 hours or no-shows will be charged 50% of the rental fee.</p><p>Renters are responsible for proper use of equipment and any damage caused by misuse or unauthorized materials. Only approved files and materials may be used.</p>",
+                        "source_field_key": "",
+                        "render_as": "auto",
+                        "fallback_text": "",
+                        "debug_text_block": false,
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -811,6 +809,10 @@
                       "type": "text",
                       "settings": {
                         "text": "<p>Only approved materials and files may be used during rentals. You are welcome to bring your own materials, or purchase from us if we have what you need in stock.</p>",
+                        "source_field_key": "",
+                        "render_as": "auto",
+                        "fallback_text": "",
+                        "debug_text_block": false,
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -850,6 +852,10 @@
                       "type": "text",
                       "settings": {
                         "text": "<p>All equipment rentals must be booked in advance with a minimum rental time of 1 hour. Additional time is billed in 30-minute increments. You may cancel for free up to 24 hours before your scheduled rental. </p><p>Cancellations within 24 hours or no-shows will be charged 50% of the rental fee. Renters are responsible for any damage caused by misuse or use of unauthorized materials. A brief safety overview is required before your first session.</p>",
+                        "source_field_key": "",
+                        "render_as": "auto",
+                        "fallback_text": "",
+                        "debug_text_block": false,
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -891,8 +897,6 @@
             "price_a7krng",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
-            "button_gggbYx",
-            "button_MAjGdT",
             "product_description_LfDYCg",
             "group_X39hBc",
             "accordion_g8EVVp"
@@ -943,6 +947,10 @@
           "type": "text",
           "settings": {
             "text": "<h2>Contact Us</h2>",
+            "source_field_key": "",
+            "render_as": "auto",
+            "fallback_text": "",
+            "debug_text_block": false,
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -969,6 +977,10 @@
           "name": "t:names.text",
           "settings": {
             "text": "<p>Have a question or creative idea in mind? Whether you're interested in a class, a custom piece, or just want to learn more, we're here to help. Fill out the form below and we'll get back to you within 1–2 business days.</p>",
+            "source_field_key": "",
+            "render_as": "auto",
+            "fallback_text": "",
+            "debug_text_block": false,
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
