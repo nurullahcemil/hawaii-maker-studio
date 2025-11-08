@@ -1363,7 +1363,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h2>Starter Maker</h2>",
+                    "text": "<p>Pro Maker</p>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
@@ -1392,7 +1392,7 @@
                 "text_zqAgjW": {
                   "type": "text",
                   "settings": {
-                    "text": "<h5><strong>For casual creators or first-timers who want to explore the tools.</strong></h5><h5>Start your maker journey with just the right amount of freedom.</h5><h5>Perfect for quick projects, creative weekends, or discovering your favorite tools.</h5>",
+                    "text": "<h5><strong>For regular builders who want flexibility and longer creative sessions.</strong></h5><h5>Make more, stress less. Pro members enjoy double the flexibility, longer sessions, and early booking access — ideal for turning creative ideas into real projects.</h5>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
@@ -1422,7 +1422,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h5><strong>Includes:</strong></h5><ul><li><h5>5 machine credits/month (≈ 5 hours total)</h5></li><li><h5>Book 1 machine at a time</h5></li><li><h5>Book up to 7 days in advance</h5></li><li><h5>Extra credits — $15 each</h5></li><li><h5>Credits roll over 1 month</h5></li></ul><h5>💰 <strong>$99 / month</strong></h5><h5>🧩 <em>Great for hobbyists, travelers, and small personal projects.</em></h5>",
+                    "text": "<h5><strong>Includes:</strong></h5><ul><li><h5>20 machine credits/month (≈ 20 hours total)</h5></li><li><h5>Book 2 machines at once</h5></li><li><h5>Priority booking (14 days ahead)</h5></li><li><h5>Extra credits — $12 each</h5></li><li><h5>Credits roll over 2 months</h5></li></ul><h5>💰 <strong>$199 / month</strong></h5><h5>🧩 <em>Perfect for artists, small business owners, and frequent makers.</em></h5><h5></h5>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
