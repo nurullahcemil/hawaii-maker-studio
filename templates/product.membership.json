@@ -903,6 +903,7 @@
           ]
         }
       },
+      "disabled": true,
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
@@ -913,165 +914,9 @@
         "padding-block-start": 40,
         "padding-block-end": 32
       }
-    },
-    "dynamic_image_gallery_qjRkhk": {
-      "type": "dynamic-image-gallery",
-      "name": "Dynamic Image Gallery",
-      "settings": {
-        "show_title": true,
-        "gallery_title": "What Can You Make with xTool P2S",
-        "heading_tag": "h2",
-        "heading_style": "h3",
-        "title_spacing": 32,
-        "gallery_layout": "grid-4",
-        "max_images": 20,
-        "columns_mobile": 1,
-        "columns_tablet": 3,
-        "columns_desktop": 3,
-        "image_radius": 8,
-        "show_captions": false,
-        "enable_zoom": true,
-        "show_dots": true,
-        "autoplay": false,
-        "autoplay_speed": 5,
-        "section_width": "page-width",
-        "color_scheme": "",
-        "padding-block-start": 36,
-        "padding-block-end": 36
-      }
-    },
-    "section_BHeC9b": {
-      "type": "section",
-      "blocks": {
-        "text_KHFVHa": {
-          "type": "text",
-          "settings": {
-            "text": "<h2>Contact Us</h2>",
-            "source_field_key": "",
-            "render_as": "auto",
-            "fallback_text": "",
-            "debug_text_block": false,
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "text_WGQHzD": {
-          "type": "text",
-          "name": "t:names.text",
-          "settings": {
-            "text": "<p>Have a question or creative idea in mind? Whether you're interested in a class, a custom piece, or just want to learn more, we're here to help. Fill out the form below and we'll get back to you within 1–2 business days.</p>",
-            "source_field_key": "",
-            "render_as": "auto",
-            "fallback_text": "",
-            "debug_text_block": false,
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "contact_form_DcpzRN": {
-          "type": "contact-form",
-          "settings": {
-            "width": "custom",
-            "custom_width": 50,
-            "width_mobile": "custom",
-            "custom_width_mobile": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "submit-button": {
-              "type": "contact-form-submit-button",
-              "static": true,
-              "settings": {
-                "label": "Submit",
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        }
-      },
-      "block_order": [
-        "text_KHFVHa",
-        "text_WGQHzD",
-        "contact_form_DcpzRN"
-      ],
-      "name": "t:names.contact_form",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 32,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-3",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 32,
-        "padding-block-end": 32
-      }
     }
   },
   "order": [
-    "main",
-    "dynamic_image_gallery_qjRkhk",
-    "section_BHeC9b"
+    "main"
   ]
 }
