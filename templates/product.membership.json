@@ -1159,7 +1159,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -1191,7 +1191,7 @@
                 "text_ggxLrf": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Intentional design</h2>",
+                    "text": "<p>Choose a membership </p>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
@@ -1217,18 +1217,19 @@
                   },
                   "blocks": {}
                 },
-                "text_hzhcPK": {
+                "text_qagnrc": {
                   "type": "text",
+                  "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Everything we do starts with why</p>",
+                    "text": "<p>that fits your creative pace.</p>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
                     "debug_text_block": false,
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "rte",
+                    "width": "fit-content",
+                    "max_width": "narrow",
+                    "alignment": "left",
+                    "type_preset": "h6",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
@@ -1249,7 +1250,7 @@
               },
               "block_order": [
                 "text_ggxLrf",
-                "text_hzhcPK"
+                "text_qagnrc"
               ]
             }
           },
@@ -1350,7 +1351,7 @@
                 "text_4tdANw": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Made with care</h2>",
+                    "text": "<p>Use credits to book time on any machine</p>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
@@ -1379,7 +1380,7 @@
                 "text_Wndxeh": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>We believe in building better</p>",
+                    "text": "<p>laser, 3D printer, UV printer, embroidery, and more.</p>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
@@ -1509,7 +1510,7 @@
                 "text_ErBCGQ": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>A team with a goal</h2>",
+                    "text": "<p>Create freely</p>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
@@ -1538,7 +1539,7 @@
                 "text_km4raA": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Real people making great products</p>",
+                    "text": "<p>your time, your tools, your projects.</p>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
