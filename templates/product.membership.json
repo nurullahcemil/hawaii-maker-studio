@@ -1032,7 +1032,7 @@
         "section_height_custom": 50,
         "color_scheme": "scheme-5",
         "toggle_overlay": true,
-        "overlay_color": "#00000037",
+        "overlay_color": "#00000038",
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "blurred_reflection": false,
@@ -1835,6 +1835,36 @@
                   },
                   "blocks": {}
                 },
+                "text_6WWEMX": {
+                  "type": "text",
+                  "name": "t:names.heading",
+                  "settings": {
+                    "text": "<h2>New arrivals</h2>",
+                    "source_field_key": "",
+                    "render_as": "auto",
+                    "fallback_text": "",
+                    "debug_text_block": false,
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
                 "text_8cEbBc": {
                   "type": "text",
                   "settings": {
@@ -1926,6 +1956,7 @@
               },
               "block_order": [
                 "text_cwHFr8",
+                "text_6WWEMX",
                 "text_8cEbBc",
                 "text_dxm3JQ",
                 "spacer_ThewtC",
