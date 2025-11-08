@@ -866,7 +866,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<h2><strong>MAKER KIDS WORKSHOPS</strong></h2>",
+            "text": "<h2>MAKER KIDS WORKSHOPS</h2>",
             "source_field_key": "",
             "render_as": "auto",
             "fallback_text": "",
