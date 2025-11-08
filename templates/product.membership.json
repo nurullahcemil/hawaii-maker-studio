@@ -975,27 +975,11 @@
             "padding-inline-end": 0
           },
           "blocks": {}
-        },
-        "button_UFU49Q": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "Shop Now",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
         }
       },
       "block_order": [
         "text_JjtFYa",
-        "text_7JA76z",
-        "button_UFU49Q"
+        "text_7JA76z"
       ],
       "name": "t:names.hero",
       "settings": {
@@ -1447,12 +1431,43 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
+                },
+                "spacer_yJA3hR": {
+                  "type": "spacer",
+                  "name": "t:names.spacer",
+                  "settings": {
+                    "size": "percent",
+                    "percent_size": 100,
+                    "pixel_size": 120,
+                    "custom_mobile_size": false,
+                    "size_mobile": "percent",
+                    "percent_size_mobile": 100,
+                    "pixel_size_mobile": 120
+                  },
+                  "blocks": {}
+                },
+                "button_wETe3b": {
+                  "type": "button",
+                  "name": "t:names.button",
+                  "settings": {
+                    "label": "Join Pro Maker",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "style_class": "button",
+                    "width": "custom",
+                    "custom_width": 25,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
                 "text_CBkjMK",
                 "text_zqAgjW",
-                "text_JenjcD"
+                "text_JenjcD",
+                "spacer_yJA3hR",
+                "button_wETe3b"
               ]
             }
           },
