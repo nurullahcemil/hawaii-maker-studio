@@ -1603,7 +1603,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h2>Starter Maker</h2>",
+                    "text": "<h2>Studio Maker</h2>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
@@ -1632,7 +1632,7 @@
                 "text_FCxyr8": {
                   "type": "text",
                   "settings": {
-                    "text": "<h5><strong>For casual creators or first-timers who want to explore the tools.</strong></h5><h5>Start your maker journey with just the right amount of freedom.</h5><h5>Perfect for quick projects, creative weekends, or discovering your favorite tools.</h5>",
+                    "text": "<p><strong>For professionals and entrepreneurs who make often and need full access.</strong></p><p>Full creative freedom for serious makers. With same-day booking and multi-machine use, this plan gives you professional control and the space to bring big ideas to life.</p>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
@@ -1640,7 +1640,7 @@
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
-                    "type_preset": "rte",
+                    "type_preset": "h5",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
@@ -1662,7 +1662,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h5><strong>Includes:</strong></h5><ul><li><h5>5 machine credits/month (≈ 5 hours total)</h5></li><li><h5>Book 1 machine at a time</h5></li><li><h5>Book up to 7 days in advance</h5></li><li><h5>Extra credits — $15 each</h5></li><li><h5>Credits roll over 1 month</h5></li></ul><h5>💰 <strong>$99 / month</strong></h5><h5>🧩 <em>Great for hobbyists, travelers, and small personal projects.</em></h5>",
+                    "text": "<p><strong>Includes:</strong></p><ul><li>60 machine credits/month (≈ 60 hours total)</li><li>Book up to 3 machines simultaneously</li><li>Same-day booking priority</li><li>Private storage shelf</li><li>1 guest or client per session</li><li>Extra credits — $10 each</li></ul><p>💰 <strong>$349 / month</strong></p><p>🧩 <em>Ideal for creative professionals, instructors, or studio teams.</em></p>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
@@ -1670,7 +1670,7 @@
                     "width": "100%",
                     "max_width": "narrow",
                     "alignment": "center",
-                    "type_preset": "rte",
+                    "type_preset": "h5",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
@@ -1706,7 +1706,7 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "Join Starter Maker",
+                    "label": "Join Studio Maker",
                     "link": "shopify://collections/all",
                     "open_in_new_tab": false,
                     "style_class": "button",
