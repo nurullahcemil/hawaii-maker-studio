@@ -1308,7 +1308,7 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "👉 [Join Starter Maker]",
+                    "label": "Join Starter Maker",
                     "link": "",
                     "open_in_new_tab": false,
                     "style_class": "button",
