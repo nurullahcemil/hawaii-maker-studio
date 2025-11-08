@@ -1,0 +1,83 @@
+{%- doc -%}
+  Renders text with optional icon support.
+
+  @param {string} [class] - custom class to define in addition to text-block classes
+  @param {string} [fallback_text] - fallback text if settings.text does not exist
+  @param {object} [block] - The block object
+  @param {string} [width] - width of the text block
+{%- enddoc -%}
+
+{% liquid
+  assign block_settings = block.settings
+  
+  comment 'Determine icon size'
+  assign icon_size_value = block_settings.icon_size | append: 'px'
+%}
+
+{% comment %} Wrapper for text with icon {% endcomment %}
+<div class="text-with-icon text-icon-position-{{ block_settings.icon_position | default: 'left' }}">
+  {% if block_settings.show_icon and block_settings.icon_type != 'none' and block_settings.icon_position == 'left' %}
+    {% if block_settings.icon_type == 'custom' and block_settings.custom_icon != blank %}
+      <img src="{{ block_settings.custom_icon | image_url }}" alt="" class="text-icon custom-icon" style="width: {{ icon_size_value }}; height: {{ icon_size_value }};">
+    {% elsif block_settings.icon_type != 'custom' %}
+      <svg class="text-icon svg-icon" style="width: {{ icon_size_value }}; height: {{ icon_size_value }};" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        {% render 'icon', icon: block_settings.icon_type %}
+      </svg>
+    {% endif %}
+  {% endif %}
+  
+  <div class="text-content">
+    {% render 'text', block: block, fallback_text: fallback_text, class: class, width: width %}
+  </div>
+  
+  {% if block_settings.show_icon and block_settings.icon_type != 'none' and block_settings.icon_position == 'right' %}
+    {% if block_settings.icon_type == 'custom' and block_settings.custom_icon != blank %}
+      <img src="{{ block_settings.custom_icon | image_url }}" alt="" class="text-icon custom-icon" style="width: {{ icon_size_value }}; height: {{ icon_size_value }};">
+    {% elsif block_settings.icon_type != 'custom' %}
+      <svg class="text-icon svg-icon" style="width: {{ icon_size_value }}; height: {{ icon_size_value }};" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        {% render 'icon', icon: block_settings.icon_type %}
+      </svg>
+    {% endif %}
+  {% endif %}
+</div>
+
+<style>
+  .text-with-icon {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .text-with-icon.text-icon-position-right {
+    flex-direction: row-reverse;
+  }
+  
+  .text-icon {
+    flex-shrink: 0;
+    margin-top: 0.125rem; /* Slight vertical alignment adjustment */
+  }
+  
+  .text-icon.custom-icon {
+    object-fit: contain;
+  }
+  
+  .text-icon.svg-icon {
+    fill: currentColor;
+  }
+  
+  .text-content {
+    flex: 1;
+  }
+  
+  /* If no icon is shown, don't apply flex layout */
+  .text-with-icon:not(:has(.text-icon)) {
+    display: block;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .text-with-icon {
+      gap: 0.5rem;
+    }
+  }
+</style>

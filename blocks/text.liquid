@@ -142,9 +142,9 @@
   </{{ element }}>
   
 {% elsif trying_mo and block.settings.fallback_text != blank %}
-  {% render 'text', block: block, fallback_text: block.settings.fallback_text %}
+  {% render 'text-with-icon', block: block, fallback_text: block.settings.fallback_text %}
 {% else %}
-  {% render 'text', block: block %}
+  {% render 'text-with-icon', block: block %}
 {% endif %}
 
 {% schema %}
@@ -526,6 +526,100 @@
       "max": 50,
       "step": 1,
       "visible_if": "{{ block.settings.background }}"
+    },
+    {
+      "type": "header",
+      "content": "Icon Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "Show icon",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "icon_type",
+      "label": "Icon type",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "apple",
+          "label": "Apple"
+        },
+        {
+          "value": "heart",
+          "label": "Heart"
+        },
+        {
+          "value": "star",
+          "label": "Star"
+        },
+        {
+          "value": "fire",
+          "label": "Fire"
+        },
+        {
+          "value": "leaf",
+          "label": "Leaf"
+        },
+        {
+          "value": "lightning_bolt",
+          "label": "Lightning Bolt"
+        },
+        {
+          "value": "check_box",
+          "label": "Check Mark"
+        },
+        {
+          "value": "arrow",
+          "label": "Arrow"
+        },
+        {
+          "value": "custom",
+          "label": "Custom Icon"
+        }
+      ],
+      "default": "none",
+      "visible_if": "{{ block.settings.show_icon }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_icon",
+      "label": "Upload custom icon",
+      "info": "Upload your own icon image (SVG, PNG, or JPG)",
+      "visible_if": "{{ block.settings.show_icon and block.settings.icon_type == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "icon_position",
+      "label": "Icon position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left of text"
+        },
+        {
+          "value": "right",
+          "label": "Right of text"
+        }
+      ],
+      "default": "left",
+      "visible_if": "{{ block.settings.show_icon and block.settings.icon_type != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size (px)",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20,
+      "visible_if": "{{ block.settings.show_icon and block.settings.icon_type != 'none' }}"
     },
     {
       "type": "header",
