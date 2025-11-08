@@ -590,7 +590,7 @@
         "extend_media": true,
         "color_scheme": "scheme-8",
         "padding-block-start": 25,
-        "padding-block-end": 40
+        "padding-block-end": 0
       }
     },
     "media_with_content_WX7yGQ": {
