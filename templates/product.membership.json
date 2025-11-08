@@ -1264,9 +1264,24 @@
           "settings": {
             "icon_field_key": "",
             "icon": "price_tag",
-            "width": 24,
+            "image_upload": "shopify://shop_images/move-right.svg",
+            "width": 36,
             "link": "",
             "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "spacer_3m76JP": {
+          "type": "spacer",
+          "name": "t:names.spacer",
+          "settings": {
+            "size": "percent",
+            "percent_size": 10,
+            "pixel_size": 120,
+            "custom_mobile_size": false,
+            "size_mobile": "percent",
+            "percent_size_mobile": 100,
+            "pixel_size_mobile": 120
           },
           "blocks": {}
         },
@@ -1417,13 +1432,28 @@
             "group_L3ikMU"
           ]
         },
+        "spacer_8xVtFf": {
+          "type": "spacer",
+          "name": "t:names.spacer",
+          "settings": {
+            "size": "percent",
+            "percent_size": 10,
+            "pixel_size": 120,
+            "custom_mobile_size": false,
+            "size_mobile": "percent",
+            "percent_size_mobile": 100,
+            "pixel_size_mobile": 120
+          },
+          "blocks": {}
+        },
         "icon_UCjDnd": {
           "type": "icon",
           "name": "t:names.icon",
           "settings": {
             "icon_field_key": "",
             "icon": "price_tag",
-            "width": 24,
+            "image_upload": "shopify://shop_images/move-right.svg",
+            "width": 36,
             "link": "",
             "open_in_new_tab": false
           },
@@ -1580,7 +1610,9 @@
       "block_order": [
         "group_gn7kGc",
         "icon_YkM6zF",
+        "spacer_3m76JP",
         "group_P89mem",
+        "spacer_8xVtFf",
         "icon_UCjDnd",
         "group_CCYcG8"
       ],
@@ -1610,6 +1642,72 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "section_jREqCT": {
+      "type": "section",
+      "blocks": {
+        "text_iKCmJ8": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<h5>✨ <em>1 credit = 1 hour of machine use.</em></h5><h5>✨ <em>Members save 30–50% compared to non-member hourly rates.</em></h5>",
+            "source_field_key": "",
+            "render_as": "auto",
+            "fallback_text": "",
+            "debug_text_block": false,
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_iKCmJ8"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 25,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-1",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
         "padding-block-end": 48
       }
     },
@@ -3084,6 +3182,7 @@
     "hero_7kX6Bd",
     "section_U6YbnC",
     "section_BKzGWU",
+    "section_jREqCT",
     "media_with_content_kBRWyR",
     "media_with_content_Q9whCR",
     "media_with_content_Rbwi4G",
