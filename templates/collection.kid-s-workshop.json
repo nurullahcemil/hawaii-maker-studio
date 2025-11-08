@@ -957,7 +957,7 @@
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "h5",
+                "type_preset": "h3",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
@@ -981,7 +981,7 @@
               "static": true,
               "settings": {
                 "show_sale_price_first": true,
-                "type_preset": ""
+                "type_preset": "h5"
               },
               "blocks": {}
             },
@@ -1055,7 +1055,7 @@
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "h5",
+                "type_preset": "h3",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
@@ -1079,7 +1079,7 @@
               "static": true,
               "settings": {
                 "show_sale_price_first": true,
-                "type_preset": ""
+                "type_preset": "h5"
               },
               "blocks": {}
             },
@@ -1153,7 +1153,7 @@
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "h5",
+                "type_preset": "h3",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
@@ -1177,7 +1177,7 @@
               "static": true,
               "settings": {
                 "show_sale_price_first": true,
-                "type_preset": ""
+                "type_preset": "h5"
               },
               "blocks": {}
             },
