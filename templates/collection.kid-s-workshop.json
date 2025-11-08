@@ -660,7 +660,7 @@
             "link": "",
             "video_loop": true,
             "video_autoplay": false,
-            "image_position": "cover",
+            "image_position": "contain",
             "video_position": "cover"
           },
           "blocks": {}
@@ -854,7 +854,7 @@
         "media_height": "60svh",
         "section_width": "full-width",
         "extend_media": true,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
         "padding-block-start": 50,
         "padding-block-end": 50
       }
@@ -882,8 +882,8 @@
             "case": "none",
             "wrap": "pretty",
             "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
+            "background": true,
+            "background_color": "#ffffff26",
             "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -1014,6 +1014,7 @@
           "block_order": []
         }
       },
+      "disabled": true,
       "name": "t:names.featured_product",
       "settings": {
         "product": "3d-printing-workshop",
@@ -1112,6 +1113,7 @@
           "block_order": []
         }
       },
+      "disabled": true,
       "name": "t:names.featured_product",
       "settings": {
         "product": "build-a-solar-powered-vehicle-with-laser-cutting",
@@ -1210,6 +1212,7 @@
           "block_order": []
         }
       },
+      "disabled": true,
       "name": "t:names.featured_product",
       "settings": {
         "product": "catapult-launcher-engineering-lab",
@@ -1308,6 +1311,7 @@
           "block_order": []
         }
       },
+      "disabled": true,
       "name": "t:names.featured_product",
       "settings": {
         "product": "hydraulic-platform-stem-project",
@@ -1406,6 +1410,7 @@
           "block_order": []
         }
       },
+      "disabled": true,
       "name": "t:names.featured_product",
       "settings": {
         "product": "kaleidoscope-making",
