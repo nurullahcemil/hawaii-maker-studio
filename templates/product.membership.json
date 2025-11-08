@@ -929,7 +929,7 @@
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
-            "type_preset": "h1",
+            "type_preset": "rte",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
             "line_height": "normal",
@@ -950,7 +950,7 @@
         "text_7JA76z": {
           "type": "text",
           "settings": {
-            "text": "<h3><em>Your space to design, build, and create — whenever inspiration strikes.</em></h3><p>At <strong>Hawaii Maker Space</strong>, you don’t just use tools — you join a creative community built for modern makers.</p><p>Whether you’re starting small or building big, your membership gives you flexible machine time, priority booking, and access to a fully equipped studio in the heart of Honolulu.</p>",
+            "text": "<h4><em>Your space to design, build, and create — whenever inspiration strikes.</em></h4><p>At <strong>Hawaii Maker Space</strong>, you don’t just use tools — you join a creative community built for modern makers.</p><p>Whether you’re starting small or building big, your membership gives you flexible machine time, priority booking, and access to a fully equipped studio in the heart of Honolulu.</p>",
             "source_field_key": "",
             "render_as": "auto",
             "fallback_text": "",
@@ -958,7 +958,7 @@
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
-            "type_preset": "h4",
+            "type_preset": "rte",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
             "line_height": "normal",
