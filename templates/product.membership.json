@@ -1957,7 +1957,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h5><strong>Includes:</strong></h5><ul><li><h5>5 machine credits/month (≈ 5 hours total)</h5></li><li><h5>Book 1 machine at a time</h5></li><li><h5>Book up to 7 days in advance</h5></li><li><h5>Extra credits — $15 each</h5></li><li><h5>Credits roll over 1 month</h5></li></ul><h5>💰 <strong>$99 / month</strong></h5><h5>🧩 <em>Great for hobbyists, travelers, and small personal projects.</em></h5>",
+                    "text": "<h5><strong>Includes:</strong></h5><h5>5 machine credits/month (≈ 5 hours total)</h5><h5>Book 1 machine at a time</h5><h5>Book up to 7 days in advance</h5><h5>Extra credits — $15 each</h5><h5>Credits roll over 1 month</h5><h5>💰 <strong>$99 / month</strong></h5><h5>🧩 <em>Great for hobbyists, travelers, and small personal projects.</em></h5>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
