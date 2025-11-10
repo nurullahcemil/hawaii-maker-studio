@@ -1509,6 +1509,7 @@
         "spacer_FNrEcj": {
           "type": "spacer",
           "name": "t:names.spacer",
+          "disabled": true,
           "settings": {
             "size": "percent",
             "percent_size": 10,
