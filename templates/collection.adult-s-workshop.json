@@ -317,7 +317,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h1><strong>For the Creator You Still Are</strong></h1><p></p>",
+                    "text": "<h1>For the Creator You Still Are</h1><p></p>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
