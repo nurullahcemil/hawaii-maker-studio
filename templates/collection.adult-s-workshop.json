@@ -426,6 +426,111 @@
         "padding-block-end": 20
       }
     },
+    "section_ma8XqL": {
+      "type": "section",
+      "blocks": {
+        "text_BCzxAW": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>Learn, Create, and Make Something Real</h2>",
+            "source_field_key": "",
+            "render_as": "auto",
+            "fallback_text": "",
+            "debug_text_block": false,
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "show_icon": false,
+            "icon_type": "none",
+            "icon_position": "left",
+            "icon_size": 20,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_Ga6kbH": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<h5>Join our guided workshops and explore laser cutting, 3D printing, and design in a relaxed, creative space made for makers of all levels.<br/></h5>",
+            "source_field_key": "",
+            "render_as": "auto",
+            "fallback_text": "",
+            "debug_text_block": false,
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "show_icon": false,
+            "icon_type": "none",
+            "icon_position": "left",
+            "icon_size": 20,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_BCzxAW",
+        "text_Ga6kbH"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 18,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-1",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
     "media_with_content_zFRFF4": {
       "type": "media-with-content",
       "blocks": {
@@ -1735,111 +1840,6 @@
         "padding-block-end": 48
       }
     },
-    "section_ma8XqL": {
-      "type": "section",
-      "blocks": {
-        "text_BCzxAW": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<h2>Learn, Create, and Make Something Real</h2>",
-            "source_field_key": "",
-            "render_as": "auto",
-            "fallback_text": "",
-            "debug_text_block": false,
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "show_icon": false,
-            "icon_type": "none",
-            "icon_position": "left",
-            "icon_size": 20,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "text_Ga6kbH": {
-          "type": "text",
-          "name": "t:names.text",
-          "settings": {
-            "text": "<h5>Join our guided workshops and explore laser cutting, 3D printing, and design in a relaxed, creative space made for makers of all levels.<br/></h5>",
-            "source_field_key": "",
-            "render_as": "auto",
-            "fallback_text": "",
-            "debug_text_block": false,
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "show_icon": false,
-            "icon_type": "none",
-            "icon_position": "left",
-            "icon_size": 20,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_BCzxAW",
-        "text_Ga6kbH"
-      ],
-      "name": "t:names.rich_text_section",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 18,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-1",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 48,
-        "padding-block-end": 48
-      }
-    },
     "product_list_9DdXBb": {
       "type": "product-list",
       "blocks": {
@@ -2038,14 +2038,14 @@
   "order": [
     "main",
     "hero_qMCBLz",
+    "section_wmqLgM",
+    "section_6DpT6c",
+    "section_ma8XqL",
+    "product_list_9DdXBb",
     "media_with_content_zFRFF4",
     "media_with_content_WX7yGQ",
     "media_with_content_rb3zkf",
     "media_with_content_yMeEPm",
-    "section_wmqLgM",
-    "section_wTFcg8",
-    "section_6DpT6c",
-    "section_ma8XqL",
-    "product_list_9DdXBb"
+    "section_wTFcg8"
   ]
 }
