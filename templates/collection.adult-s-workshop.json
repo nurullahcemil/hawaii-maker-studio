@@ -283,7 +283,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Hawaii Maker Studio</p>",
+                    "text": "<h5>Adult Workshops & Creative Studio</h5>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
