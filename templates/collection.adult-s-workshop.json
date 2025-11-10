@@ -1137,7 +1137,7 @@
         "extend_media": true,
         "color_scheme": "scheme-1",
         "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-end": 26
       }
     },
     "section_wmqLgM": {
@@ -2038,11 +2038,11 @@
   "order": [
     "main",
     "hero_qMCBLz",
+    "section_wmqLgM",
     "media_with_content_zFRFF4",
     "media_with_content_WX7yGQ",
     "media_with_content_rb3zkf",
     "media_with_content_yMeEPm",
-    "section_wmqLgM",
     "section_wTFcg8",
     "section_6DpT6c",
     "section_ma8XqL",
