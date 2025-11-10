@@ -210,7 +210,7 @@
                   "name": "t:names.button",
                   "settings": {
                     "label": "Join a Workshop",
-                    "link": "shopify://collections/all",
+                    "link": "shopify://collections/adults",
                     "open_in_new_tab": false,
                     "style_class": "button",
                     "width": "fit-content",
@@ -239,7 +239,7 @@
                   "name": "t:names.button",
                   "settings": {
                     "label": "Choose a Subscription",
-                    "link": "shopify://collections/all",
+                    "link": "shopify://collections/memberships",
                     "open_in_new_tab": false,
                     "style_class": "button",
                     "width": "fit-content",
