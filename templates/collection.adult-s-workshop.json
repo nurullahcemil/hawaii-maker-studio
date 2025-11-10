@@ -447,16 +447,16 @@
           "type": "_content-without-appearance",
           "static": true,
           "settings": {
-            "horizontal_alignment_flex_direction_column": "flex-start",
+            "horizontal_alignment_flex_direction_column": "center",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 24
+            "gap": 0
           },
           "blocks": {
             "text_KbjnFx": {
               "type": "text",
               "name": "t:names.caption",
               "settings": {
-                "text": "<p>Maker Spotlight<br/></p>",
+                "text": "<p>More Than a Space </p>",
                 "source_field_key": "",
                 "render_as": "auto",
                 "fallback_text": "",
@@ -496,7 +496,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 12,
                 "width": "fill",
@@ -529,7 +529,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h2>Make With Intention</h2><p></p>",
+                    "text": "<h2>It’s a Mindset</h2>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
@@ -559,6 +559,18 @@
                   },
                   "blocks": {}
                 },
+                "divider_bfLwVt": {
+                  "type": "_divider",
+                  "name": "t:names.divider",
+                  "settings": {
+                    "thickness": 1,
+                    "corner_radius": "square",
+                    "width_percent": 100,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0
+                  },
+                  "blocks": {}
+                },
                 "text_iRPB4m": {
                   "type": "text",
                   "settings": {
@@ -569,7 +581,7 @@
                     "debug_text_block": false,
                     "width": "100%",
                     "max_width": "normal",
-                    "alignment": "left",
+                    "alignment": "center",
                     "type_preset": "h5",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -595,6 +607,7 @@
               },
               "block_order": [
                 "text_MHtWJa",
+                "divider_bfLwVt",
                 "text_iRPB4m"
               ]
             }
@@ -605,15 +618,14 @@
           ]
         }
       },
-      "disabled": true,
       "name": "t:names.editorial",
       "settings": {
         "media_position": "left",
-        "media_width": "medium",
+        "media_width": "narrow",
         "media_height": "60svh",
         "section_width": "full-width",
         "extend_media": true,
-        "color_scheme": "scheme-8",
+        "color_scheme": "scheme-1",
         "padding-block-start": 25,
         "padding-block-end": 0
       }
@@ -1040,7 +1052,7 @@
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "rte",
+                "type_preset": "h2",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
