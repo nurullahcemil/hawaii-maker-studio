@@ -1957,7 +1957,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h5><strong>Includes:</strong></h5><h5>5 machine credits/month (≈ 5 hours total)</h5><h5>Book 1 machine at a time</h5><h5>Book up to 7 days in advance</h5><h5>Extra credits — $15 each</h5><h5>Credits roll over 1 month</h5><h5>💰 <strong>$99 / month</strong></h5><h5>🧩 <em>Great for hobbyists, travelers, and small personal projects.</em></h5>",
+                    "text": "<h5><strong>Includes:</strong></h5><h5>5 machine credits/month (≈ 5 hours total)</h5><h5>Book 1 machine at a time</h5><h5>Book up to 7 days in advance</h5><h5>Extra credits — $15 each</h5><h5>Credits roll over 1 month</h5><h5></h5><h5>🧩 <em>Great for hobbyists, travelers, and small personal projects.</em></h5>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
@@ -2005,7 +2005,7 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "Join Starter Maker",
+                    "label": "$99 / month",
                     "link": "",
                     "open_in_new_tab": false,
                     "style_class": "button",
@@ -2214,7 +2214,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h5><strong>Includes:</strong></h5><h5>20 machine credits/month (≈ 20 hours total)</h5><h5>Book 2 machines at once</h5><h5>Priority booking (14 days ahead)</h5><h5>Extra credits — $12 each</h5><h5>Credits roll over 2 months</h5><h5>💰 <strong>$199 / month</strong></h5><h5>🧩 <em>Perfect for artists, small business owners, and frequent makers.</em></h5><h5></h5>",
+                    "text": "<h5><strong>Includes:</strong></h5><h5>20 machine credits/month (≈ 20 hours total)</h5><h5>Book 2 machines at once</h5><h5>Priority booking (14 days ahead)</h5><h5>Extra credits — $12 each</h5><h5>Credits roll over 2 months</h5><h5></h5><h5>🧩 <em>Perfect for artists, small business owners, and frequent makers.</em></h5><h5></h5>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
@@ -2262,7 +2262,7 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "Join Pro Maker",
+                    "label": "$199 / month",
                     "link": "",
                     "open_in_new_tab": false,
                     "style_class": "button",
@@ -2471,7 +2471,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p><strong>Includes:</strong></p><ul><li>60 machine credits/month (≈ 60 hours total)</li><li>Book up to 3 machines simultaneously</li><li>Same-day booking priority</li><li>Private storage shelf</li><li>1 guest or client per session</li><li>Extra credits — $10 each</li></ul><p>💰 <strong>$349 / month</strong></p><p>🧩 <em>Ideal for creative professionals, instructors, or studio teams.</em></p>",
+                    "text": "<p><strong>Includes:</strong></p><p>60 machine credits/month (≈ 60 hours total)</p><p>Book up to 3 machines simultaneously</p><p>Same-day booking priority</p><p>Private storage shelf</p><p>1 guest or client per session</p><p>Extra credits — $10 each</p><p></p><p>🧩 <em>Ideal for creative professionals, instructors, or studio teams.</em></p>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
@@ -2519,7 +2519,7 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "Join Studio Maker",
+                    "label": "$349 / month",
                     "link": "",
                     "open_in_new_tab": false,
                     "style_class": "button",
