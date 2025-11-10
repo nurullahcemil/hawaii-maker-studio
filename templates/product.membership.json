@@ -950,36 +950,19 @@
     "hero_7kX6Bd": {
       "type": "hero",
       "blocks": {
-        "text_JjtFYa": {
-          "type": "text",
+        "jumbo_text_ipWGqd": {
+          "type": "jumbo-text",
+          "name": "t:names.jumbo_text",
           "settings": {
-            "text": "<h1>Membership</h1>",
-            "source_field_key": "",
-            "render_as": "auto",
-            "fallback_text": "",
-            "debug_text_block": false,
-            "width": "fit-content",
-            "max_width": "narrow",
+            "text": "MEMBERSHIP",
+            "font": "heading",
             "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
+            "heading_tag": "none",
+            "line_height": "0.8",
+            "letter_spacing": "-0.03em",
             "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "show_icon": false,
-            "icon_type": "none",
-            "icon_position": "left",
-            "icon_size": 20,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "text_effect": "none",
+            "animation_repeat": false
           },
           "blocks": {}
         },
@@ -1052,7 +1035,7 @@
         }
       },
       "block_order": [
-        "text_JjtFYa",
+        "jumbo_text_ipWGqd",
         "text_7JA76z",
         "text_AqVix3"
       ],
@@ -2315,7 +2298,7 @@
                     "wrap": "pretty",
                     "color": "var(--color-foreground)",
                     "background": true,
-                    "background_color": "#74c0fc9d",
+                    "background_color": "#74c0fc9e",
                     "corner_radius": 15,
                     "show_icon": false,
                     "icon_type": "none",
@@ -2607,7 +2590,7 @@
                     "wrap": "pretty",
                     "color": "var(--color-foreground)",
                     "background": true,
-                    "background_color": "#c8a2ff8b",
+                    "background_color": "#c8a2ff8c",
                     "corner_radius": 15,
                     "show_icon": false,
                     "icon_type": "none",
