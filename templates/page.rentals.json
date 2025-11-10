@@ -130,6 +130,7 @@
                 "text_dUQDdr": {
                   "type": "text",
                   "name": "t:names.text",
+                  "disabled": true,
                   "settings": {
                     "text": "<p>Create, Learn & Make in Honolulu</p>",
                     "source_field_key": "",
@@ -179,7 +180,7 @@
                   "type": "jumbo-text",
                   "name": "t:names.jumbo_text",
                   "settings": {
-                    "text": "Hawaii Maker Space",
+                    "text": "Rentals",
                     "font": "heading",
                     "alignment": "left",
                     "heading_tag": "h1",
@@ -208,6 +209,7 @@
                 "button_DFrgN7": {
                   "type": "button",
                   "name": "t:names.button",
+                  "disabled": true,
                   "settings": {
                     "label": "Join a Workshop",
                     "link": "shopify://collections/adults",
@@ -237,6 +239,7 @@
                 "button_wqBj46": {
                   "type": "button",
                   "name": "t:names.button",
+                  "disabled": true,
                   "settings": {
                     "label": "Choose a Subscription",
                     "link": "shopify://collections/memberships",
@@ -308,7 +311,7 @@
       ],
       "name": "t:names.hero",
       "settings": {
-        "media_type_1": "video",
+        "media_type_1": "image",
         "image_1": "shopify://shop_images/maker-studio2.jpg",
         "video_1": "shopify://files/videos/Hawaii-3d-printing.mov",
         "media_type_2": "image",
@@ -934,66 +937,6 @@
         "padding-block-end": 64
       }
     },
-    "media_with_content_bmYxrf": {
-      "type": "media-with-content",
-      "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "static": true,
-          "settings": {
-            "media_type": "image",
-            "image": "shopify://shop_images/225MakersKathrynHunter_022_COLOR.jpg",
-            "link": "",
-            "video_loop": true,
-            "video_autoplay": false,
-            "image_position": "cover",
-            "video_position": "cover"
-          },
-          "blocks": {}
-        },
-        "content": {
-          "type": "_content-without-appearance",
-          "static": true,
-          "settings": {
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "flex-end",
-            "gap": 24
-          },
-          "blocks": {
-            "jumbo_text_pbaaCj": {
-              "type": "jumbo-text",
-              "name": "t:names.jumbo_text",
-              "settings": {
-                "text": "What\nWe\nHave in\nMaker\nStudio",
-                "font": "subheading",
-                "alignment": "right",
-                "heading_tag": "none",
-                "line_height": "0.8",
-                "letter_spacing": "-0.03em",
-                "case": "uppercase",
-                "text_effect": "none",
-                "animation_repeat": false
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "jumbo_text_pbaaCj"
-          ]
-        }
-      },
-      "name": "t:names.editorial_jumbo_text",
-      "settings": {
-        "media_position": "right",
-        "media_width": "medium",
-        "media_height": "60svh",
-        "section_width": "full-width",
-        "extend_media": true,
-        "color_scheme": "scheme-1",
-        "padding-block-start": 40,
-        "padding-block-end": 0
-      }
-    },
     "section_FEjjaz": {
       "type": "section",
       "blocks": {
@@ -1310,6 +1253,7 @@
         "video_fqrdNi",
         "text_rMPxny"
       ],
+      "disabled": true,
       "name": "t:names.video_section",
       "settings": {
         "content_direction": "column",
@@ -2486,7 +2430,7 @@
                   "type": "text",
                   "name": "Heading",
                   "settings": {
-                    "text": "<h2>Brother ET-8550 Photo Printer</h2>",
+                    "text": "<h2>Epson ET-8550 Photo Printer</h2>",
                     "source_field_key": "",
                     "render_as": "auto",
                     "fallback_text": "",
@@ -2744,7 +2688,6 @@
     "product_list_EDUBdR",
     "media_with_content_LfPdEJ",
     "collection_list_xpBxCm",
-    "media_with_content_bmYxrf",
     "section_FEjjaz",
     "section_hzLqbL",
     "section_wAqMnQ",
