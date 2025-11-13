@@ -17,7 +17,7 @@
         "announcement_mxxhta": {
           "type": "_announcement",
           "settings": {
-            "text": "Uplevel your office with new decor",
+            "text": "Unlock Your Creativity — Memberships Start at $99",
             "link": "shopify://collections/all",
             "font": "var(--font-primary--family)",
             "font_size": "var(--font-size--body-md)",
@@ -35,7 +35,7 @@
       "settings": {
         "speed": 5,
         "section_width": "full-width",
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-4",
         "divider_width": 0,
         "padding-block-start": 15,
         "padding-block-end": 15
