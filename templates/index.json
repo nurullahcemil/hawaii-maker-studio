@@ -191,6 +191,21 @@
                   },
                   "blocks": {}
                 },
+                "button_DREHqd": {
+                  "type": "button",
+                  "name": "t:names.button",
+                  "settings": {
+                    "label": "Call Us at (808) 753-9578",
+                    "link": "tel:(808) 753-9578",
+                    "open_in_new_tab": false,
+                    "style_class": "button",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
+                },
                 "spacer_kC8Jww": {
                   "type": "spacer",
                   "name": "t:names.spacer",
@@ -212,7 +227,7 @@
                     "label": "Join a Workshop",
                     "link": "shopify://collections/all",
                     "open_in_new_tab": false,
-                    "style_class": "button",
+                    "style_class": "button-secondary",
                     "width": "fit-content",
                     "custom_width": 100,
                     "width_mobile": "fit-content",
@@ -241,7 +256,7 @@
                     "label": "Choose a Subscription",
                     "link": "shopify://collections/all",
                     "open_in_new_tab": false,
-                    "style_class": "button",
+                    "style_class": "button-secondary",
                     "width": "fit-content",
                     "custom_width": 100,
                     "width_mobile": "fit-content",
@@ -255,6 +270,7 @@
                 "text_dUQDdr",
                 "spacer_ffPfwa",
                 "jumbo_text_d87JCx",
+                "button_DREHqd",
                 "spacer_kC8Jww",
                 "button_DFrgN7",
                 "spacer_84F9Pq",
@@ -998,7 +1014,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>A creative community for kids and adults to design, build, and explore.<br/><br/>From laser cutting and 3D printing to embroidery and art, our studio blends imagination with modern tools.</p>",
+                "text": "<p>A creative community for kids and adults to design, build, and explore.<br/><br/>From laser cutting and 3D printing to embroidery and art, our studio blends imagination with modern tools.<br/><br/><strong>Address: </strong>941 River Street #240, Honolulu, HI<strong><br/><br/>Appointment Only</strong></p>",
                 "source_field_key": "",
                 "render_as": "auto",
                 "fallback_text": "",
