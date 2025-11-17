@@ -326,7 +326,7 @@
       "settings": {
         "media_type_1": "video",
         "image_1": "shopify://shop_images/maker-studio2.jpg",
-        "video_1": "shopify://files/videos/Hawaii-3d-printing.mov",
+        "video_1": "shopify://files/videos/kids-3d.mov",
         "media_type_2": "image",
         "link": "",
         "open_in_new_tab": false,
@@ -1072,7 +1072,7 @@
             "image_field_key": "",
             "caption_field_key": "",
             "img_width": 1200,
-            "image": "shopify://shop_images/maker-adults.jpg",
+            "image": "shopify://shop_images/start-today-on-a-typewriter-machine.jpg",
             "link": "",
             "image_ratio": "square",
             "width": "fill",
