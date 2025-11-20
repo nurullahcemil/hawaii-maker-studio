@@ -2564,7 +2564,7 @@
                   "name": "t:names.button",
                   "settings": {
                     "label": "$99 / month",
-                    "link": "",
+                    "link": "shopify://products/starter-maker",
                     "open_in_new_tab": false,
                     "style_class": "button",
                     "width": "custom",
@@ -2857,7 +2857,7 @@
                   "name": "t:names.button",
                   "settings": {
                     "label": "$199 / month",
-                    "link": "",
+                    "link": "shopify://products/pro-maker",
                     "open_in_new_tab": false,
                     "style_class": "button",
                     "width": "custom",
@@ -3150,7 +3150,7 @@
                   "name": "t:names.button",
                   "settings": {
                     "label": "$349 / month",
-                    "link": "",
+                    "link": "shopify://products/studio-maker",
                     "open_in_new_tab": false,
                     "style_class": "button",
                     "width": "custom",
