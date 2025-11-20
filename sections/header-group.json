@@ -18,7 +18,7 @@
           "type": "_announcement",
           "settings": {
             "text": "Unlock Your Creativity — <a href=\"/collections/memberships\" title=\"Memberships\">Memberships Start at $99</a>",
-            "link": "shopify://collections/all",
+            "link": "shopify://collections/memberships",
             "font": "var(--font-primary--family)",
             "font_size": "var(--font-size--body-md)",
             "weight": "",
