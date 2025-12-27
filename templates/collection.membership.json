@@ -2856,7 +2856,7 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "$199 / month",
+                    "label": "$99 $̶1̶9̶9̶/ month (50% Off)",
                     "link": "shopify://products/pro-maker",
                     "open_in_new_tab": false,
                     "style_class": "button",
@@ -3149,7 +3149,7 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "$349 / month",
+                    "label": "$150 $̶3̶9̶9̶ / month (50% Off)",
                     "link": "shopify://products/studio-maker",
                     "open_in_new_tab": false,
                     "style_class": "button",
