@@ -1910,9 +1910,18 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "custom_liquid_NUc4X8": {
+                  "type": "custom-liquid",
+                  "name": "t:names.custom_liquid",
+                  "settings": {
+                    "custom_liquid": "<!-- Calendly link widget begin -->\n<link href=\"https://assets.calendly.com/assets/external/widget.css\" rel=\"stylesheet\">\n<script src=\"https://assets.calendly.com/assets/external/widget.js\" type=\"text/javascript\" async></script>\n\n<style>\n  .calendly-btn{\n    display:inline-flex;\n    align-items:center;\n    justify-content:center;\n    padding:14px 18px;\n    border-radius:14px;\n    font-size:16px;\n    font-weight:700;\n    line-height:1;\n    text-decoration:none;\n    cursor:pointer;\n\n    background:#111;\n    color:#fff;\n    border:1px solid rgba(0,0,0,.2);\n\n    transition: transform .12s ease, box-shadow .12s ease, background .12s ease, opacity .12s ease;\n  }\n  .calendly-btn:hover{\n    transform: translateY(-1px);\n    opacity:.95;\n  }\n  .calendly-btn:active{\n    transform: translateY(0px);\n  }\n  .calendly-btn:focus-visible{\n    outline:3px solid rgba(0,0,0,.25);\n    outline-offset:3px;\n  }\n</style>\n\n<a\n  class=\"calendly-btn\"\n  href=\"#\"\n  onclick=\"Calendly.initPopupWidget({url: 'https://calendly.com/kraftstories/time-with-kraftstories-clone-1'});return false;\"\n>\n  Get Consulting\n</a>\n<!-- Calendly link widget end -->"
+                  },
+                  "blocks": {}
+                },
                 "button_HgA6pt": {
                   "type": "button",
                   "name": "t:names.button",
+                  "disabled": true,
                   "settings": {
                     "label": "Get Consulting",
                     "link": "https://calendly.com/kraftstories/time-with-kraftstories-clone-1",
@@ -1956,6 +1965,7 @@
                 }
               },
               "block_order": [
+                "custom_liquid_NUc4X8",
                 "button_HgA6pt",
                 "button_iXtFHT",
                 "button_FrdE7j"
