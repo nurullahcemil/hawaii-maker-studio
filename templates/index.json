@@ -1910,13 +1910,28 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "button_HgA6pt": {
+                  "type": "button",
+                  "name": "t:names.button",
+                  "settings": {
+                    "label": "Get Consulting",
+                    "link": "https://calendly.com/kraftstories/time-with-kraftstories-clone-1",
+                    "open_in_new_tab": false,
+                    "style_class": "button",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
+                },
                 "button_iXtFHT": {
                   "type": "button",
                   "settings": {
                     "label": "Upcoming Classes",
                     "link": "shopify://collections/kids",
                     "open_in_new_tab": false,
-                    "style_class": "button",
+                    "style_class": "button-secondary",
                     "width": "fit-content",
                     "custom_width": 100,
                     "width_mobile": "fit-content",
@@ -1941,6 +1956,7 @@
                 }
               },
               "block_order": [
+                "button_HgA6pt",
                 "button_iXtFHT",
                 "button_FrdE7j"
               ]
