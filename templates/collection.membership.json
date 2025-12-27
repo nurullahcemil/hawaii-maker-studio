@@ -2563,7 +2563,7 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "$99 / month",
+                    "label": "$49/ $̶9̶9̶ month (50% Discount)",
                     "link": "shopify://products/starter-maker",
                     "open_in_new_tab": false,
                     "style_class": "button",
