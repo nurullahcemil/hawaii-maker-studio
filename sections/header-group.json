@@ -17,7 +17,7 @@
         "announcement_mxxhta": {
           "type": "_announcement",
           "settings": {
-            "text": "Unlock Your Creativity — <a href=\"/collections/memberships\" title=\"Memberships\">Memberships Start at $99</a>",
+            "text": "Unlock Your Creativity — <a href=\"/collections/memberships\" title=\"Memberships\">Memberships Start at $49 for a limited time</a>",
             "link": "shopify://collections/memberships",
             "font": "var(--font-primary--family)",
             "font_size": "var(--font-size--body-md)",
