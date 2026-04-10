@@ -1461,7 +1461,7 @@
                   "type": "button",
                   "settings": {
                     "label": "Book Classes",
-                    "link": "shopify://products/laserpecker-l5-engraving-cutting-basics",
+                    "link": "shopify://products/laser-engraving-basics-workshop",
                     "open_in_new_tab": false,
                     "style_class": "button-secondary",
                     "width": "fit-content",
